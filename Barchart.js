@@ -1,5 +1,9 @@
 class BarChart {
   constructor(obj) {
+    //canvas
+    this.canvasWidth = obj.canvasWidth;
+    this.canvasHeight = obj.canvasHeight;
+
     //CHART
     this.data = obj.data;
     this.chartWidth = obj.chartWidth;
@@ -13,14 +17,31 @@ class BarChart {
     //ticks
     this.numTicks = obj.numTicks;
 
-    //text
+    //TEXT
     this.textSizeText = obj.textSizeText;
+    this.textSizeColText = obj.textSizeColText;
     this.textRotate = obj.textRotate;
     this.xValue = obj.xValue;
+    
+
+        //text for col name
+
+    this.colLabel = obj.colLabel; //to pull the section name from the csv file
+    this.textColX = obj.textColX;
+    this.textColY = obj.textColY;
+this.textColWeight=obj.textColWeight;
+
+         //text  for title
+    this.textSizeTitle = obj.textSizeTitle;
+    this.titleText = obj.titleText;
+    this.textTitleX= obj.textTitleX;
+    this.textTitleY=obj.textTitleY;
+    this.titlePaddingX=obj.titlePaddingX;
 
     //colors
     this.barFill = obj.barFill;
     this.textColour = obj.textColour;
+    this.bColour = obj.bColour;
 
     // Calculate maxValue and scale
     this.maxValue = max(this.data.map((d) => d[this.yValue])); // Get the max height of the chart
@@ -28,7 +49,7 @@ class BarChart {
   }
 
   render() {
-  // for (let i = 0; i < 1000; i++) {
+    // for (let i = 0; i < 1000; i++) {
     //   if (this.scale % this.numTicks == 0) {
     //     break;
     //   } else {
@@ -72,12 +93,12 @@ class BarChart {
     push();
     translate(gap, 0);
     for (let i = 0; i < this.data.length; i++) {
-      fill(this.barFill);
+      fill(this.barFill[i % this.barFill.length]);
       noStroke();
       rect(0, 0, this.barWidth, -this.data[i][this.yValue] * this.scale);
       translate(gap + this.barWidth, 0);
 
-      // Text 
+      // Text X AXIS
       push();
       textSize(this.textSizeText);
       if (this.textRotate === 0) {
@@ -91,6 +112,26 @@ class BarChart {
       translate(this.barWidth / 2, 20);
       pop();
     }
+    pop();
+
+    //text xvalue col name
+    push();
+    noStroke();
+    fill(this.textColour);
+    textSize(this.textSizeColText);
+    textStyle(this.textColWeight);
+
+    textAlign(CENTER, CENTER);
+    text(this.colLabel, this.textColX, this.textColY);
+    pop();
+
+    //text xvalue title name
+    push();
+    noStroke();
+    fill(this.textColour);
+    textSize(this.textSizeTitle);
+    textAlign(CENTER, CENTER);
+    text(this.titleText, this.textTitleX, -this.textTitleY,this.titlePaddingX);
     pop();
   }
 }
