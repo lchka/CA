@@ -28,30 +28,38 @@ function setup() {
     chartWidth: 400,
     xPos: 50,
     yPos: 550,
-    axisLineColour: "#d9d9d9",
     barWidth: 25,
-    barFill:["#F7BDD1","#F59EBB","#F17CA3"],
 
-        //text for bars
+    //colours
+    barFill: ["#F7BDD1", "#F59EBB", "#F17CA3"],
+    axisLineColour: "#d9d9d9",
+    ticksColour: "#C72A2A",
+
+    //text for bars
     textColour: "#0f0000",
     textRotate: 45,
-    textSizeText:14,
+    textSizeText: 13 ,
 
-        //text for col
+    //text for col
     textSizeColText: 24,
     colLabel: "Years",
     textColY: 75,
     textColX: 200,
-    textColWeight:BOLD,
-       //text for title
+    textColWeight: NORMAL,
+
+    //text for title
     textSizeTitle: 24,
     titleText: "Fatal accidents resulting from the use of mobile devices",
-    textTitleX:0,
-    textTitleY:270,
-    titlePaddingX:400,
+    textTitleX: 0,
+    textTitleY: 270,
+    titlePaddingX: 400,
+    titleWeight: BOLD,
 
+    //tick and tick text
+    numTicks: 5,
+    ticksTextSize: 13,
+    tickStyle: BOLD,
 
-    numTicks: 7,
     //values
     yValue: "cell-usage",
     xValue: "Year",
@@ -62,6 +70,6 @@ function setup() {
 }
 
 function draw() {
-  background(171, 71, 188);
+  background(171, 171, 188);
   barCharts.forEach((bar) => bar.render());
 }

@@ -16,6 +16,8 @@ class BarChart {
 
     //ticks
     this.numTicks = obj.numTicks;
+    this.ticksTextSize=obj.ticksTextSize;
+    this.tickStyle=obj.tickStyle;
 
     //TEXT
     this.textSizeText = obj.textSizeText;
@@ -37,11 +39,13 @@ this.textColWeight=obj.textColWeight;
     this.textTitleX= obj.textTitleX;
     this.textTitleY=obj.textTitleY;
     this.titlePaddingX=obj.titlePaddingX;
+    this.titleWeight=obj.titleWeight;
 
     //colors
     this.barFill = obj.barFill;
     this.textColour = obj.textColour;
     this.bColour = obj.bColour;
+    this.ticksColour=obj.ticksColour;
 
     // Calculate maxValue and scale
     this.maxValue = max(this.data.map((d) => d[this.yValue])); // Get the max height of the chart
@@ -74,11 +78,14 @@ this.textColWeight=obj.textColWeight;
       pop();
     }
 
-    // Draw number for the ticks
+    //  tick text
     for (let i = 0; i <= this.numTicks; i++) {
       push();
       translate(0, i * (-this.chartHeight / this.numTicks));
-      fill(255, 255, 0);
+      noStroke();
+      textSize(this.ticksTextSize);
+      textStyle(this.tickStyle);
+      fill(this.ticksColour);
       textAlign(RIGHT, CENTER);
       text(i * this.maxValue, -10, 0);
       pop();
@@ -130,6 +137,7 @@ this.textColWeight=obj.textColWeight;
     noStroke();
     fill(this.textColour);
     textSize(this.textSizeTitle);
+    textStyle(this.titleWeight);
     textAlign(CENTER, CENTER);
     text(this.titleText, this.textTitleX, -this.textTitleY,this.titlePaddingX);
     pop();
