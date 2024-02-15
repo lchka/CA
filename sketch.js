@@ -13,7 +13,7 @@ function setup() {
   angleMode (DEGREES);
 
 //cleans data
-// console.log(data);
+console.log(data);
   numRows = data.rows.length;
   for (let i = 0; i < numRows; i++) {
     cleanData.push(data.rows[i].obj);
@@ -35,24 +35,13 @@ function setup() {
     textColour:"#540069",
     textRotate:45,
     textSizeText:10,
-    xValue:"Age_Group",
+    xValue:"Year",
     numTicks:5
   };
 
-//   let barChart02 = {
-//     data: cleanData,
-//     chartHeight: 200,
-//     chartWidth:200,
-//     xPos: 50,
-//     yPos: 450,
-//     axisLineColour: "#d9d9d9",
-//     barWidth: 5,
-//     yValue:"Female"
-//   };
 
 //push new barchart
   barCharts.push(new BarChart(barChart01));
-//   barCharts.push(new BarChart(barChart02));
 
 }
 
