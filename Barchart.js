@@ -28,6 +28,14 @@ class BarChart {
   }
 
   render() {
+  // for (let i = 0; i < 1000; i++) {
+    //   if (this.scale % this.numTicks == 0) {
+    //     break;
+    //   } else {
+    //     this.scale = this.scale + 1;
+    //   }
+    // }
+
     push();
     translate(this.xPos, this.yPos);
     stroke(this.axisLineColour);
