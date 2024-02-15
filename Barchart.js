@@ -1,3 +1,5 @@
+//fix scaling, first loop is already the max, how to set the max from the array of cleanData, with the lowest value as first tick
+
 class BarChart {
   constructor(obj) {
     //canvas
@@ -81,7 +83,7 @@ this.textColWeight=obj.textColWeight;
     //  tick text
     for (let i = 0; i <= this.numTicks; i++) {
       push();
-      translate(0, i * (-this.chartHeight / this.numTicks));
+      translate(0, (i * -this.chartHeight) / this.numTicks);
       noStroke();
       textSize(this.ticksTextSize);
       textStyle(this.tickStyle);

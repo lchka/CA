@@ -56,7 +56,7 @@ function setup() {
     titleWeight: BOLD,
 
     //tick and tick text
-    numTicks: 5,
+    numTicks: 1,
     ticksTextSize: 13,
     tickStyle: BOLD,
 
