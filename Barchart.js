@@ -33,6 +33,8 @@ class BarChart {
     this.textColX = obj.textColX;
     this.textColY = obj.textColY;
     this.textColWeight = obj.textColWeight;
+    this.colVertAlign=obj.colVertAlign;
+    this.colHorzAlign=obj.colHorzAlign;
 
     //text  for title
     this.textSizeTitle = obj.textSizeTitle;
@@ -41,6 +43,8 @@ class BarChart {
     this.textTitleY = obj.textTitleY;
     this.titlePaddingX = obj.titlePaddingX;
     this.titleWeight = obj.titleWeight;
+    this.titleVertAlign=obj.titleVertAlign;
+    this.titleHorzAlign=obj.titleHorzAlign;
 
     //colors
     this.barFill = obj.barFill;
@@ -130,7 +134,7 @@ class BarChart {
     textSize(this.textSizeColText);
     textStyle(this.textColWeight);
 
-    textAlign(CENTER, CENTER);
+    textAlign(this.colHorzAlign, this.colVertAlign);
     text(this.colLabel, this.textColX, this.textColY);
     pop();
 
@@ -140,7 +144,7 @@ class BarChart {
     fill(this.textColour);
     textSize(this.textSizeTitle);
     textStyle(this.titleWeight);
-    textAlign(CENTER, CENTER);
+    textAlign(this.titleHorzAlign,this.titleVertAlign);
     text(this.titleText, this.textTitleX, -this.textTitleY, this.titlePaddingX);
     pop();
   }

@@ -47,6 +47,8 @@ function setup() {
     textColY: 60,
     textColX: 200,
     textColWeight: BOLD,
+    colVertAlign:CENTER,
+    colHorzAlign:CENTER,
 
     //text for title
     textSizeTitle: 24,
@@ -55,6 +57,8 @@ function setup() {
     textTitleY: 270,
     titlePaddingX: 400,
     titleWeight: BOLD,
+    titleHorzAlign:CENTER,
+    titleVertAlign:CENTER,
 
     //tick and tick text
     numTicks: 5,
