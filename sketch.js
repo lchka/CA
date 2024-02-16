@@ -13,7 +13,7 @@ function preload() {
 
 function setup() {
   background(50);
-  createCanvas(1000, 650);
+  createCanvas(1000, 700);
   angleMode(DEGREES);
 
   //cleans data
@@ -31,7 +31,7 @@ function setup() {
     chartHeight: 200,
     chartWidth: 350,
     xPos: 60,
-    yPos: 570,
+    yPos: 650,
     barWidth: 25,
     genFont:font,
     fontBold:boldText,
@@ -89,8 +89,8 @@ function setup() {
     data: cleanData,
     chartHeight: 200,
     chartWidth: 350,
-    xPos: 800,
-    yPos: 570,
+    xPos: -5,
+    yPos: -350,
     barWidth: 25,
     genFont:font,
     fontBold:boldText,
@@ -145,7 +145,7 @@ function setup() {
   };
   barCharts.push(new BarChart(barChart01))
 
-  barCharts.push(new StackedBarchart(barChart02))
+  barCharts.push(new LineGraphChart(barChart02))  
 
 }
 
