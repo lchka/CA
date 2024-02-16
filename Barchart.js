@@ -18,36 +18,35 @@ class BarChart {
 
     //ticks
     this.numTicks = obj.numTicks;
-    this.ticksTextSize=obj.ticksTextSize;
-    this.tickStyle=obj.tickStyle;
+    this.ticksTextSize = obj.ticksTextSize;
+    this.tickStyle = obj.tickStyle;
 
     //TEXT
     this.textSizeText = obj.textSizeText;
     this.textSizeColText = obj.textSizeColText;
     this.textRotate = obj.textRotate;
     this.xValue = obj.xValue;
-    
 
-        //text for col name
+    //text for col name
 
     this.colLabel = obj.colLabel; //to pull the section name from the csv file
     this.textColX = obj.textColX;
     this.textColY = obj.textColY;
-this.textColWeight=obj.textColWeight;
+    this.textColWeight = obj.textColWeight;
 
-         //text  for title
+    //text  for title
     this.textSizeTitle = obj.textSizeTitle;
     this.titleText = obj.titleText;
-    this.textTitleX= obj.textTitleX;
-    this.textTitleY=obj.textTitleY;
-    this.titlePaddingX=obj.titlePaddingX;
-    this.titleWeight=obj.titleWeight;
+    this.textTitleX = obj.textTitleX;
+    this.textTitleY = obj.textTitleY;
+    this.titlePaddingX = obj.titlePaddingX;
+    this.titleWeight = obj.titleWeight;
 
     //colors
     this.barFill = obj.barFill;
     this.textColour = obj.textColour;
     this.bColour = obj.bColour;
-    this.ticksColour=obj.ticksColour;
+    this.ticksColour = obj.ticksColour;
 
     // Calculate maxValue and scale
     this.maxValue = max(this.data.map((d) => d[this.yValue])); // Get the max height of the chart
@@ -81,6 +80,7 @@ this.textColWeight=obj.textColWeight;
     }
 
     //  tick text
+    let tickValue = this.maxValue / this.numTicks; //prevents it from going over the max of preset value in the column/rows. On first loop it did display the max value (453) but kept going over it, which is why we needed another variable that handles the 'gap difference' between each value label.
     for (let i = 0; i <= this.numTicks; i++) {
       push();
       translate(0, (i * -this.chartHeight) / this.numTicks);
@@ -89,7 +89,7 @@ this.textColWeight=obj.textColWeight;
       textStyle(this.tickStyle);
       fill(this.ticksColour);
       textAlign(RIGHT, CENTER);
-      text(i * this.maxValue, -10, 0);
+      text(Math.ceil(i * tickValue), -10, 0); //everytime i loop it adds from the previous loop to the current one
       pop();
     }
 
@@ -141,7 +141,7 @@ this.textColWeight=obj.textColWeight;
     textSize(this.textSizeTitle);
     textStyle(this.titleWeight);
     textAlign(CENTER, CENTER);
-    text(this.titleText, this.textTitleX, -this.textTitleY,this.titlePaddingX);
+    text(this.titleText, this.textTitleX, -this.textTitleY, this.titlePaddingX);
     pop();
   }
 }

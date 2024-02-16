@@ -9,7 +9,7 @@ function preload() {
 
 function setup() {
   background(50);
-  createCanvas(1200, 650);
+  createCanvas(1000, 650);
   angleMode(DEGREES);
 
   //cleans data
@@ -25,9 +25,9 @@ function setup() {
   let barChart01 = {
     data: cleanData,
     chartHeight: 200,
-    chartWidth: 400,
-    xPos: 50,
-    yPos: 550,
+    chartWidth: 350,
+    xPos: 40,
+    yPos: 570,
     barWidth: 25,
 
     //colours
@@ -35,17 +35,18 @@ function setup() {
     axisLineColour: "#d9d9d9",
     ticksColour: "#C72A2A",
 
-    //text for bars
+    //text for X AXIS
     textColour: "#0f0000",
     textRotate: 45,
     textSizeText: 13 ,
 
+
     //text for col
-    textSizeColText: 24,
-    colLabel: "Years",
-    textColY: 75,
+    textSizeColText: 16,
+    colLabel: "accidents per year",
+    textColY: 60,
     textColX: 200,
-    textColWeight: NORMAL,
+    textColWeight: BOLD,
 
     //text for title
     textSizeTitle: 24,
@@ -56,7 +57,7 @@ function setup() {
     titleWeight: BOLD,
 
     //tick and tick text
-    numTicks: 1,
+    numTicks: 5,
     ticksTextSize: 13,
     tickStyle: BOLD,
 
