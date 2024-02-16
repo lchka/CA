@@ -26,6 +26,8 @@ class BarChart {
     this.textSizeColText = obj.textSizeColText;
     this.textRotate = obj.textRotate;
     this.xValue = obj.xValue;
+    this.genFont = obj.genFont;
+    this.fontBold = obj.fontBold;
 
     //text for col name
 
@@ -103,6 +105,7 @@ class BarChart {
       textStyle(this.tickStyle);
       fill(this.ticksColour);
       textAlign(RIGHT, CENTER);
+      textFont(this.genFont);9
       text(Math.ceil(i * tickValue), -10, 0); //everytime i loop it adds from the previous loop to the current one
       pop();
     }
@@ -140,11 +143,11 @@ class BarChart {
     //text xvalue col name
     push();
     noStroke();
-    fill(this.textColour);
-    textSize(this.textSizeColText);
-    textStyle(this.textColWeight);
-
+    fill(this.textColour); 
+    textFont(this.fontBold);
     textAlign(this.colHorzAlign, this.colVertAlign);
+    textSize(this.textSizeColText);
+    // textStyle(this.textColWeight);
     text(this.colLabel, this.textColX, this.textColY);
     pop();
 
@@ -152,6 +155,7 @@ class BarChart {
     push();
     noStroke();
     fill(this.textColour);
+    textFont(this.fontBold);
     textSize(this.textSizeTitle);
     textStyle(this.titleWeight);
     textAlign(this.titleHorzAlign, this.titleVertAlign);

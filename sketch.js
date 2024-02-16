@@ -2,9 +2,12 @@ let barCharts = [];
 let data;
 let cleanData = [];
 let numRows;
-
+let font;
+let boldText;
 function preload() {
   data = loadTable("data/FatalCrashes.csv", "csv", "header");
+  font=loadFont('Fonts/Inter-Regular.ttf');
+  boldText=loadFont('Fonts/Inter-SemiBold.ttf');
 }
 
 function setup() {
@@ -29,6 +32,8 @@ function setup() {
     xPos: 60,
     yPos: 570,
     barWidth: 25,
+    genFont:font,
+    fontBold:boldText,
 
     //colours
     barFill: ["#F7BDD1", "#F59EBB", "#F17CA3"],
@@ -70,7 +75,7 @@ function setup() {
     titleVertAlign:CENTER,
 
     //tick and tick text
-    numTicks: 5,
+    numTicks: 10,
     ticksTextSize: 13,
     tickStyle: BOLD,
 
@@ -78,9 +83,10 @@ function setup() {
     yValue: "cell-usage",
     xValue: "Year",
   };
-
+ 
   //push new barchart
   barCharts.push(new BarChart(barChart01));
+
 }
 
 function draw() {
