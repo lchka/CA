@@ -26,7 +26,7 @@ function setup() {
     data: cleanData,
     chartHeight: 200,
     chartWidth: 350,
-    xPos: 40,
+    xPos: 60,
     yPos: 570,
     barWidth: 25,
 
@@ -40,12 +40,21 @@ function setup() {
     textRotate: 45,
     textSizeText: 13 ,
 
+    //text for col y axis name
+
+    colYAxisColour:"#C72A2A",
+    colYAxisSize:16,
+    colYAxisRotation:-90,
+    colYAxisStyle:BOLD,
+    colYAxisTextValue:"no. of deaths",
+    colYAxisTextX:50,
+    colYAxisTextY:-40,
 
     //text for col
     textSizeColText: 16,
     colLabel: "accidents per year",
     textColY: 60,
-    textColX: 200,
+    textColX: 180,
     textColWeight: BOLD,
     colVertAlign:CENTER,
     colHorzAlign:CENTER,
