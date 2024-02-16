@@ -52,8 +52,8 @@ function setup() {
 
     //text for title
     textSizeTitle: 24,
-    titleText: "Fatal accidents resulting from the use of mobile devices",
-    textTitleX: 0,
+    titleText: "Fatal driving accidents resulting from the use of mobile devices",
+    textTitleX: -25,
     textTitleY: 270,
     titlePaddingX: 400,
     titleWeight: BOLD,
