@@ -7,13 +7,14 @@ let font;
 let boldText;
 function preload() {
   data = loadTable("data/FatalCrashes.csv", "csv", "header");
-  font=loadFont('Fonts/Inter-Regular.ttf');
-  boldText=loadFont('Fonts/Inter-SemiBold.ttf');
+  font = loadFont("fonts/Inter-Regular.ttf");
+  boldText = loadFont("fonts/Inter-SemiBold.ttf");
+  // italics=loadFont("fonts/");
 }
 
 function setup() {
   background(50);
-  createCanvas(1600, 750);
+  createCanvas(1600, 800);
   angleMode(DEGREES);
 
   //cleans data
@@ -33,8 +34,8 @@ function setup() {
     xPos: 60,
     yPos: 650,
     barWidth: 25,
-    genFont:font,
-    fontBold:boldText,
+    genFont: font,
+    fontBold: boldText,
 
     //colours
     barFill: ["#F7BDD1", "#F59EBB", "#F17CA3"],
@@ -44,17 +45,20 @@ function setup() {
     //text for X AXIS
     textColour: "#0f0000",
     textRotate: 45,
-    textSizeText: 13 ,
+    textSizeText: 13,
+    indiLineRotate:-85,
+    indiLineWeight:1,
+    indiLineHeight:35,
 
     //text for col y axis name
 
-    colYAxisColour:"#C72A2A",
-    colYAxisSize:16,
-    colYAxisRotation:-90,
-    colYAxisStyle:BOLD,
-    colYAxisTextValue:"no. of deaths",
-    colYAxisTextX:50,
-    colYAxisTextY:-40,
+    colYAxisColour: "#C72A2A",
+    colYAxisSize: 16,
+    colYAxisRotation: -90,
+    colYAxisStyle: BOLD,
+    colYAxisTextValue: "no. of deaths",
+    colYAxisTextX: 50,
+    colYAxisTextY: -40,
 
     //text for col
     textSizeColText: 16,
@@ -62,18 +66,19 @@ function setup() {
     textColY: 60,
     textColX: 180,
     textColWeight: BOLD,
-    colVertAlign:CENTER,
-    colHorzAlign:CENTER,
+    colVertAlign: CENTER,
+    colHorzAlign: CENTER,
 
     //text for title
     textSizeTitle: 24,
-    titleText: "Fatal driving accidents resulting from the use of mobile devices",
+    titleText:
+      "Fatal driving accidents resulting from the use of mobile devices",
     textTitleX: -25,
     textTitleY: 270,
     titlePaddingX: 400,
     titleWeight: BOLD,
-    titleHorzAlign:CENTER,
-    titleVertAlign:CENTER,
+    titleHorzAlign: CENTER,
+    titleVertAlign: CENTER,
 
     //tick and tick text
     numTicks: 10,
@@ -86,24 +91,30 @@ function setup() {
   };
 
   let lineChart = {
+    //line Chart
     data: cleanData,
     chartHeight: 200,
     chartWidth: 350,
     xPos: -5,
     yPos: -350,
-    barWidth: 25,
-    genFont:font,
-    fontBold:boldText,
+    genFont: font,
+    fontBold: boldText,
+    pointEllipseSize: 6,
+    chartXYLineWeight:1.5,
 
     //colours
-    barFill: ["#F7BDD1", "#F59EBB", "#F17CA3"],
-    axisLineColour: "#d9d9d9",
+    axisLineColour: "#F5F5F5",
     ticksColour: "#C72A2A",
+    pointsColour:"#B51C1C",
+    chartLineColour:"#050505",
+    chartLineIndiLineColour:["#8D25A8", "#993BB1", "#B26BC5"],
+
 
     //text for X AXIS
-    textColour: "#0f0000",
+    textColour: ["#8D25A8", "#993BB1", "#B26BC5"],
     textRotate: 45,
-    textSizeText: 13 ,
+    textSizeText: 13,
+    xAxisTextYPos:45,
 
     //text for col y axis name
 
@@ -118,17 +129,17 @@ function setup() {
     //text for col
     textSizeColText: 16,
     colLabel: "accidents per year",
-    textColY: -20,
-    textColX: 180,
+    textColY: -420,
+    textColX: 175,
     textColWeight: BOLD,
     colVertAlign:CENTER,
     colHorzAlign:CENTER,
 
     //text for title
-    textSizeTitle: 24,
-    titleText: "Fatal driving accidents resulting from the use of mobile devices",
+    textSizeTitle: 20,
+    titleText: "Fatal driving accidents resulting from other uneccasary distraction on the road",
     textTitleX: -25,
-    textTitleY: 270,
+    textTitleY: 600,
     titlePaddingX: 400,
     titleWeight: BOLD,
     titleHorzAlign:CENTER,
@@ -138,15 +149,16 @@ function setup() {
     numTicks: 10,
     ticksTextSize: 13,
     tickStyle: BOLD,
+    tickTextXPos:-10,
+    ticksLength:-5,
 
     //values
-    yValue: "cell-usage",
+    yValue: "other-distraction",
     xValue: "Year",
   };
-  barCharts.push(new BarChart(barChart))
+  barCharts.push(new BarChart(barChart));
 
-  barCharts.push(new LineGraphChart(lineChart))  
-
+  barCharts.push(new LineGraphChart(lineChart));
 }
 
 function draw() {

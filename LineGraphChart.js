@@ -14,19 +14,27 @@ class LineGraphChart {
     this.yPos = obj.yPos;
     this.axisLineColour = obj.axisLineColour;
     this.yValue = obj.yValue;
+    this.pointEllipseSize = obj.pointEllipseSize;
+    this.chartXYLineWeight = obj.chartXYLineWeight;
 
     //ticks
     this.numTicks = obj.numTicks;
     this.ticksTextSize = obj.ticksTextSize;
     this.tickStyle = obj.tickStyle;
+    this.tickTextXPos = obj.tickTextXPos;
+    this.ticksLength = obj.ticksLength;
 
-    //TEXT
+    //TEXT x axis
     this.textSizeText = obj.textSizeText;
     this.textSizeColText = obj.textSizeColText;
     this.textRotate = obj.textRotate;
     this.xValue = obj.xValue;
     this.genFont = obj.genFont;
     this.fontBold = obj.fontBold;
+    this.indiLineRotate = this.indiLineRotate;
+    this.indiLineWeight = obj.indiLineWeight;
+    this.xAxisTextYPos = obj.xAxisTextYPos;
+    this.indiLineHeight = obj.indiLineHeight;
 
     //text for col name
 
@@ -62,9 +70,12 @@ class LineGraphChart {
     this.textColour = obj.textColour;
     this.bColour = obj.bColour;
     this.ticksColour = obj.ticksColour;
+    this.pointsColour = obj.pointsColour;
+    this.chartLineColour = obj.chartLineColour;
+    this.chartLineIndiLineColour = obj.chartLineIndiLineColour;
 
     // Calculate maxValue and scale
-    this.maxValue = max(this.data.map((d) => d[this.yValue])); // Get the max height of the chart
+    this.maxValue = max(this.data.map((d) => d[this.yValue])); // Get the max value from the yValue of the chart
     this.scale = this.chartHeight / this.maxValue; // Calculate the scale for the chart
   }
 
@@ -73,6 +84,7 @@ class LineGraphChart {
     push();
     translate(this.xPos, this.yPos);
     stroke(this.axisLineColour);
+    strokeWeight(this.chartXYLineWeight);
     line(0, 0, 0, -this.chartHeight);
     line(0, 0, this.chartWidth, 0);
 
@@ -83,7 +95,7 @@ class LineGraphChart {
     for (let i = 0; i <= this.numTicks; i++) {
       push();
       translate(0, i * (-this.chartHeight / this.numTicks));
-      line(0, 0, -5, 0);
+      line(0, 0, this.ticksLength, 0);
       pop();
     }
 
@@ -98,57 +110,60 @@ class LineGraphChart {
       fill(this.ticksColour);
       textAlign(RIGHT, CENTER);
       textFont(this.genFont);
-      9;
-      text(Math.ceil(i * tickValue), -10, 0); //everytime i loop it adds from the previous loop to the current one
+
+      text(Math.ceil(i * tickValue), this.tickTextXPos, 0); //everytime it loops it adds from the previous loop to the current one, used math,ciel to round to the nearest whole number
       pop();
     }
 
-    // Draw lines
-    push();
+    // Drawing chart lines and points
+
     let xStep = this.chartWidth / (this.data.length - 1); //350/11-1=35
-    let x = 0; //will be responsible in moving from point a to point b
-    let yStep = this.chartHeight / this.maxValue;
+    let xLine = 0; //will be responsible in moving from point a to point b
+    let yStep = this.chartHeight / this.maxValue; //200/2843=0.0706
     beginShape();
     noFill();
 
     for (let i = 0; i < this.data.length; i++) {
-      let y = -this.data[i][this.yValue] * yStep; //yvalue is what we're displaying on the graph
-      fill("#ff0019");
+      stroke(this.chartLineColour);
+      let yLine = -this.data[i][this.yValue] * yStep; //yvalue is what we're displaying on the graph
+      push();
+      fill(this.pointsColour);
       noStroke();
-      ellipse(x, y, 6);
+      ellipse(xLine, yLine, this.pointEllipseSize);
       noFill();
-      stroke("#ffffff");
-      vertex(x, y);
+      pop();
 
       // Text X AXIS
       push();
-      textSize(this.textSizeText);
-      //   rotate(this.textRotate);
+      noStroke();
+      fill(this.textColour[i % this.textColour.length]);
+      textSize(this.textSize);
       if (this.textRotate === 0) {
         textAlign(CENTER, CENTER);
       } else {
         textAlign(LEFT, CENTER);
       }
-      //   rotate(this.textRotate);
-      fill(this.textColour);
-      push()
-      push(); // Save the current drawing state
-      translate(x, y); // Move the origin to the position where the line starts
-      rotate(5); // Rotate the canvas slightly to the left by 10 degrees
-      
-      // Draw the line alongside the text
-      stroke(this.textColour);
-      line(0, 0,10, 30); // Draw the line with the new coordinate system
-      
-      pop(); // Restore previous drawing state
-      pop()
-      text(XLabels[i], x, y + 40);
+
+      // Draw the Indicator line alongside the text
+      push();
+      translate(xLine, yLine); // Move the origin to the position where the line starts
+      stroke(
+        this.chartLineIndiLineColour[i % this.chartLineIndiLineColour.length]
+      );
+      strokeWeight(1); //breaks indicator lines and they wont show when the property is passed
+      rotate(-20);
+      line(0, 0, 0, 35); //breaks indicator lines and they wont show when the property is passed
       pop();
 
-      x += xStep;
+      //draw the xValue Labels
+      text(XLabels[i], xLine, yLine + this.xAxisTextYPos);
+      vertex(xLine, yLine);
+      xLine += xStep; //moves the point by taking the first loops value (e.g 2693) and adds the next value to that previous one, these two values are then added together and in the second loop iteration the next value is add.
+
+      pop();
     }
     endShape();
-    pop()
+    pop();
 
     //text xvalue col name
     push();
