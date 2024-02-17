@@ -13,7 +13,7 @@ function preload() {
 
 function setup() {
   background(50);
-  createCanvas(1000, 700);
+  createCanvas(1600, 750);
   angleMode(DEGREES);
 
   //cleans data
@@ -26,7 +26,7 @@ function setup() {
 
   //giving the properties values
 
-  let barChart01 = {
+  let barChart = {
     data: cleanData,
     chartHeight: 200,
     chartWidth: 350,
@@ -85,7 +85,7 @@ function setup() {
     xValue: "Year",
   };
 
-  let barChart02 = {
+  let lineChart = {
     data: cleanData,
     chartHeight: 200,
     chartWidth: 350,
@@ -118,7 +118,7 @@ function setup() {
     //text for col
     textSizeColText: 16,
     colLabel: "accidents per year",
-    textColY: 60,
+    textColY: -20,
     textColX: 180,
     textColWeight: BOLD,
     colVertAlign:CENTER,
@@ -143,9 +143,9 @@ function setup() {
     yValue: "cell-usage",
     xValue: "Year",
   };
-  barCharts.push(new BarChart(barChart01))
+  barCharts.push(new BarChart(barChart))
 
-  barCharts.push(new LineGraphChart(barChart02))  
+  barCharts.push(new LineGraphChart(lineChart))  
 
 }
 
