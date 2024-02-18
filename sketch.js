@@ -153,19 +153,19 @@ function setup() {
     chartWidth: 350,
     xPos: 560,
     yPos: 650,
-    barWidth: 25,
+    barHeight: 35,
     genFont: font,
     fontBold: boldText,
 
     //colours
-    barFill: ["#F7BDD1", "#F59EBB", "#F17CA3"],
+    barFill: ["#0E48A0", "#3565B0", "#5F85C0"],
     axisLineColour: "#d9d9d9",
     ticksColour: "#C72A2A",
     subTextColour:"C72A2A",
 
     //text for X AXIS
     textColour: "#0f0000",
-    textRotate: 45,
+    textRotate: 0,
     textSizeText: 13,
     indiLineRotate: -85,
     indiLineWeight: 1,
@@ -177,13 +177,13 @@ function setup() {
     colYAxisSize: 16,
     colYAxisRotation: -90,
     colYAxisStyle: BOLD,
-    colYAxisTextValue: "no. of deaths",
+    colYAxisTextValue: "accidents per year",
     colYAxisTextX: 50,
-    colYAxisTextY: -40,
+    colYAxisTextY: -70,
 
   //subtext
   textSizeSub: 12,
-  subLabel: "Accidents Per Year",
+  subLabel: "no. of deaths",
   textSubY: 60,
   textSubX: 175,
   subVertAlign: CENTER,

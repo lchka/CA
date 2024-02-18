@@ -13,7 +13,7 @@ class HorzBarChart {
     this.xPos = obj.xPos;
     this.yPos = obj.yPos;
     this.axisLineColour = obj.axisLineColour;
-    this.barWidth = obj.barWidth;
+    this.barHeight = obj.barHeight;
     this.yValue = obj.yValue;
 
     //ticks
@@ -65,8 +65,8 @@ class HorzBarChart {
 
 
     // Calculate maxValue and scale
-    this.maxValue = max(this.data.map((d) => d[this.yValue])); // Get the max height of the chart
-    this.scale = this.chartHeight / this.maxValue; // Calculate the scale for the chart
+    this.maxValue = max(this.data.map((d) => d[this.xValue])); // Get the max height of the chart
+    this.scale = this.maxValue / this.chartWidth; // Calculate the scale for the chart
   }
 
   render() {
@@ -97,43 +97,41 @@ class HorzBarChart {
       noStroke();
       textSize(this.textSizeText);
       if (this.textRotate === 0) {
-        textAlign(CENTER, CENTER);
-      } else {
         textAlign(LEFT, CENTER);
+      } else {
+        textAlign(RIGHT, CENTER);
       }
       rotate(this.textRotate);
       fill(this.textColour);
-      text(yLabel[i], 0, 0); //everytime i loop it adds from the previous loop to the current one
+      text(Math.ceil(i * tickValue), -10, 0); //everytime i loop it adds from the previous loop to the current one
+      //everytime i loop it adds from the previous loop to the current one
       pop();
     }
 
     // Calculate gap
     let gap =
-      (this.chartWidth - this.data.length * this.barWidth) /
+      (this.chartHeight - this.data.length * this.barHeight) /
       (this.data.length + 1);
 
     // Draw bars
     push();
-    translate(gap, 0);
+    translate(0, -this.chartHeight); 
     for (let i = 0; i < this.data.length; i++) {
+      let barWidth = map(this.data[i][this.xValue], 0, this.maxValue, 0, this.chartWidth);
       fill(this.barFill[i % this.barFill.length]);
       noStroke();
-      rect(0, 0, this.barWidth, -this.data[i][this.yValue] * this.scale);
-      translate(gap + this.barWidth, 0);
-
-      // // Text x AXIS
-      // push();
-      // textSize(this.textSizeText);
-      // if (this.textRotate === 0) {
-      //   textAlign(CENTER, CENTER);
-      // } else {
-      //   textAlign(LEFT, CENTER);
-      // }
-      // rotate(this.textRotate);
-      // fill(this.textColour);
-      // text(yLabels[i], 0, 30);
-      // translate(this.barWidth / 2, 20);
-      // pop();
+      rect(0, 0, barWidth,  gap); // Adjust width based on xValue
+      translate(0, gap + this.barHeight);
+      // Text x AXIS
+      push();
+      
+      textSize(this.textSizeText);
+        textAlign(LEFT, LEFT);
+      rotate(this.textRotate);
+      fill(this.textColour);
+      text(yLabel[i], -40, -this.chartHeight/this.data.length-5,);
+      translate(20, -this.barHeight/2);
+      pop();
     }
     pop();
 
