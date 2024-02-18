@@ -31,8 +31,8 @@ function setup() {
     data: cleanData,
     chartHeight: 200,
     chartWidth: 350,
-    xPos: 60,
-    yPos: 650,
+    xBarPos: 60,
+    yBarPos: 650,
     barWidth: 25,
     genFont: font,
     fontBold: boldText,
@@ -95,8 +95,8 @@ function setup() {
     data: cleanData,
     chartHeight: 200,
     chartWidth: 350,
-    xPos: -5,
-    yPos: -320,
+    xLinePos: -5,
+    yLinePos: -320,
     genFont: font,
     fontBold: boldText,
     pointEllipseSize: 6,
@@ -206,8 +206,8 @@ function setup() {
     tickStyle: BOLD,
 
     //values
-    yValue: "cell-usage",
-    xValue: "Year",
+    xValue: "cell-usage",
+    yValue: "Year",
   };
   barCharts.push(new BarChart(barChart), new LineGraphChart (lineChart));
 barCharts.push(new HorzBarChart(horzChart));

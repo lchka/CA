@@ -10,8 +10,8 @@ class LineGraphChart {
     this.data = obj.data;
     this.chartWidth = obj.chartWidth;
     this.chartHeight = obj.chartHeight;
-    this.xPos = obj.xPos;
-    this.yPos = obj.yPos;
+    this.xLinePos = obj.xLinePos;
+    this.yLinePos = obj.yLinePos;
     this.axisLineColour = obj.axisLineColour;
     this.yValue = obj.yValue;
     this.pointEllipseSize = obj.pointEllipseSize;
@@ -84,7 +84,7 @@ class LineGraphChart {
   render() {
     //creates the graphs lines
     push();
-    translate(this.xPos, this.yPos);
+    translate(this.xLinePos, this.yLinePos);
     stroke(this.axisLineColour);
     strokeWeight(this.chartXYLineWeight);
     line(0, 0, 0, -this.chartHeight);

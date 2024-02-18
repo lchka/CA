@@ -10,8 +10,8 @@ class BarChart {
     this.data = obj.data;
     this.chartWidth = obj.chartWidth;
     this.chartHeight = obj.chartHeight;
-    this.xPos = obj.xPos;
-    this.yPos = obj.yPos;
+    this.xBarPos = obj.xBarPos;
+    this.yBarPos = obj.yBarPos;
     this.axisLineColour = obj.axisLineColour;
     this.barWidth = obj.barWidth;
     this.yValue = obj.yValue;
@@ -79,7 +79,7 @@ class BarChart {
     // }
 
     push();
-    translate(this.xPos, this.yPos);
+    translate(this.xBarPos, this.yBarPos);
     stroke(this.axisLineColour);
     line(0, 0, 0, -this.chartHeight);
     line(0, 0, this.chartWidth, 0);

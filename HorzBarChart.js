@@ -70,13 +70,7 @@ class HorzBarChart {
   }
 
   render() {
-    // for (let i = 0; i < 1000; i++) {
-    //   if (this.scale % this.numTicks == 0) {
-    //     break;
-    //   } else {
-    //     this.scale = this.scale + 1;
-    //   }
-    // }
+
 
     push();
     translate(this.xPos, this.yPos);
@@ -85,13 +79,13 @@ class HorzBarChart {
     line(0, 0, this.chartWidth, 0);
 
     // Map for labels x is just a name
-    let XLabels = this.data.map((x) => x[this.xValue]);
+    let yLabel = this.data.map((x) => x[this.yValue]);
 
     // Draw ticks on y-axis
     for (let i = 0; i <= this.numTicks; i++) {
       push();
-      translate(0, i * (-this.chartHeight / this.numTicks));
-      line(0, 0, -5, 0);
+      translate(i * (this.chartWidth / this.numTicks), 0);
+      line(0, 0, 0, 5);
       pop();
     }
 
@@ -99,15 +93,17 @@ class HorzBarChart {
     let tickValue = this.maxValue / this.numTicks; //prevents it from going over the max of preset value in the column/rows. On first loop it did display the max value (453) but kept going over it, which is why we needed another variable that handles the 'gap difference' between each value label.
     for (let i = 0; i <= this.numTicks; i++) {
       push();
-      translate(0, (i * -this.chartHeight) / this.numTicks);
+      translate( i*( this.chartWidth) / this.numTicks,20);
       noStroke();
-      textSize(this.ticksTextSize);
-      textStyle(this.tickStyle);
-      fill(this.ticksColour);
-      textAlign(RIGHT, CENTER);
-      textFont(this.genFont);
-      9;
-      text(Math.ceil(i * tickValue), -10, 0); //everytime i loop it adds from the previous loop to the current one
+      textSize(this.textSizeText);
+      if (this.textRotate === 0) {
+        textAlign(CENTER, CENTER);
+      } else {
+        textAlign(LEFT, CENTER);
+      }
+      rotate(this.textRotate);
+      fill(this.textColour);
+      text(yLabel[i], 0, 0); //everytime i loop it adds from the previous loop to the current one
       pop();
     }
 
@@ -125,19 +121,19 @@ class HorzBarChart {
       rect(0, 0, this.barWidth, -this.data[i][this.yValue] * this.scale);
       translate(gap + this.barWidth, 0);
 
-      // Text X AXIS
-      push();
-      textSize(this.textSizeText);
-      if (this.textRotate === 0) {
-        textAlign(CENTER, CENTER);
-      } else {
-        textAlign(LEFT, CENTER);
-      }
-      rotate(this.textRotate);
-      fill(this.textColour);
-      text(XLabels[i], 0, 30);
-      translate(this.barWidth / 2, 20);
-      pop();
+      // // Text x AXIS
+      // push();
+      // textSize(this.textSizeText);
+      // if (this.textRotate === 0) {
+      //   textAlign(CENTER, CENTER);
+      // } else {
+      //   textAlign(LEFT, CENTER);
+      // }
+      // rotate(this.textRotate);
+      // fill(this.textColour);
+      // text(yLabels[i], 0, 30);
+      // translate(this.barWidth / 2, 20);
+      // pop();
     }
     pop();
 
