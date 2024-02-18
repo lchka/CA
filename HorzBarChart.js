@@ -66,7 +66,7 @@ class HorzBarChart {
 
     // Calculate maxValue and scale
     this.maxValue = max(this.data.map((d) => d[this.xValue])); // Get the max height of the chart
-    this.scale = this.maxValue / this.chartWidth; // Calculate the scale for the chart
+    this.scale = this.maxValue / this.chartHeight; // Calculate the scale for the chart
   }
 
   render() {
@@ -75,7 +75,7 @@ class HorzBarChart {
     push();
     translate(this.xPos, this.yPos);
     stroke(this.axisLineColour);
-    line(0, 0, 0, -this.chartHeight);
+    // line(0, 0, 0, -this.chartHeight);
     line(0, 0, this.chartWidth, 0);
 
     // Map for labels x is just a name
@@ -103,8 +103,7 @@ class HorzBarChart {
       }
       rotate(this.textRotate);
       fill(this.textColour);
-      text(Math.ceil(i * tickValue), -10, 0); //everytime i loop it adds from the previous loop to the current one
-      //everytime i loop it adds from the previous loop to the current one
+      text(Math.ceil(i * tickValue), -10, 0); 
       pop();
     }
 
