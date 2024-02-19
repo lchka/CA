@@ -269,6 +269,7 @@ function setup() {
 
     //values
     yValue: "cell-usage",
+    yValueTwo:"other-distraction",
     xValue: "Year",
   };
   barCharts.push(new BarChart(barChart), new LineGraphChart (lineChart),new HorzBarChart(horzChart));

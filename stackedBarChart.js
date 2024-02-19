@@ -13,6 +13,7 @@ class StackedBarchart {
     this.axisLineColour = obj.axisLineColour;
     this.barWidth = obj.barWidth;
     this.yValue = obj.yValue;
+    this.yValueTwo=obj.yValueTwo;
 
     //ticks
     this.numTicks = obj.numTicks;
@@ -63,8 +64,10 @@ class StackedBarchart {
     this.ticksColour = obj.ticksColour;
 
     // Calculate maxValue and scale
-    this.maxValue = max(this.data.map((d) => d[this.yValue])); // Get the max height of the chart
+    this.maxValue = max(this.data.map((d) => d[this.yValueTwo])); // Get the max height of the chart
     this.scale = this.chartHeight / this.maxValue; // Calculate the scale for the chart
+    console.log(this.scale)
+    console.log(this.maxValue)
   }
 
   render() {
@@ -116,11 +119,18 @@ class StackedBarchart {
     // Draw bars
     push();
     translate(gap, 0);
-    for (let i = 0; i < this.data.length; i++) {
-      fill(this.barFill[i % this.barFill.length]);
+     for (let i = 0; i < this.data.length; i++) {
+      // Draw the first value (yValue)
+      fill(this.barFill[0]);
       noStroke();
       rect(0, 0, this.barWidth, -this.data[i][this.yValue] * this.scale);
+      
+      // Draw the second value (yValueTwo) on top
+      fill(this.barFill[1]);
+      rect(0, -this.data[i][this.yValue] * this.scale, this.barWidth, -this.data[i][this.yValueTwo] * this.scale);
+
       translate(gap + this.barWidth, 0);
+
 
       // Text X AXIS
       push();
