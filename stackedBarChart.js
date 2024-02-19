@@ -8,8 +8,8 @@ class StackedBarchart {
     this.data = obj.data;
     this.chartWidth = obj.chartWidth;
     this.chartHeight = obj.chartHeight;
-    this.xPos = obj.xPos;
-    this.yPos = obj.yPos;
+    this.xStackedPos = obj.xStackedPos;
+    this.yStackedPos = obj.yStackedPos;
     this.axisLineColour = obj.axisLineColour;
     this.barWidth = obj.barWidth;
     this.yValue = obj.yValue;
@@ -77,7 +77,7 @@ class StackedBarchart {
     // }
 
     push();
-    translate(this.xPos, this.yPos);
+    translate(this.xStackedPos, this.yStackedPos);
     stroke(this.axisLineColour);
     line(0, 0, 0, -this.chartHeight);
     line(0, 0, this.chartWidth, 0);

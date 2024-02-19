@@ -32,7 +32,7 @@ function setup() {
     chartHeight: 200,
     chartWidth: 350,
     xBarPos: 60,
-    yBarPos: 650,
+    yBarPos: 685,
     barWidth: 25,
     genFont: font,
     fontBold: boldText,
@@ -96,7 +96,7 @@ function setup() {
     chartHeight: 200,
     chartWidth: 350,
     xLinePos: -5,
-    yLinePos: -320,
+    yLinePos: -350,
     genFont: font,
     fontBold: boldText,
     pointEllipseSize: 6,
@@ -120,7 +120,7 @@ function setup() {
     //subtext
     textSizeSub: 12,
     subLabel: "Accidents Per Year",
-    textSubY: -350,
+    textSubY: -380,
     textSubX: 175,
     subVertAlign: CENTER,
     subHorzAlign: CENTER,
@@ -130,7 +130,7 @@ function setup() {
     titleText:
       "Fatal traffic incidents caused by avoidable distractions while driving",
     textTitleX: 15,
-    textTitleY: 590,
+    textTitleY: 620,
     titlePaddingX: 300,
     titleHorzAlign: CENTER,
     titleVertAlign: CENTER,
@@ -152,7 +152,7 @@ function setup() {
     chartHeight: 200,
     chartWidth: 350,
     xPos: 560,
-    yPos: 650,
+    yPos: 680,
     barHeight: 35,
     genFont: font,
     fontBold: boldText,
@@ -209,70 +209,70 @@ function setup() {
     xValue: "cell-usage",
     yValue: "Year",
   };
-  // let stackedBarChart = {
-  //   data: cleanData,
-  //   chartHeight: 200,
-  //   chartWidth: 350,
-  //   xBarPos: 60,
-  //   yBarPos: 50,
-  //   barWidth: 25,
-  //   genFont: font,
-  //   fontBold: boldText,
+  let stackedBarChart = {
+    data: cleanData,
+    chartHeight: 200,
+    chartWidth: 350,
+    xStackedPos: 0,
+    yStackedPos: -350,
+    barWidth: 25,
+    genFont: font,
+    fontBold: boldText,
 
-  //   //colours
-  //   barFill: ["#F7BDD1", "#F59EBB", "#F17CA3"],
-  //   axisLineColour: "#d9d9d9",
-  //   ticksColour: "#C72A2A",
+    //colours
+    barFill: ["#F7BDD1", "#F59EBB", "#F17CA3"],
+    axisLineColour: "#d9d9d9",
+    ticksColour: "#C72A2A",
 
-  //   //text for X AXIS
-  //   textColour: "#0f0000",
-  //   textRotate: 45,
-  //   textSizeText: 13,
-  //   indiLineRotate: -85,
-  //   indiLineWeight: 1,
-  //   indiLineHeight: 35,
+    //text for X AXIS
+    textColour: "#0f0000",
+    textRotate: 45,
+    textSizeText: 13,
+    indiLineRotate: -85,
+    indiLineWeight: 1,
+    indiLineHeight: 35,
 
-  //   //text for col y axis name
+    //text for col y axis name
 
-  //   colYAxisColour: "#C72A2A",
-  //   colYAxisSize: 16,
-  //   colYAxisRotation: -90,
-  //   colYAxisStyle: BOLD,
-  //   colYAxisTextValue: "no. of deaths",
-  //   colYAxisTextX: 50,
-  //   colYAxisTextY: -40,
+    colYAxisColour: "#C72A2A",
+    colYAxisSize: 16,
+    colYAxisRotation: -90,
+    colYAxisStyle: BOLD,
+    colYAxisTextValue: "no. of deaths",
+    colYAxisTextX: 50,
+    colYAxisTextY: -40,
 
-  //   //text for col
-  //   textSizeColText: 16,
-  //   colLabel: "accidents per year",
-  //   textColY: 60,
-  //   textColX: 180,
-  //   textColWeight: BOLD,
-  //   colVertAlign: CENTER,
-  //   colHorzAlign: CENTER,
+    //text for col
+    textSizeColText: 16,
+    colLabel: "accidents per year",
+    textColY: 60,
+    textColX: 180,
+    textColWeight: BOLD,
+    colVertAlign: CENTER,
+    colHorzAlign: CENTER,
 
-  //   //text for title
-  //   textSizeTitle: 24,
-  //   titleText:
-  //     "Fatal driving accidents resulting from the use of mobile devices",
-  //   textTitleX: -25,
-  //   textTitleY: 270,
-  //   titlePaddingX: 400,
-  //   titleWeight: BOLD,
-  //   titleHorzAlign: CENTER,
-  //   titleVertAlign: CENTER,
+    //text for title
+    textSizeTitle: 24,
+    titleText:
+      "Fatal driving accidents resulting from the use of mobile devices",
+    textTitleX: -25,
+    textTitleY: 270,
+    titlePaddingX: 400,
+    titleWeight: BOLD,
+    titleHorzAlign: CENTER,
+    titleVertAlign: CENTER,
 
-  //   //tick and tick text
-  //   numTicks: 10,
-  //   ticksTextSize: 13,
-  //   tickStyle: BOLD,
+    //tick and tick text
+    numTicks: 10,
+    ticksTextSize: 13,
+    tickStyle: BOLD,
 
-  //   //values
-  //   yValue: "cell-usage",
-  //   xValue: "Year",
-  // };
+    //values
+    yValue: "cell-usage",
+    xValue: "Year",
+  };
   barCharts.push(new BarChart(barChart), new LineGraphChart (lineChart),new HorzBarChart(horzChart));
-  // barCharts.push(new StackedBarchart(stackedBarChart));
+  barCharts.push(new StackedBarchart(stackedBarChart));
 }
 
 function draw() {
