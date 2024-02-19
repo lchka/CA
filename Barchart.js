@@ -1,4 +1,3 @@
-//fix scaling, first loop is already the max, how to set the max from the array of cleanData, with the lowest value as first tick
 
 class BarChart {
   constructor(obj) {
