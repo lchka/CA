@@ -119,7 +119,7 @@ function setup() {
 
     //subtext
     textSizeSub: 12,
-    subLabel: "Accidents Per Year",
+    subLabel: "Fatal Accidents Per Year",
     textSubY: -380,
     textSubX: 175,
     subVertAlign: CENTER,
