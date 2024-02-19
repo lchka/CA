@@ -91,7 +91,7 @@ class LineGraphChart {
     line(0, 0, this.chartWidth, 0);
 
     //
-    let XLabels = this.data.map((x) => x[this.xValue]);
+    let XLabels = this.data.map((x) => x[this.yValue]);
 
     // Draw ticks on y-axis
     for (let i = 0; i <= this.numTicks; i++) {
