@@ -268,8 +268,7 @@ function setup() {
     tickStyle: BOLD,
 
     //values
-    yValue: "cell-usage",
-    yValueTwo:"other-distraction",
+    yValue: ["cell-usage","other-distraction"],//other-distraction
     xValue: "Year",
   };
   barCharts.push(new BarChart(barChart), new LineGraphChart (lineChart),new HorzBarChart(horzChart));
