@@ -15,7 +15,8 @@ class StackedBarChart {
     this.yValues = obj.yValues;
     this.xValue = obj.xValue;
     this.yValueTotal = obj.yValueTotal;
-
+    this.calculateTotal();
+    this.totalArray = [];
     //ticks
     this.numTicks = obj.numTicks;
     this.ticksTextSize = obj.ticksTextSize;
@@ -64,14 +65,33 @@ class StackedBarChart {
     this.ticksColour = obj.ticksColour;
 
     // Calculate maxValue and scale
-    this.maxValue = max(this.data.map((d) => d[this.yValueTotal])); // Get the max height of the chart
+    // this.maxValue = max(this.data.map((d) => d[this.totalArray]));
+
     this.scale = this.chartHeight / this.maxValue; // Calculate the scale for the chart
-    
   }
+  calculateTotal() {
+    this.totalArray = [];
+
+    for (let i = 0; i < this.data.length; i++) {
+      let total = 0;
+      for (let j = 0; j < this.yValues.length; j++) {
+
+        // Sum up all values within each array
+        total += +(this.data[i][this.yValues[j]]);  
+
+      }
+      this.totalArray.push(total);
+     
+    }
+    console.log(this.totalArray);
+
+    // Calculate maxValue after populating totalArray
+    this.maxValue = max(this.totalArray);
+}
 
   render() {
     // console.log(this.scale);
-    // console.log(this.maxValue);
+    console.log(this.maxValue);
     // for (let i = 0; i < 1000; i++) {
     //   if (this.scale % this.numTicks == 0) {
     //     break;
@@ -117,7 +137,7 @@ class StackedBarChart {
       (this.chartWidth - this.data.length * this.barWidth) /
       (this.data.length + 1);
 
-      //drawing bars
+    //drawing bars
     push();
     translate(gap, 0);
     for (let i = 0; i < this.data.length; i++) {
@@ -131,11 +151,10 @@ class StackedBarChart {
         fill(this.barFill[j]);
 
         rect(0, 0, this.barWidth, barHeight);
-        translate(0,barHeight);
+        translate(0, barHeight);
       }
       pop();
       translate(gap + this.barWidth, 0);
-
 
       // Text X AXIS
       push();

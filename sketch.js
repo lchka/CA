@@ -271,7 +271,6 @@ function setup() {
     //values
     yValues: ["cell-usage","other-distraction"],//other-distraction
     xValue: "Year",
-    yValueTotal:"total",
   };
   let stacked100 = {
     data: cleanData,

@@ -76,11 +76,11 @@ class StackedChart100 {
     for (let j = 0; j < this.data.length; j++) {
       totalArray[j] += this.data[i][this.yValues[j]];
     }
-    console.log(totalArray);
+    // console.log(totalArray);
   }
   render() {
-    console.log(this.scale);
-    console.log(this.maxValue);
+    // console.log(this.scale);
+    // console.log(this.maxValue);
     // for (let i = 0; i < 1000; i++) {
     //   if (this.scale % this.numTicks == 0) {
     //     break;
@@ -139,6 +139,8 @@ class StackedChart100 {
         fill(this.barFill[j]);
 
         rect(0, 0, this.barWidth, barHeight);
+        translate(0, barHeight);
+
       }
       pop();
       translate(gap + this.barWidth, 0);
