@@ -16,6 +16,7 @@ function setup() {
   background(50);
   createCanvas(1600, 800);
   angleMode(DEGREES);
+  noLoop()
 
   //cleans data
   console.log(data);
@@ -268,8 +269,9 @@ function setup() {
     tickStyle: BOLD,
 
     //values
-    yValue: ["cell-usage","other-distraction"],//other-distraction
+    yValues: ["cell-usage","other-distraction"],//other-distraction
     xValue: "Year",
+    yValueTotal:"total",
   };
   barCharts.push(new BarChart(barChart), new LineGraphChart (lineChart),new HorzBarChart(horzChart));
   barCharts.push(new StackedBarchart(stackedBarChart));

@@ -12,8 +12,9 @@ class StackedBarchart {
     this.yStackedPos = obj.yStackedPos;
     this.axisLineColour = obj.axisLineColour;
     this.barWidth = obj.barWidth;
-    this.yValue = obj.yValue;
-    this.yValueTwo = obj.yValueTwo;
+    this.yValues = obj.yValues;
+    this.xValue = obj.xValue;
+    this.yValueTotal = obj.yValueTotal;
 
     //ticks
     this.numTicks = obj.numTicks;
@@ -24,7 +25,6 @@ class StackedBarchart {
     this.textSizeText = obj.textSizeText;
     this.textSizeColText = obj.textSizeColText;
     this.textRotate = obj.textRotate;
-    this.xValue = obj.xValue;
     this.genFont = obj.genFont;
     this.fontBold = obj.fontBold;
 
@@ -64,13 +64,14 @@ class StackedBarchart {
     this.ticksColour = obj.ticksColour;
 
     // Calculate maxValue and scale
-    this.maxValue = max(this.data.map((d) => d[this.yValue])); // Get the max height of the chart
+    this.maxValue = max(this.data.map((d) => d[this.yValueTotal])); // Get the max height of the chart
     this.scale = this.chartHeight / this.maxValue; // Calculate the scale for the chart
-    console.log(this.scale);
-    console.log(this.maxValue);
+    
   }
 
   render() {
+    console.log(this.scale);
+    console.log(this.maxValue);
     // for (let i = 0; i < 1000; i++) {
     //   if (this.scale % this.numTicks == 0) {
     //     break;
@@ -107,7 +108,6 @@ class StackedBarchart {
       fill(this.ticksColour);
       textAlign(RIGHT, CENTER);
       textFont(this.genFont);
-      9;
       text(Math.ceil(i * tickValue), -10, 0); //everytime i loop it adds from the previous loop to the current one
       pop();
     }
@@ -116,24 +116,25 @@ class StackedBarchart {
     let gap =
       (this.chartWidth - this.data.length * this.barWidth) /
       (this.data.length + 1);
+
+      //drawing bars
+    push();
+    translate(gap, 0);
     for (let i = 0; i < this.data.length; i++) {
-      let x = gap + i * (this.barWidth + gap);
-      let y = 0;
+      push();
+      for (let j = 0; j < this.yValues.length; j++) {
+        let value = this.data[i][this.yValues[j]];
+        console.log(value);
+        let barHeight = -value * this.scale;
 
-      for (let j = 0; j < this.yValue.length; j++) {
-        let value = this.data[i][this.yValue[j]];
-        let barHeight = value * this.scale;
+        fill(this.barFill[i % this.barFill.length]);
+        stroke("#000000");
 
-        fill(this.barFill[j]);
-        rect(0, y, this.barWidth, -barHeight);
-
-        // Update y for next stacked bar
-        y -= barHeight;
+        rect(0, 0, this.barWidth, barHeight);
       }
-
+      pop();
       translate(gap + this.barWidth, 0);
 
-      // Draw the second value (yValueTwo) on top
 
       // Text X AXIS
       push();
