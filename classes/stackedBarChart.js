@@ -77,7 +77,7 @@ class StackedBarChart {
       for (let j = 0; j < this.yValues.length; j++) {
 
         // Sum up all values within each array
-        total += +(this.data[i][this.yValues[j]]);  
+        total += int(this.data[i][this.yValues[j]]);  
 
       }
       this.totalArray.push(total);
