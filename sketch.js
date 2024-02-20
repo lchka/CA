@@ -214,8 +214,8 @@ function setup() {
     data: cleanData,
     chartHeight: 200,
     chartWidth: 350,
-    xStackedPos: 0,
-    yStackedPos: -350,
+    xStackedPos: -600,
+    yStackedPos: 0,
     barWidth: 25,
     genFont: font,
     fontBold: boldText,
@@ -336,8 +336,7 @@ function setup() {
     xValue: "Year",
     yValueTotal:"total",
   };
-  // barCharts.push(new BarChart(barChart), new LineGraphChart (lineChart),new HorzBarChart(horzChart), new StackedChart100 (stacked100) );
-  barCharts.push(new StackedBarChart (stackedBarChart))
+  barCharts.push(new BarChart(barChart), new LineGraphChart (lineChart),new HorzBarChart(horzChart), new StackedChart100 (stacked100),new StackedBarChart (stackedBarChart));
 }
 
 function draw() {
