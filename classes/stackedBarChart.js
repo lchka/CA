@@ -124,13 +124,14 @@ class StackedBarchart {
       push();
       for (let j = 0; j < this.yValues.length; j++) {
         let value = this.data[i][this.yValues[j]];
-        console.log(value);
+        // console.log(value);
         let barHeight = -value * this.scale;
 
-        fill(this.barFill[i % this.barFill.length]);
-        stroke("#000000");
+        console.log(this.barFill[j])
+        fill(this.barFill[j]);
 
         rect(0, 0, this.barWidth, barHeight);
+        translate(0,barHeight);
       }
       pop();
       translate(gap + this.barWidth, 0);

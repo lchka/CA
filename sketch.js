@@ -221,7 +221,7 @@ function setup() {
     fontBold: boldText,
 
     //colours
-    barFill: ["#F7BDD1", "#F59EBB", "#F17CA3"],
+    barFill: ["#F7BDD1", "#F59EBB"],
     axisLineColour: "#d9d9d9",
     ticksColour: "#C72A2A",
 
