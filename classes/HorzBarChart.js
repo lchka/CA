@@ -10,8 +10,8 @@ class HorzBarChart {
     this.data = obj.data;
     this.chartWidth = obj.chartWidth;
     this.chartHeight = obj.chartHeight;
-    this.xPos = obj.xPos;
-    this.yPos = obj.yPos;
+    this.xHorzPos = obj.xHorzPos;
+    this.yHorzPos = obj.yHorzPos;
     this.axisLineColour = obj.axisLineColour;
     this.barHeight = obj.barHeight;
     this.yValue = obj.yValue;
@@ -73,7 +73,7 @@ class HorzBarChart {
 
 
     push();
-    translate(this.xPos, this.yPos);
+    translate(this.xHorzPos, this.yHorzPos);
     stroke(this.axisLineColour);
     // line(0, 0, 0, -this.chartHeight);
     line(0, 0, this.chartWidth, 0);

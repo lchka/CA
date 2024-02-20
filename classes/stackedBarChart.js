@@ -1,4 +1,4 @@
-class StackedBarchart {
+class StackedBarChart {
   constructor(obj) {
     //canvas
     this.canvasWidth = obj.canvasWidth;
@@ -70,8 +70,8 @@ class StackedBarchart {
   }
 
   render() {
-    console.log(this.scale);
-    console.log(this.maxValue);
+    // console.log(this.scale);
+    // console.log(this.maxValue);
     // for (let i = 0; i < 1000; i++) {
     //   if (this.scale % this.numTicks == 0) {
     //     break;
@@ -127,7 +127,7 @@ class StackedBarchart {
         // console.log(value);
         let barHeight = -value * this.scale;
 
-        console.log(this.barFill[j])
+        // console.log(this.barFill[j])
         fill(this.barFill[j]);
 
         rect(0, 0, this.barWidth, barHeight);

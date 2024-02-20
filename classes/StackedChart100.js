@@ -1,4 +1,4 @@
-class Stacked100Barchart {
+class StackedChart100 {
   constructor(obj) {
     //canvas
     this.canvasWidth = obj.canvasWidth;
@@ -8,8 +8,8 @@ class Stacked100Barchart {
     this.data = obj.data;
     this.chartWidth = obj.chartWidth;
     this.chartHeight = obj.chartHeight;
-    this.xStackedPos = obj.xStackedPos;
-    this.yStackedPos = obj.yStackedPos;
+    this.xStacked100Pos = obj.xStacked100Pos;
+    this.yStacked100Pos = obj.yStacked100Pos;
     this.axisLineColour = obj.axisLineColour;
     this.barWidth = obj.barWidth;
     this.yValues = obj.yValues;
@@ -64,11 +64,20 @@ class Stacked100Barchart {
     this.ticksColour = obj.ticksColour;
 
     // Calculate maxValue and scale
-    this.maxValue = max(this.data.map((d) => d[this.yValueTotal])); // Get the max height of the chart
+    this.maxValue = max(this.data.map((d) => d[this.yValueTotal]));
     this.scale = this.chartHeight / this.maxValue; // Calculate the scale for the chart
-    
   }
+  calculateTotal() {
+    let totalArray = [];
 
+    for (let i = 0; i < this.yValues.length; i++) {
+      totalArray.push(0);
+    }
+    for (let j = 0; j < this.data.length; j++) {
+      totalArray[j] += this.data[i][this.yValues[j]];
+    }
+    console.log(totalArray);
+  }
   render() {
     console.log(this.scale);
     console.log(this.maxValue);
@@ -81,7 +90,7 @@ class Stacked100Barchart {
     // }
 
     push();
-    translate(this.xStackedPos, this.yStackedPos);
+    translate(this.xStacked100Pos, this.yStacked100Pos);
     stroke(this.axisLineColour);
     line(0, 0, 0, -this.chartHeight);
     line(0, 0, this.chartWidth, 0);
@@ -117,7 +126,7 @@ class Stacked100Barchart {
       (this.chartWidth - this.data.length * this.barWidth) /
       (this.data.length + 1);
 
-      //drawing bars
+    //drawing bars
     push();
     translate(gap, 0);
     for (let i = 0; i < this.data.length; i++) {
@@ -133,7 +142,6 @@ class Stacked100Barchart {
       }
       pop();
       translate(gap + this.barWidth, 0);
-
 
       // Text X AXIS
       push();
