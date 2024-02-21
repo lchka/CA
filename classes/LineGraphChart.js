@@ -31,7 +31,7 @@ class LineGraphChart {
     this.xValue = obj.xValue;
     this.genFont = obj.genFont;
     this.fontBold = obj.fontBold;
-    this.indiLineRotate = this.indiLineRotate;
+    this.indiLineRotate = obj.indiLineRotate;
     this.indiLineWeight = obj.indiLineWeight;
     this.xAxisTextYPos = obj.xAxisTextYPos;
     this.indiLineHeight = obj.indiLineHeight;
@@ -43,7 +43,7 @@ class LineGraphChart {
     this.textSubY = obj.textSubY;
     this.subVertAlign = obj.subVertAlign;
     this.subHorzAlign = obj.subHorzAlign;
-    this.textSizeSub=obj.textSizeSub;
+    this.textSizeSub = obj.textSizeSub;
 
     //text col y axis name
 
@@ -65,16 +65,24 @@ class LineGraphChart {
     this.titleVertAlign = obj.titleVertAlign;
     this.titleHorzAlign = obj.titleHorzAlign;
 
+    //text for xLabel
+    this.textYPosXLabel = obj.textYPosXLabel;
+    this.textSizeXLabel = obj.textSizeXLabel;
+    this.textXLabelRotate = obj.textXLabelRotate;
+    this.horzAlignXLabel = obj.horzAlignXLabel;
+    this.vertAlignXLabel = obj.vertAlignXLabel;
+
     //colors
     this.barFill = obj.barFill;
     this.textColour = obj.textColour;
-    this.textTitleColour=obj.textTitleColour;
+    this.textTitleColour = obj.textTitleColour;
     this.bColour = obj.bColour;
     this.ticksValueColour = obj.ticksValueColour;
     this.pointsColour = obj.pointsColour;
     this.chartLineColour = obj.chartLineColour;
     this.chartLineIndiLineColour = obj.chartLineIndiLineColour;
-    this.subTextColour=obj.subTextColour
+    this.subTextColour = obj.subTextColour;
+    this.textXLabelColour = obj.textXLabelColour;
 
     // Calculate maxValue and scale
     this.maxValue = max(this.data.map((d) => d[this.yValue])); // Get the max value from the yValue of the chart
@@ -91,8 +99,8 @@ class LineGraphChart {
     line(0, 0, this.chartWidth, 0);
 
     //
-    let yLabels = this.data.map((x) => x[this.yValue]);
-    let xLabels=this.data.map((s)=>s[this.xValue])
+    let yLabels = this.data.map((x) => x[this.yValue]); //text yLabel
+    let xLabels = this.data.map((s) => s[this.xValue]); //text xLabel
 
     // Draw ticks on y-axis
     for (let i = 0; i <= this.numTicks; i++) {
@@ -157,22 +165,20 @@ class LineGraphChart {
       rotate(-20);
       line(0, 0, 0, 35); //breaks indicator lines and they wont show when the property is passed
       pop();
-      // Text X AXIS
+
+      //text for xLabel below graph line
+
       push();
-      textSize(this.textSizeText);
-      if (this.textRotate === 0) {
-        textAlign(CENTER, CENTER);
-      } else {
-        textAlign(LEFT, CENTER);
-      }
-      //text for year/subtext1 xLabel below graph line
-      fill(this.textColour);
-      text(xLabels[i], xLine, 15);
-      translate(this.barWidth / 2, 20);
+      translate(xLine, this.textYPosXLabel);
+      rotate(this.textXLabelRotate); // Rotate each xLabel text individually
+      fill(this.textXLabelColour);
+      textSize(this.textSizeXLabel);
+      textFont(this.fontBold);
+      textAlign(this.horzAlignXLabel, this.vertAlignXLabel);
+      text(xLabels[i], 0, this.textYPosXLabel); // Draw xLabel text at the rotated position
       pop();
 
-
-      //draw the yValue Labels
+      //text for yValue Labels
       text(yLabels[i], xLine, yLine + this.xAxisTextYPos);
       vertex(xLine, yLine);
       xLine += xStep; //moves the point by taking the first loops value (e.g 2693) and adds the next value to that previous one, these two values are then added together and in the second loop iteration the next value is add.
@@ -192,7 +198,7 @@ class LineGraphChart {
     text(this.subLabel, this.textSubX, this.textSubY);
     pop();
 
-    //title
+    // main for title each graph
     push();
     noStroke();
     fill(this.textTitleColour);
@@ -202,7 +208,6 @@ class LineGraphChart {
     textAlign(this.titleHorzAlign, this.titleVertAlign);
     text(this.titleText, this.textTitleX, -this.textTitleY, this.titlePaddingX);
     pop();
-
 
     pop();
   }

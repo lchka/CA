@@ -112,6 +112,7 @@ function setup() {
     textTitleColour: "#0C0C0C",
     textColour: ["#8D25A8", "#993BB1", "#B26BC5"],
     subTextColour: "#020202",
+    textXLabelColour:"#000000",
 
     //text for X AXIS
     textRotate: 45,
@@ -143,6 +144,13 @@ function setup() {
     tickStyle: BOLD,
     tickTextXPos: -10,
     ticksLength: -5,
+
+    //text for xLabel
+    textYPosXLabel:7,
+    textSizeXLabel: 14,
+    textXLabelRotate:45,
+    horzAlignXLabel:LEFT,
+    vertAlignXLabel:CENTER,
 
     //values
     yValue: "other-distraction",
