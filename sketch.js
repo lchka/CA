@@ -39,7 +39,7 @@ function setup() {
     fontBold: boldText,
 
     //colours
-    barFill: ["#DCB6D5", "#CF8BA9", "#CEC2FF"],
+    barFill: ["#DCB6D5", "#CF8BA9", "#B3B3F1"],
     axisLineColour: "#d9d9d9",
     ticksColour: "#C72A2A",
 
@@ -122,7 +122,7 @@ function setup() {
     //subtext
     textSizeSub: 16,
     subLabel: "Fatal Accidents Per Year",
-    textSubY: -380,
+    textSubY: -450,
     textSubX: 205,
     subVertAlign: CENTER,
     subHorzAlign: CENTER,
