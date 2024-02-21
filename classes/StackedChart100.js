@@ -129,24 +129,22 @@ class StackedChart100 {
 
     //drawing bars
     push();
-    translate(gap, 0);
-    for (let i = 0; i < this.data.length; i++) {
-      let barStart=0;
-      push();
-      for (let j = 0; j < this.yValues.length; j++) {
-        let value = this.data[i][this.yValues[j]];
-        // console.log(this.totalArray[j]);
-        let percentage= (value/this.totalArray[j]*100)
-        let barHeight = -(percentage/100)*this.chartHeight ;
+translate(gap, 0);
+for (let i = 0; i < this.data.length; i++) {
+  let barStart = 0; // initialize the starting point of the bar
+  push();
+  for (let j = 0; j < this.yValues.length; j++) {
+    let value = this.data[i][this.yValues[j]];
+    let percentage = (value / this.totalArray[i]) * 100; // calculate the percentage relative to the total
 
-        fill(this.barFill[j]);
+    let barHeight = -(percentage / 100) * this.chartHeight; // calculate the height of the segment
 
-        rect(0, 0, this.barWidth, barStart+ barHeight);
-        translate(0, barHeight);
-
-      }
-      pop();
-      translate(gap + this.barWidth, 0);
+    fill(this.barFill[j]);
+    rect(0, barStart, this.barWidth, barHeight); // Draw the segment
+    barStart += barHeight; // Update the starting point for the next segment
+  }
+  pop();
+  translate(gap + this.barWidth, 0); // Move to the next bar position
 
       // Text X AXIS
       push();
