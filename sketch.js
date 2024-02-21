@@ -39,7 +39,7 @@ function setup() {
     fontBold: boldText,
 
     //colours
-    barFill: ["#F7BDD1", "#F59EBB", "#F17CA3"],
+    barFill: ["#2E294E", "#011638", "#9055A2"],
     axisLineColour: "#d9d9d9",
     ticksColour: "#C72A2A",
 
@@ -94,9 +94,9 @@ function setup() {
   let lineChart = {
     //line Chart
     data: cleanData,
-    chartHeight: 200,
-    chartWidth: 350,
-    xLinePos: -5,
+    chartHeight: 250,
+    chartWidth: 400,
+    xLinePos: 0,
     yLinePos: -350,
     genFont: font,
     fontBold: boldText,
@@ -108,10 +108,10 @@ function setup() {
     ticksValueColour: "#000000",
     pointsColour: "#B51C1C",
     chartLineColour: "#050505",
-    chartLineIndiLineColour: ["#8D25A8", "#993BB1", "#B26BC5"],
+    chartLineIndiLineColour: ["#2E294E", "#011638", "#9055A2"],
     textTitleColour: "#0C0C0C",
-    textColour: ["#8D25A8", "#993BB1", "#B26BC5"],
-    subTextColour: "#020202",
+    textColour: ["#2E294E", "#011638", "#9055A2"],
+    subTextColour: "#2E294E",
     textXLabelColour:"#000000",
 
     //text for X AXIS
@@ -120,20 +120,20 @@ function setup() {
     xAxisTextYPos: 45,
 
     //subtext
-    textSizeSub: 12,
+    textSizeSub: 16,
     subLabel: "Fatal Accidents Per Year",
     textSubY: -380,
-    textSubX: 175,
+    textSubX: 205,
     subVertAlign: CENTER,
     subHorzAlign: CENTER,
 
     //text for title
     textSizeTitle: 20,
     titleText:
-      "Fatal traffic incidents caused by avoidable distractions while driving",
-    textTitleX: 15,
-    textTitleY: 620,
-    titlePaddingX: 300,
+      "Line Chart for Fatal Accidents",
+    textTitleX: 0,
+    textTitleY: 640,
+    titlePaddingX: 400,
     titleHorzAlign: CENTER,
     titleVertAlign: CENTER,
 
@@ -147,7 +147,7 @@ function setup() {
 
     //text for xLabel
     textYPosXLabel:7,
-    textSizeXLabel: 14,
+    textSizeXLabel: 12,
     textXLabelRotate:45,
     horzAlignXLabel:LEFT,
     vertAlignXLabel:CENTER,
@@ -344,6 +344,7 @@ function setup() {
     yValueTotal:"total",
   };
   barCharts.push(new BarChart(barChart), new LineGraphChart (lineChart),new HorzBarChart(horzChart), new StackedChart100 (stacked100),new StackedBarChart (stackedBarChart));
+  // barCharts.push(new LineGraphChart(lineChart))
 }
 
 function draw() {

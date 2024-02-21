@@ -120,7 +120,6 @@ class LineGraphChart {
       textFont(this.fontBold);
       fill(this.ticksValueColour);
       textAlign(RIGHT, CENTER);
-      textFont(this.genFont);
 
       text(Math.ceil(i * tickValue), this.tickTextXPos, 0); //everytime it loops it adds from the previous loop to the current one, used math,ciel to round to the nearest whole number
       pop();
@@ -155,19 +154,9 @@ class LineGraphChart {
         textAlign(LEFT, CENTER);
       }
 
-      // Draw the Indicator line alongside the text
-      push();
-      translate(xLine, yLine); // Move the origin to the position where the line starts
-      stroke(
-        this.chartLineIndiLineColour[i % this.chartLineIndiLineColour.length]
-      );
-      strokeWeight(1); //breaks indicator lines and they wont show when the property is passed
-      rotate(-20);
-      line(0, 0, 0, 35); //breaks indicator lines and they wont show when the property is passed
-      pop();
 
+      
       //text for xLabel below graph line
-
       push();
       translate(xLine, this.textYPosXLabel);
       rotate(this.textXLabelRotate); // Rotate each xLabel text individually
@@ -175,10 +164,24 @@ class LineGraphChart {
       textSize(this.textSizeXLabel);
       textFont(this.fontBold);
       textAlign(this.horzAlignXLabel, this.vertAlignXLabel);
-      text(xLabels[i], 0, this.textYPosXLabel); // Draw xLabel text at the rotated position
+      text(xLabels[i], 0, this.textYPosXLabel); 
+      pop();
+
+
+
+      // Draw the Indicator line alongside the text
+      push();
+      translate(xLine, yLine); // Move the origin to the position where the line starts
+      stroke(
+        this.chartLineIndiLineColour[i % this.chartLineIndiLineColour.length]
+      );
+      strokeWeight(2); //breaks indicator lines and they wont show when the property is passed
+      rotate(-20);
+      line(0, 0, 0, 35); //breaks indicator lines and they wont show when the property is passed
       pop();
 
       //text for yValue Labels
+      textFont(this.fontBold);
       text(yLabels[i], xLine, yLine + this.xAxisTextYPos);
       vertex(xLine, yLine);
       xLine += xStep; //moves the point by taking the first loops value (e.g 2693) and adds the next value to that previous one, these two values are then added together and in the second loop iteration the next value is add.
