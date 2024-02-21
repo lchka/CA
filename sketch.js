@@ -269,7 +269,7 @@ function setup() {
     tickStyle: BOLD,
 
     //values
-    yValues: ["cell-usage","other-distraction"],//other-distraction
+    yValues: ["other-distraction","cell-usage"],//other-distraction
     xValue: "Year",
   };
   let stacked100 = {
@@ -331,7 +331,7 @@ function setup() {
     tickStyle: BOLD,
 
     //values
-    yValues: ["cell-usage","other-distraction"],//other-distraction
+    yValues: ["other-distraction","cell-usage"],//other-distraction
     xValue: "Year",
     yValueTotal:"total",
   };

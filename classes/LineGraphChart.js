@@ -91,7 +91,8 @@ class LineGraphChart {
     line(0, 0, this.chartWidth, 0);
 
     //
-    let XLabels = this.data.map((x) => x[this.yValue]);
+    let yLabels = this.data.map((x) => x[this.yValue]);
+    let xLabels=this.data.map((s)=>s[this.xValue])
 
     // Draw ticks on y-axis
     for (let i = 0; i <= this.numTicks; i++) {
@@ -156,9 +157,23 @@ class LineGraphChart {
       rotate(-20);
       line(0, 0, 0, 35); //breaks indicator lines and they wont show when the property is passed
       pop();
+      // Text X AXIS
+      push();
+      textSize(this.textSizeText);
+      if (this.textRotate === 0) {
+        textAlign(CENTER, CENTER);
+      } else {
+        textAlign(LEFT, CENTER);
+      }
+      //text for year/subtext1 xLabel below graph line
+      fill(this.textColour);
+      text(xLabels[i], xLine, 15);
+      translate(this.barWidth / 2, 20);
+      pop();
 
-      //draw the xValue Labels
-      text(XLabels[i], xLine, yLine + this.xAxisTextYPos);
+
+      //draw the yValue Labels
+      text(yLabels[i], xLine, yLine + this.xAxisTextYPos);
       vertex(xLine, yLine);
       xLine += xStep; //moves the point by taking the first loops value (e.g 2693) and adds the next value to that previous one, these two values are then added together and in the second loop iteration the next value is add.
 
