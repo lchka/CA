@@ -239,7 +239,7 @@ function setup() {
     colYAxisSize: 16,
     colYAxisRotation: -90,
     colYAxisStyle: BOLD,
-    colYAxisTextValue: "no. of deaths",
+    colYAxisTextValue: "no. of deaths ",
     colYAxisTextX: 50,
     colYAxisTextY: -40,
 
@@ -301,7 +301,7 @@ function setup() {
     colYAxisSize: 16,
     colYAxisRotation: -90,
     colYAxisStyle: BOLD,
-    colYAxisTextValue: "no. of deaths",
+    colYAxisTextValue: "no. of deaths in %",
     colYAxisTextX: 50,
     colYAxisTextY: -40,
 

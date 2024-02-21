@@ -15,6 +15,8 @@ class StackedChart100 {
     this.yValues = obj.yValues;
     this.xValue = obj.xValue;
     this.yValueTotal = obj.yValueTotal;
+    this.totalArray=obj.totalArray;
+    this.calculateTotal();
 
     //ticks
     this.numTicks = obj.numTicks;
@@ -64,30 +66,29 @@ class StackedChart100 {
     this.ticksColour = obj.ticksColour;
 
     // Calculate maxValue and scale
-    this.maxValue = max(this.data.map((d) => d[this.yValueTotal]));
     this.scale = this.chartHeight / this.maxValue; // Calculate the scale for the chart
   }
   calculateTotal() {
-    let totalArray = [];
+    this.totalArray = [];
 
-    for (let i = 0; i < this.yValues.length; i++) {
-      totalArray.push(0);
+    for (let i = 0; i < this.data.length; i++) {
+      let total = 0;
+      for (let j = 0; j < this.yValues.length; j++) {
+
+        // Sum up all values within each array
+        total += int(this.data[i][this.yValues[j]]);  
+
+      }
+      this.totalArray.push(total);
+     
     }
-    for (let j = 0; j < this.data.length; j++) {
-      totalArray[j] += this.data[i][this.yValues[j]];
-    }
-    // console.log(totalArray);
-  }
+    console.log(this.totalArray);
+
+    this.maxValue = 100;
+}
   render() {
     // console.log(this.scale);
     // console.log(this.maxValue);
-    // for (let i = 0; i < 1000; i++) {
-    //   if (this.scale % this.numTicks == 0) {
-    //     break;
-    //   } else {
-    //     this.scale = this.scale + 1;
-    //   }
-    // }
 
     push();
     translate(this.xStacked100Pos, this.yStacked100Pos);
@@ -130,15 +131,17 @@ class StackedChart100 {
     push();
     translate(gap, 0);
     for (let i = 0; i < this.data.length; i++) {
+      let barStart=0;
       push();
       for (let j = 0; j < this.yValues.length; j++) {
         let value = this.data[i][this.yValues[j]];
-        // console.log(value);
-        let barHeight = -value * this.scale;
+        // console.log(this.totalArray[j]);
+        let percentage= (value/this.totalArray[j]*100)
+        let barHeight = -(percentage/100)*this.chartHeight ;
 
         fill(this.barFill[j]);
 
-        rect(0, 0, this.barWidth, barHeight);
+        rect(0, 0, this.barWidth, barStart+ barHeight);
         translate(0, barHeight);
 
       }
