@@ -39,7 +39,7 @@ function setup() {
     fontBold: boldText,
 
     //colours
-    barFill: ["#2E294E", "#011638", "#9055A2"],
+    barFill: ["#DCB6D5", "#CF8BA9", "#CEC2FF"],
     axisLineColour: "#d9d9d9",
     ticksColour: "#C72A2A",
 
