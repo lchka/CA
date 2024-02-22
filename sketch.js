@@ -13,7 +13,7 @@ function preload() {
 }
 
 function setup() {
-  createCanvas(1600, 900);
+  createCanvas(1600, 950);
   angleMode(DEGREES);
   noLoop();
 
@@ -32,7 +32,7 @@ function setup() {
     chartHeight: 200,
     chartWidth: 350,
     xBarPos: 60,
-    yBarPos: 685,
+    yBarPos: 840,
     barWidth: 25,
     genFont: font,
     fontBold: boldText,
@@ -94,7 +94,7 @@ let stacked100 = {
     chartHeight: 200,
     chartWidth: 350,
     xStacked100Pos: 550,
-    yStacked100Pos: 350,
+    yStacked100Pos: 500,
     barWidth: 25,
     genFont: font,
     fontBold: boldText,
@@ -156,15 +156,15 @@ let stacked100 = {
     //line Chart
     data: cleanData,
     chartHeight: 250,
-    chartWidth: 400,
+    chartWidth: 350,
     xLinePos: 0,
-    yLinePos: -350,
+    yLinePos: -500,
     genFont: font,
     fontBold: boldText,
 
 
     //colours
-    axisLineColour: "#000000",
+    axisLineColour: "#f5f5f5",
     ticksValueColour: "#000000",
     pointsColour: "#000000",
     chartLineColour: ["#1976D2","#7B1FA2"],
@@ -179,17 +179,17 @@ let stacked100 = {
     //subtext in the middle
     textSizeSub: 14,
     subLabel: "no of deaths per year",
-    textSubY: -475,
+    textSubY: -435,
     textSubX: 205,
     subVertAlign: CENTER,
     subHorzAlign: CENTER,
 
     //text for title
-    textSizeTitle: 20,
+    textSizeTitle: 16,
     titleText: "Line Chart for Fatal Accidents",
     textTitleX: 0,
-    textTitleY: 640,
-    titlePaddingX: 400,
+    textTitleY: 780,
+    titlePaddingX: 350,
     titleHorzAlign: CENTER,
     titleVertAlign: CENTER,
 
@@ -211,7 +211,7 @@ let stacked100 = {
     //text and line for xLabel
     xLabelLineWeight: 1,
     pointEllipseSize: 6,
-    chartXYLineWeight: 1.5,
+    chartXYLineWeight: 1,
     axisLineStrokeWeight:2,
     indiLineOneHeight:20,
     indiLineTwoHeight:20,
