@@ -147,7 +147,7 @@ class StackedBarChart {
         // console.log(value);
         let barHeight = -value * this.scale;
 
-        // console.log(this.barFill[j])
+        noStroke();
         fill(this.barFill[j]);
 
         rect(0, 0, this.barWidth, barHeight);

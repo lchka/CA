@@ -14,8 +14,12 @@ class LineGraphChart {
     this.yLinePos = obj.yLinePos;
     this.axisLineColour = obj.axisLineColour;
     this.yValue = obj.yValue;
+    this.yValues = obj.yValues;
     this.pointEllipseSize = obj.pointEllipseSize;
     this.chartXYLineWeight = obj.chartXYLineWeight;
+    this.axisLineStrokeWeight = obj.axisLineStrokeWeight;
+    this.genFont = obj.genFont;
+    this.fontBold = obj.fontBold;
 
     //ticks
     this.numTicks = obj.numTicks;
@@ -23,18 +27,6 @@ class LineGraphChart {
     this.tickStyle = obj.tickStyle;
     this.tickTextXPos = obj.tickTextXPos;
     this.ticksLength = obj.ticksLength;
-
-    //TEXT x axis
-    this.textSizeText = obj.textSizeText;
-    this.textSizeColText = obj.textSizeColText;
-    this.textRotate = obj.textRotate;
-    this.xValue = obj.xValue;
-    this.genFont = obj.genFont;
-    this.fontBold = obj.fontBold;
-    this.indiLineRotate = obj.indiLineRotate;
-    this.indiLineWeight = obj.indiLineWeight;
-    this.xAxisTextYPos = obj.xAxisTextYPos;
-    this.indiLineHeight = obj.indiLineHeight;
 
     //subtext
 
@@ -47,13 +39,13 @@ class LineGraphChart {
 
     //text col y axis name
 
-    this.colYAxisColour = obj.colYAxisColour;
-    this.colYAxisSize = obj.colYAxisSize;
-    this.colYAxisRotation = obj.colYAxisRotation;
-    this.colYAxisStyle = obj.colYAxisStyle;
-    this.colYAxisTextValue = obj.colYAxisTextValue;
-    this.colYAxisTextX = obj.colYAxisTextX;
-    this.colYAXisTextY = obj.colYAxisTextY;
+    // this.colYAxisColour = obj.colYAxisColour;
+    // this.colYAxisSize = obj.colYAxisSize;
+    // this.colYAxisRotation = obj.colYAxisRotation;
+    // this.colYAxisStyle = obj.colYAxisStyle;
+    // this.colYAxisTextValue = obj.colYAxisTextValue;
+    // this.colYAxisTextX = obj.colYAxisTextX;
+    // this.colYAXisTextY = obj.colYAxisTextY;
 
     //text  for title
     this.textSizeTitle = obj.textSizeTitle;
@@ -71,6 +63,21 @@ class LineGraphChart {
     this.textXLabelRotate = obj.textXLabelRotate;
     this.horzAlignXLabel = obj.horzAlignXLabel;
     this.vertAlignXLabel = obj.vertAlignXLabel;
+    this.xLabelLineWeight = obj.xLabelLineWeight;
+    this.xAxisTextYTwoPos = obj.xAxisTextYTwoPos;
+    this. xAxisTextYOnePos=obj. xAxisTextYOnePos;
+    this.textSizeText = obj.textSizeText;
+    this.textSizeColText = obj.textSizeColText;
+    this.textRotate = obj.textRotate;
+    this.xValue = obj.xValue;
+
+    //indi line
+    this.indiLineOneHorzAlign = obj.indiLineOneHorzAlign;
+    this.indiLineOneVertAlign = obj.indiLineOneVertAlign;
+    this.indiLineRotate = obj.indiLineRotate;
+    this.indiLineOneHeight = obj.indiLineOneHeight;
+    this.indiLineTwoHeight = obj.indiLineTwoHeight;
+    this.indiLineWeight = obj.indiLineWeight;
 
     //colors
     this.barFill = obj.barFill;
@@ -99,8 +106,6 @@ class LineGraphChart {
     line(0, 0, this.chartWidth, 0);
 
     //
-    let yLabels = this.data.map((x) => x[this.yValue]); //text yLabel
-    let xLabels = this.data.map((s) => s[this.xValue]); //text xLabel
 
     // Draw ticks on y-axis
     for (let i = 0; i <= this.numTicks; i++) {
@@ -126,69 +131,91 @@ class LineGraphChart {
     }
 
     // Drawing chart lines and points
-
-    let xStep = this.chartWidth / (this.data.length - 1); //350/11-1=35
-    let xLine = 0; //will be responsible in moving from point a to point b
-    let yStep = this.chartHeight / this.maxValue; //200/2843=0.0706
-    beginShape();
+    let xStep = this.chartWidth / (this.data.length - 1);
+    let yStep = this.chartHeight / this.maxValue;
     noFill();
-
-    for (let i = 0; i < this.data.length; i++) {
-      stroke(this.chartLineColour);
-      let yLine = -this.data[i][this.yValue] * yStep; //yvalue is what we're displaying on the graph
-      push();
-      fill(this.pointsColour);
-      noStroke();
-      ellipse(xLine, yLine, this.pointEllipseSize);
+    for (let j = 0; j < this.yValues.length; j++) {
+      beginShape();
       noFill();
-      pop();
+      for (let i = 0; i < this.data.length; i++) {
+        stroke(this.chartLineColour[j]);
+        strokeWeight(this.axisLineStrokeWeight);
+        let yLine = -this.data[i][this.yValues[j]] * yStep;
 
-      // Text X AXIS
-      push();
-      noStroke();
-      fill(this.textColour[i % this.textColour.length]);
-      textSize(this.textSize);
-      if (this.textRotate === 0) {
-        textAlign(CENTER, CENTER);
-      } else {
-        textAlign(LEFT, CENTER);
+        // Draw points
+        push();
+        fill(this.pointsColour);
+        noStroke();
+        ellipse(i * xStep, yLine, this.pointEllipseSize);
+        noFill();
+        pop();
+
+        // Draw text for xLabel below graph line
+        push();
+        noStroke();
+        translate(i * xStep, this.textYPosXLabel);
+        rotate(this.textXLabelRotate);
+        fill(this.textXLabelColour);
+        textSize(this.textSizeXLabel);
+        textFont(this.fontBold);
+        textAlign(this.horzAlignXLabel, this.vertAlignXLabel);
+        text(this.data[i][this.xValue], 0, this.textYPosXLabel);
+        pop();
+
+        // Draw the Indicator line alongside the text
+        if (j === 0) {
+          //array one text so the first line
+          push();
+          translate(i * xStep, yLine);
+          stroke(this.chartLineIndiLineColour[0]);
+          strokeWeight(this.xLabelLineWeight);
+          rotate(this.textRotate); //HAS TO BE HARDCODED, wont pass from the class property when the value is made in sketch.js
+          line(0, 0, 0, this.indiLineOneHeight);
+          pop();
+
+          // Draw text for chart line labels first array
+          push();
+          noStroke();
+          textFont(this.fontBold);
+          fill(this.textColour[j]);
+          textSize(this.textSize);
+          textAlign(LEFT, CENTER);
+          text(
+            this.data[i][this.yValues[j]],
+            i * xStep,
+            yLine + this. xAxisTextYOnePos
+          );
+          pop();
+        } else {
+          // Adjust the position of the second indicator line and text
+          push();
+          translate(i * xStep, yLine);
+          stroke(this.chartLineIndiLineColour[1]);
+          strokeWeight(this.xLabelLineWeight);
+          rotate(-this.textRotate);
+          line(0, 0, 0, -this.indiLineTwoHeight); // Different line for the second array
+          pop();
+
+          // Draw text for chart line labels first array
+          push();
+          noStroke();
+          textFont(this.fontBold);
+          fill(this.textColour[j]);
+          textSize(this.textSize);
+          textAlign(LEFT, CENTER);
+          text(
+            this.data[i][this.yValues[j]],
+            i * xStep,
+            yLine + (-this.xAxisTextYTwoPos)
+          ); // Adjusted y position for clarity
+          pop();
+        }
+
+        vertex(i * xStep, yLine); //makes the line move to the next point, by looping it take the past iteration and add any need values to that, in this case [i] , stand for the iteration of the loop, and add the needed values to move to the next point.
       }
-
-
-      
-      //text for xLabel below graph line
-      push();
-      translate(xLine, this.textYPosXLabel);
-      rotate(this.textXLabelRotate); // Rotate each xLabel text individually
-      fill(this.textXLabelColour);
-      textSize(this.textSizeXLabel);
-      textFont(this.fontBold);
-      textAlign(this.horzAlignXLabel, this.vertAlignXLabel);
-      text(xLabels[i], 0, this.textYPosXLabel); 
-      pop();
-
-
-
-      // Draw the Indicator line alongside the text
-      push();
-      translate(xLine, yLine); // Move the origin to the position where the line starts
-      stroke(
-        this.chartLineIndiLineColour[i % this.chartLineIndiLineColour.length]
-      );
-      strokeWeight(2); //breaks indicator lines and they wont show when the property is passed
-      rotate(-20);
-      line(0, 0, 0, 35); //breaks indicator lines and they wont show when the property is passed
-      pop();
-
-      //text for yValue Labels
-      textFont(this.fontBold);
-      text(yLabels[i], xLine, yLine + this.xAxisTextYPos);
-      vertex(xLine, yLine);
-      xLine += xStep; //moves the point by taking the first loops value (e.g 2693) and adds the next value to that previous one, these two values are then added together and in the second loop iteration the next value is add.
-
-      pop();
+      noFill();
+      endShape();
     }
-    endShape();
     pop();
 
     //subtext

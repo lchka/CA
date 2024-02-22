@@ -15,7 +15,7 @@ class StackedChart100 {
     this.yValues = obj.yValues;
     this.xValue = obj.xValue;
     this.yValueTotal = obj.yValueTotal;
-    this.totalArray=obj.totalArray;
+    this.totalArray = obj.totalArray;
     this.calculateTotal();
 
     //ticks
@@ -74,18 +74,15 @@ class StackedChart100 {
     for (let i = 0; i < this.data.length; i++) {
       let total = 0;
       for (let j = 0; j < this.yValues.length; j++) {
-
         // Sum up all values within each array
-        total += int(this.data[i][this.yValues[j]]);  
-
+        total += int(this.data[i][this.yValues[j]]);
       }
       this.totalArray.push(total);
-     
     }
     console.log(this.totalArray);
 
     this.maxValue = 100;
-}
+  }
   render() {
     // console.log(this.scale);
     // console.log(this.maxValue);
@@ -129,22 +126,22 @@ class StackedChart100 {
 
     //drawing bars
     push();
-translate(gap, 0);
-for (let i = 0; i < this.data.length; i++) {
-  let barStart = 0; // initialize the starting point of the bar
-  push();
-  for (let j = 0; j < this.yValues.length; j++) {
-    let value = this.data[i][this.yValues[j]];
-    let percentage = (value / this.totalArray[i]) * 100; // calculate the percentage relative to the total
+    translate(gap, 0);
+    for (let i = 0; i < this.data.length; i++) {
+      let barStart = 0; // initialize the starting point of the bar
+      push();
+      for (let j = 0; j < this.yValues.length; j++) {
+        let value = this.data[i][this.yValues[j]];
+        let percentage = (value / this.totalArray[i]) * 100; // calculate the percentage relative to the total
 
-    let barHeight = -(percentage / 100) * this.chartHeight; // calculate the height of the segment
-
-    fill(this.barFill[j]);
-    rect(0, barStart, this.barWidth, barHeight); // Draw the segment
-    barStart += barHeight; // Update the starting point for the next segment
-  }
-  pop();
-  translate(gap + this.barWidth, 0); // Move to the next bar position
+        let barHeight = -(percentage / 100) * this.chartHeight; // calculate the height of the segment
+        noStroke();
+        fill(this.barFill[j]);
+        rect(0, barStart, this.barWidth, barHeight); // Draw the segment
+        barStart += barHeight; // Update the starting point for the next segment
+      }
+      pop();
+      translate(gap + this.barWidth, 0); // Move to the next bar position
 
       // Text X AXIS
       push();
