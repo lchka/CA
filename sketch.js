@@ -70,7 +70,7 @@ function setup() {
     colHorzAlign: CENTER,
 
     //text for title
-    textSizeTitle: 24,
+    textSizeTitle: 16,
     titleText:
       "Fatal driving accidents resulting from the use of mobile devices",
     textTitleX: -25,
@@ -132,7 +132,7 @@ let stacked100 = {
     colHorzAlign: CENTER,
 
     //text for title
-    textSizeTitle: 24,
+    textSizeTitle: 16,
     titleText:
       "Fatal driving accidents resulting from the use of mobile devices",
     textTitleX: -25,
@@ -267,7 +267,7 @@ let stacked100 = {
     subHorzAlign: CENTER,
 
     //text for title
-    textSizeTitle: 24,
+    textSizeTitle: 16,
     titleText:
       "Fatal driving accidents resulting from the use of mobile devices",
     textTitleX: -25,
@@ -315,9 +315,9 @@ let stacked100 = {
     colYAxisSize: 16,
     colYAxisRotation: -90,
     colYAxisStyle: BOLD,
-    colYAxisTextValue: "no. of deaths ",
-    colYAxisTextX: 50,
-    colYAxisTextY: -40,
+    colYAxisTextValue: "no. of deaths in total ",
+    colYAxisTextX: 10,
+    colYAxisTextY: -50,
 
     //text for col
     textSizeColText: 16,
@@ -329,7 +329,7 @@ let stacked100 = {
     colHorzAlign: CENTER,
 
     //text for title
-    textSizeTitle: 24,
+    textSizeTitle: 16,
     titleText:
       "Fatal driving accidents resulting from the use of mobile devices",
     textTitleX: -25,
