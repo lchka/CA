@@ -12,32 +12,41 @@ class HorzBarChart {
     this.chartHeight = obj.chartHeight;
     this.xHorzPos = obj.xHorzPos;
     this.yHorzPos = obj.yHorzPos;
-    this.axisLineColour = obj.axisLineColour;
     this.barHeight = obj.barHeight;
     this.yValue = obj.yValue;
-
-    //ticks
-    this.numTicks = obj.numTicks;
-    this.ticksTextSize = obj.ticksTextSize;
-    this.tickStyle = obj.tickStyle;
-
-    //TEXT
-    this.textSizeText = obj.textSizeText;
-    this.textSizeColText = obj.textSizeColText;
-    this.textRotate = obj.textRotate;
     this.xValue = obj.xValue;
     this.genFont = obj.genFont;
     this.fontBold = obj.fontBold;
-    //subtext
+    this.lineGraphWeight = obj.lineGraphWeight;
 
+    //bar Value text
+    this.barValueHorz = obj.barValueHorz;
+    this.barValueVert = obj.barValueVert;
+    this.barValueTextSize = obj.barValueTextSize;
+
+   //ticks
+   this.numTicks = obj.numTicks;
+   this.ticksTextSize = obj.ticksTextSize;
+   this.tickStyle = obj.tickStyle;
+   this.tickVert=obj.tickvert;
+   this.tickHorz=obj.tickHorz;
+
+    //text y axis
+    this.textSizeText = obj.textSizeText;
+    this.textSizeColText = obj.textSizeColText;
+    this.textRotate = obj.textRotate;
+    this.xAxisHorz=obj.xAxisHorz;
+    this.xAxisVert=obj.xAxisVert;
+
+    //subtext
     this.subLabel = obj.subLabel; //to pull the section name from the csv file
     this.textSubX = obj.textSubX;
     this.textSubY = obj.textSubY;
     this.subVertAlign = obj.subVertAlign;
     this.subHorzAlign = obj.subHorzAlign;
     this.textSizeSub = obj.textSizeSub;
-    //text col y axis name
 
+    //text col y axis name
     this.colYAxisColour = obj.colYAxisColour;
     this.colYAxisSize = obj.colYAxisSize;
     this.colYAxisRotation = obj.colYAxisRotation;
@@ -58,11 +67,12 @@ class HorzBarChart {
 
     //colors
     this.barFill = obj.barFill;
+    this.axisLineColour = obj.axisLineColour;
     this.textColour = obj.textColour;
     this.bColour = obj.bColour;
     this.ticksColour = obj.ticksColour;
-    this.subTextColour=obj.subTextColour
-
+    this.subTextColour = obj.subTextColour;
+    this.barValueColour = obj.barValueColour;
 
     // Calculate maxValue and scale
     this.maxValue = max(this.data.map((d) => d[this.xValue])); // Get the max height of the chart
@@ -70,18 +80,17 @@ class HorzBarChart {
   }
 
   render() {
-
-
     push();
     translate(this.xHorzPos, this.yHorzPos);
+    strokeWeight(this.lineGraphWeight);
     stroke(this.axisLineColour);
-    // line(0, 0, 0, -this.chartHeight);
     line(0, 0, this.chartWidth, 0);
 
     // Map for labels x is just a name
-    let yLabel = this.data.map((x) => x[this.yValue]);
+    let yLabel = this.data.map((x) => x[this.yValue]); //gets all the values from yValue
+    let xLabel = this.data.map((s) => s[this.xValue]); //gets all the values from xValue
 
-    // Draw ticks on y-axis
+    // Draw ticks on X-axis
     for (let i = 0; i <= this.numTicks; i++) {
       push();
       translate(i * (this.chartWidth / this.numTicks), 0);
@@ -90,20 +99,18 @@ class HorzBarChart {
     }
 
     //  tick text
-    let tickValue = this.maxValue / this.numTicks; //prevents it from going over the max of preset value in the column/rows. On first loop it did display the max value (453) but kept going over it, which is why we needed another variable that handles the 'gap difference' between each value label.
+    let tickValue = this.maxValue / this.numTicks;
     for (let i = 0; i <= this.numTicks; i++) {
       push();
-      translate( i*( this.chartWidth) / this.numTicks,20);
+      translate((i * this.chartWidth) / this.numTicks, 20);
       noStroke();
-      textSize(this.textSizeText);
-      if (this.textRotate === 0) {
-        textAlign(LEFT, CENTER);
-      } else {
-        textAlign(RIGHT, CENTER);
-      }
+      textSize(this.ticksTextSize);
       rotate(this.textRotate);
       fill(this.textColour);
-      text(Math.ceil(i * tickValue), -10, 0); 
+      text(Math.ceil(i * tickValue), -10, 0);
+      //math ceil rounds to the highest whole number.
+      //round() can also be used and a decimal can be placed
+      //everytime 'i' loops it adds from the previous loop to the current one
       pop();
     }
 
@@ -114,28 +121,37 @@ class HorzBarChart {
 
     // Draw bars
     push();
-    translate(0, -this.chartHeight); 
+    translate(0, -this.chartHeight);
     for (let i = 0; i < this.data.length; i++) {
-      let barWidth = map(this.data[i][this.xValue], 0, this.maxValue, 0, this.chartWidth);
+      let barWidth = map(this.data[i][this.xValue], 0, this.maxValue,0,this.chartWidth
+      );//gets all the data from the xValue and pulls out each individual values and displays them.
       fill(this.barFill[i % this.barFill.length]);
       noStroke();
-      rect(0, 0, barWidth,  gap); // Adjust width based on xValue
-      translate(0, gap + this.barHeight);
-      // Text x AXIS
+      rect(0, 0, barWidth, gap); // Adjust width based on xValue
+
+      // Draw bar value
       push();
+      fill(this.barValueColour);
+      textFont(this.fontBold);
+      textAlign(CENTER, CENTER); // Set text alignment
+      textSize(this.barValueTextSize);
+      text(xLabel[i], barWidth + 15, -this.chartHeight / this.data.length / 2); // Draw text
+      // Translate for the next bar
+      translate(0, gap + this.barHeight);
       
+      // Text y AXIS
+      push();
+
       textSize(this.textSizeText);
-        textAlign(LEFT, LEFT);
       rotate(this.textRotate);
       fill(this.textColour);
-      text(yLabel[i], -40, -this.chartHeight/this.data.length-5,);
-      translate(20, -this.barHeight/2);
+      text(yLabel[i], -20, -this.chartHeight / this.data.length -10);//displays the data 
+      translate(0, -this.barHeight / 2);
       pop();
     }
     pop();
 
-    //text xvalue col name
-    //subtext
+    // Subtext
     push();
     noStroke();
     fill(this.subTextColour);
@@ -145,7 +161,7 @@ class HorzBarChart {
     text(this.subLabel, this.textSubX, this.textSubY);
     pop();
 
-    //text xvalue title name
+    // Title text
     push();
     noStroke();
     fill(this.textColour);
@@ -156,8 +172,7 @@ class HorzBarChart {
     text(this.titleText, this.textTitleX, -this.textTitleY, this.titlePaddingX);
     pop();
 
-    //text for col2
-
+    // Text for column 2
     push();
     noStroke();
     fill(this.colYAxisColour);
@@ -165,7 +180,6 @@ class HorzBarChart {
     rotate(this.colYAxisRotation);
     textStyle(this.colYAxisStyle);
     text(this.colYAxisTextValue, this.colYAxisTextX, this.colYAXisTextY);
-
     pop();
   }
 }

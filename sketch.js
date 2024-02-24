@@ -25,10 +25,7 @@ function setup() {
   }
   console.log(cleanData);
 
-  
-
   let barChart = {
-
     //gen chart
     data: cleanData,
     chartHeight: 200,
@@ -45,14 +42,14 @@ function setup() {
     ticksColour: "#C72A2A",
     textColour: "#0f0000",
     colYAxisColour: "#C72A2A",
-
+    barValueColour: "#00000",
 
     //text for X labels
-    textRotate: 45 ,
+    textRotate: 45,
     textSizeText: 13,
-    xLabelHeight:30,
-    xLabelHorz:LEFT,
-    xLabelVert:CENTER,
+    xLabelHeight: 30,
+    xLabelHorz: LEFT,
+    xLabelVert: CENTER,
 
     //text for y axis name
     colYAxisSize: 16,
@@ -86,8 +83,8 @@ function setup() {
     numTicks: 10,
     ticksTextSize: 13,
     tickStyle: BOLD,
-    tickHorz:RIGHT,
-    tickVert:CENTER,
+    tickHorz: RIGHT,
+    tickVert: CENTER,
 
     //values
     yValue: "cell-usage",
@@ -232,32 +229,37 @@ function setup() {
     barHeight: 35,
     genFont: font,
     fontBold: boldText,
+    lineGraphWeight:2,
 
     //colours
     barFill: ["#1976D2", "#7B1FA2", "#7E57C2"],
     axisLineColour: "#d9d9d9",
     ticksColour: "#C72A2A",
+    colYAxisColour: "#C72A2A",
+    textColour: "#0f0000",
+    barValueColour: "#000000",
+    fontBold: boldText,
     subTextColour: "C72A2A",
 
-    //text for X AXIS
-    textColour: "#0f0000",
+    //text for y AXIS
     textRotate: 0,
     textSizeText: 13,
-    indiLineRotate: -85,
-    indiLineWeight: 1,
-    indiLineHeight: 35,
+ 
 
-    //text for col y axis name
+    //bar value
+    barValueHorz: LEFT,
+    barValueVert: LEFT,
+    barValueTextSize: 14,
 
-    colYAxisColour: "#C72A2A",
+    //x axis subtext
     colYAxisSize: 16,
     colYAxisRotation: -90,
     colYAxisStyle: BOLD,
     colYAxisTextValue: "accidents per year",
-    colYAxisTextX: 50,
+    colYAxisTextX: 100,
     colYAxisTextY: -70,
 
-    //subtext
+    //subtext y axis
     textSizeSub: 12,
     subLabel: "no. of deaths",
     textSubY: 60,
@@ -279,7 +281,8 @@ function setup() {
     //tick and tick text
     numTicks: 10,
     ticksTextSize: 13,
-    tickStyle: BOLD,
+    tickHorz: RIGHT,
+    tickVert: CENTER,
 
     //values
     xValue: "cell-usage",
@@ -348,8 +351,7 @@ function setup() {
     xValue: "Year",
   };
   let stackedAverage = {
-
-    //gen chart 
+    //gen chart
     data: cleanData,
     chartHeight: 200,
     chartWidth: 350,
@@ -360,7 +362,7 @@ function setup() {
     fontBold: boldText,
 
     //colours
-    barFill: ["#7B1FA2","#1976D2", "#7E57C2"],
+    barFill: ["#7B1FA2", "#1976D2", "#7E57C2"],
     axisLineColour: "#d9d9d9",
     ticksColour: "#C72A2A",
     avgLineColour: "#f5f5f5",
@@ -407,7 +409,7 @@ function setup() {
     ticksTextSize: 13,
 
     //values
-    yValues: ["cell-usage","other-distraction"], //other-distraction
+    yValues: ["cell-usage", "other-distraction"], //other-distraction
     xValue: "Year",
   };
   barCharts.push(
