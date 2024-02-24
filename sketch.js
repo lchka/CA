@@ -91,6 +91,7 @@ function setup() {
     xValue: "Year",
   };
   let stacked100 = {
+    //gen chart
     data: cleanData,
     chartHeight: 200,
     chartWidth: 350,
@@ -99,6 +100,7 @@ function setup() {
     barWidth: 25,
     genFont: font,
     fontBold: boldText,
+    lineGraphWeight:2,
 
     //colours
     barFill: ["#EF6291", "#F493B4"],
@@ -110,9 +112,7 @@ function setup() {
     //text for X LEBELS
     textRotate: 45,
     textSizeText: 13,
-    indiLineRotate: -85,
-    indiLineWeight: 1,
-    indiLineHeight: 35,
+    xLabelHeight:30,  
 
     //text for y axis name
     colYAxisSize: 16,

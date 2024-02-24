@@ -17,18 +17,20 @@ class StackedChart100 {
     this.yValueTotal = obj.yValueTotal;
     this.totalArray = obj.totalArray;
     this.calculateTotal();
+    this.lineGraphWeight = obj.lineGraphWeight;
+    this.genFont = obj.genFont;
+    this.fontBold = obj.fontBold;
 
     //ticks
     this.numTicks = obj.numTicks;
     this.ticksTextSize = obj.ticksTextSize;
     this.tickStyle = obj.tickStyle;
 
-    //TEXT
+    //text x axis
     this.textSizeText = obj.textSizeText;
     this.textSizeColText = obj.textSizeColText;
     this.textRotate = obj.textRotate;
-    this.genFont = obj.genFont;
-    this.fontBold = obj.fontBold;
+    this.xLabelHeight = obj.xLabelHeight;
 
     //text for col name
 
@@ -73,7 +75,7 @@ class StackedChart100 {
 
     for (let i = 0; i < this.data.length; i++) {
       let total = 0;
-      for (let j = 0; j < this.yValues.length; j++) {
+      for (let j = 0; j < this.yValues.length; j++) {//iterates through all the values in yValues
         // Sum up all values within each array
         total += int(this.data[i][this.yValues[j]]);
       }
@@ -81,20 +83,19 @@ class StackedChart100 {
     }
     console.log(this.totalArray);
 
-    this.maxValue = 100;
+    this.maxValue = 100;//set the max to 100 since its in percentages
   }
   render() {
-    // console.log(this.scale);
-    // console.log(this.maxValue);
 
     push();
     translate(this.xStacked100Pos, this.yStacked100Pos);
+    strokeWeight(this.lineGraphWeight);
     stroke(this.axisLineColour);
     line(0, 0, 0, -this.chartHeight);
     line(0, 0, this.chartWidth, 0);
 
     // Map for labels x is just a name
-    let XLabels = this.data.map((x) => x[this.xValue]);
+    let XLabels = this.data.map((x) => x[this.xValue]);//pulls the individual value from xValue (YEAR)
 
     // Draw ticks on y-axis
     for (let i = 0; i <= this.numTicks; i++) {
@@ -134,11 +135,11 @@ class StackedChart100 {
         let value = this.data[i][this.yValues[j]];
         let percentage = (value / this.totalArray[i]) * 100; // calculate the percentage relative to the total
 
-        let barHeight = -(percentage / 100) * this.chartHeight; // calculate the height of the segment
+        let barHeight = -(percentage / 100) * this.chartHeight; // calculate the height of the bar
         noStroke();
         fill(this.barFill[j]);
-        rect(0, barStart, this.barWidth, barHeight); // Draw the segment
-        barStart += barHeight; // Update the starting point for the next segment
+        rect(0, barStart, this.barWidth, barHeight); // Draw the next bar
+        barStart += barHeight; // update the starting point for the next bar
       }
       pop();
       translate(gap + this.barWidth, 0); // Move to the next bar position
@@ -153,7 +154,7 @@ class StackedChart100 {
       }
       rotate(this.textRotate);
       fill(this.textColour);
-      text(XLabels[i], 0, 30);
+      text(XLabels[i], 0, this.xLabelHeight); //fills the text with the each corresponding year
       translate(this.barWidth / 2, 20);
       pop();
     }
