@@ -160,6 +160,7 @@ function setup() {
     yLinePos: -500,
     genFont: font,
     fontBold: boldText,
+    
 
     //colours
     axisLineColour: "#f5f5f5",
@@ -297,23 +298,24 @@ function setup() {
     barWidth: 25,
     genFont: font,
     fontBold: boldText,
+    lineGraphWeight:1,
+
 
     //colours
     barFill: ["#EF6291", "#F493B4"],
     axisLineColour: "#d9d9d9",
     ticksColour: "#C72A2A",
+    textColour: "#0f0000",
+    colYAxisColour: "#C72A2A",
+
 
     //text for X AXIS
-    textColour: "#0f0000",
     textRotate: 45,
     textSizeText: 13,
-    indiLineRotate: -85,
-    indiLineWeight: 1,
-    indiLineHeight: 35,
+    xLabelHeight:30,
+
 
     //text for col y axis name
-
-    colYAxisColour: "#C72A2A",
     colYAxisSize: 16,
     colYAxisRotation: -90,
     colYAxisStyle: BOLD,

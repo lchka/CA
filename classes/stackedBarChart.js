@@ -10,27 +10,28 @@ class StackedBarChart {
     this.chartHeight = obj.chartHeight;
     this.xStackedPos = obj.xStackedPos;
     this.yStackedPos = obj.yStackedPos;
-    this.axisLineColour = obj.axisLineColour;
     this.barWidth = obj.barWidth;
     this.yValues = obj.yValues;
     this.xValue = obj.xValue;
     this.yValueTotal = obj.yValueTotal;
     this.calculateTotal();
     this.totalArray = [];
+    this.lineGraphWeight=obj.lineGraphWeight;
+
     //ticks
     this.numTicks = obj.numTicks;
     this.ticksTextSize = obj.ticksTextSize;
     this.tickStyle = obj.tickStyle;
 
-    //TEXT
+    //x axis
     this.textSizeText = obj.textSizeText;
     this.textSizeColText = obj.textSizeColText;
     this.textRotate = obj.textRotate;
     this.genFont = obj.genFont;
     this.fontBold = obj.fontBold;
+    this.xLabelHeight=obj.xLabelHeight;
 
-    //text for col name
-
+    //text for x axis name
     this.colLabel = obj.colLabel; //to pull the section name from the csv file
     this.textColX = obj.textColX;
     this.textColY = obj.textColY;
@@ -40,7 +41,6 @@ class StackedBarChart {
 
     //text col y axis name
 
-    this.colYAxisColour = obj.colYAxisColour;
     this.colYAxisSize = obj.colYAxisSize;
     this.colYAxisRotation = obj.colYAxisRotation;
     this.colYAxisStyle = obj.colYAxisStyle;
@@ -63,6 +63,9 @@ class StackedBarChart {
     this.textColour = obj.textColour;
     this.bColour = obj.bColour;
     this.ticksColour = obj.ticksColour;
+    this.colYAxisColour = obj.colYAxisColour;
+    this.axisLineColour = obj.axisLineColour;
+
 
     // Calculate maxValue and scale
     // this.maxValue = max(this.data.map((d) => d[this.totalArray]));
@@ -72,15 +75,15 @@ class StackedBarChart {
   calculateTotal() {
     this.totalArray = [];
 
-    for (let i = 0; i < this.data.length; i++) {
+    for (let i = 0; i < this.data.length; i++) {//gets the length of the data
       let total = 0;
-      for (let j = 0; j < this.yValues.length; j++) {
+      for (let j = 0; j < this.yValues.length; j++) {//iterates through yValues
 
         // Sum up all values within each array
-        total += int(this.data[i][this.yValues[j]]);  
+        total += int(this.data[i][this.yValues[j]]);  //had to be converted to integers as the second object in the array cam up as NaN. 
 
       }
-      this.totalArray.push(total);
+      this.totalArray.push(total);//pushed into array so that they're individual values
      
     }
     console.log(this.totalArray);
@@ -93,6 +96,7 @@ class StackedBarChart {
     
     push();
     translate(this.xStackedPos, this.yStackedPos);
+    strokeWeight(this.lineGraphWeight);
     stroke(this.axisLineColour);
     line(0, 0, 0, -this.chartHeight);
     line(0, 0, this.chartWidth, 0);
@@ -119,7 +123,9 @@ class StackedBarChart {
       fill(this.ticksColour);
       textAlign(RIGHT, CENTER);
       textFont(this.genFont);
-      text(Math.ceil(i * tickValue), -10, 0); //everytime i loop it adds from the previous loop to the current one
+      text(Math.ceil(i * tickValue), -10, 0);//math ceil rounds to the highest whole number.
+      //round() can also be used and a decimal can be placed
+      //everytime 'i' loops it adds from the previous loop to the current one
       pop();
     }
 
@@ -134,14 +140,13 @@ class StackedBarChart {
     for (let i = 0; i < this.data.length; i++) {
       push();
       for (let j = 0; j < this.yValues.length; j++) {
-        let value = this.data[i][this.yValues[j]];
-        // console.log(value);
-        let barHeight = -value * this.scale;
+        let value = this.data[i][this.yValues[j]];//draws bars by pulling each array object values and iterates through them per bar
+        let barHeight = -value * this.scale;//this make sure the bar scales correctly compared to the actual total
 
         noStroke();
         fill(this.barFill[j]);
 
-        rect(0, 0, this.barWidth, barHeight);
+        rect(0, 0, this.barWidth, barHeight);//draws bar
         translate(0, barHeight);
       }
       pop();
@@ -157,7 +162,7 @@ class StackedBarChart {
       }
       rotate(this.textRotate);
       fill(this.textColour);
-      text(XLabels[i], 0, 30);
+      text(XLabels[i], 0, this.xLabelHeight);//fills the text with the each corresponding year
       translate(this.barWidth / 2, 20);
       pop();
     }
