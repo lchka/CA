@@ -134,42 +134,42 @@ class LineGraphChart {
     let xStep = this.chartWidth / (this.data.length - 1);
     let yStep = this.chartHeight / this.maxValue;
     noFill();
-    for (let j = 0; j < this.yValues.length; j++) {
+    for (let j = 0; j < this.yValues.length; j++) {//iterates throught the yValues
       beginShape();
       noFill();
       for (let i = 0; i < this.data.length; i++) {
         stroke(this.chartLineColour[j]);
         strokeWeight(this.axisLineStrokeWeight);
-        let yLine = -this.data[i][this.yValues[j]] * yStep;
+        let yLine = -this.data[i][this.yValues[j]] * yStep;//pulls the values from yValues individually and then using yStep it jumps to the next
 
         // Draw points
         push();
         fill(this.pointsColour);
         noStroke();
-        ellipse(i * xStep, yLine, this.pointEllipseSize);
+        ellipse(i * xStep, yLine, this.pointEllipseSize);//draws ellipses on each point of 'contact' where we get to point a to b
         noFill();
         pop();
 
         // Draw text for xLabel below graph line
         push();
         noStroke();
-        translate(i * xStep, this.textYPosXLabel);
+        translate(i * xStep, this.textYPosXLabel);//Draws the next xStep, in normal barchart this would be gapWidth
         rotate(this.textXLabelRotate);
         fill(this.textXLabelColour);
         textSize(this.textSizeXLabel);
         textFont(this.fontBold);
         textAlign(this.horzAlignXLabel, this.vertAlignXLabel);
-        text(this.data[i][this.xValue], 0, this.textYPosXLabel);
-        pop();
+        text(this.data[i][this.xValue], 0, this.textYPosXLabel);//draws years below the line
+        pop(); 
 
         // Draw the Indicator line alongside the text
         if (j === 0) {
           //array one text so the first line
           push();
           translate(i * xStep, yLine);
-          stroke(this.chartLineIndiLineColour[0]);
+          stroke(this.chartLineIndiLineColour[j]);
           strokeWeight(this.xLabelLineWeight);
-          rotate(this.textRotate); //HAS TO BE HARDCODED, wont pass from the class property when the value is made in sketch.js
+          rotate(this.textRotate); 
           line(0, 0, 0, this.indiLineOneHeight);
           pop();
 
