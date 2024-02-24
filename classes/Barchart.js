@@ -14,30 +14,35 @@ class BarChart {
     this.axisLineColour = obj.axisLineColour;
     this.barWidth = obj.barWidth;
     this.yValue = obj.yValue;
+    this.xValue = obj.xValue;
+    this.genFont = obj.genFont;
+    this.fontBold = obj.fontBold;
 
     //ticks
     this.numTicks = obj.numTicks;
     this.ticksTextSize = obj.ticksTextSize;
     this.tickStyle = obj.tickStyle;
+    this.tickVert=obj.tickvert;
+    this.tickHorz=obj.tickHorz;
 
-    //TEXT
+    //x Labels
     this.textSizeText = obj.textSizeText;
-    this.textSizeColText = obj.textSizeColText;
     this.textRotate = obj.textRotate;
-    this.xValue = obj.xValue;
-    this.genFont = obj.genFont;
-    this.fontBold = obj.fontBold;
+   this.xLabelHeight=obj.xLabelHeight;
+   this.xLabelHorz=obj.xLabelHorz;
+   this.xLabelVert=obj.xLabelVert;
 
-    //text for col name
-
+     //text for x axis
     this.colLabel = obj.colLabel; //to pull the section name from the csv file
     this.textColX = obj.textColX;
     this.textColY = obj.textColY;
     this.textColWeight = obj.textColWeight;
     this.colVertAlign = obj.colVertAlign;
     this.colHorzAlign = obj.colHorzAlign;
+    this.textSizeColText = obj.textSizeColText;
 
-    //text col y axis name
+
+    //text y axis name
 
     this.colYAxisColour = obj.colYAxisColour;
     this.colYAxisSize = obj.colYAxisSize;
@@ -70,7 +75,7 @@ class BarChart {
 
   render() {
   
-
+//draws charts x and y lines 
     push();
     translate(this.xBarPos, this.yBarPos);
     stroke(this.axisLineColour);
@@ -97,9 +102,11 @@ class BarChart {
       textSize(this.ticksTextSize);
       textStyle(this.tickStyle);
       fill(this.ticksColour);
-      textAlign(RIGHT, CENTER);
-      textFont(this.genFont);9
-      text(Math.ceil(i * tickValue), -10, 0); //everytime i loop it adds from the previous loop to the current one
+      textAlign(this.tickHorz, this.tickVert);
+      textFont(this.genFont);
+      text(Math.ceil(i * tickValue), -10, 0); //math ceil rounds to the highest whole number.
+      //round() can also be used and a decimal can be placed
+      //everytime 'i' loops it adds from the previous loop to the current one
       pop();
     }
 
@@ -112,23 +119,25 @@ class BarChart {
     push();
     translate(gap, 0);
     for (let i = 0; i < this.data.length; i++) {
+      //loops to draw each by the length of the data
       fill(this.barFill[i % this.barFill.length]);
       noStroke();
-      rect(0, 0, this.barWidth, -this.data[i][this.yValue] * this.scale);
+      rect(0, 0, this.barWidth, -this.data[i][this.yValue] * this.scale);//draws each bar by using the iteration i to calculate each heigh and then jumps to the next bar
       translate(gap + this.barWidth, 0);
+      //calculates the co-ordinate it should draw the next bar at
 
       // Text X AXIS
       push();
       textSize(this.textSizeText);
       if (this.textRotate === 0) {
-        textAlign(CENTER, CENTER);
+        textAlign(RIGHT, CENTER);
       } else {
-        textAlign(LEFT, CENTER);
+        textAlign(this.xLabelHorz, this.xLabelVert);
       }
       rotate(this.textRotate);
       fill(this.textColour);
-      text(XLabels[i], 0, 30);
-      translate(this.barWidth / 2, 20);
+      text(XLabels[i], 0, this.xLabelHeight);//fills the text with the each corresponding year
+      translate(this.barWidth / 2, 0);
       pop();
     }
     pop();

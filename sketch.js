@@ -25,9 +25,11 @@ function setup() {
   }
   console.log(cleanData);
 
-  //giving the properties values
+  
 
   let barChart = {
+
+    //gen chart
     data: cleanData,
     chartHeight: 200,
     chartWidth: 350,
@@ -41,18 +43,18 @@ function setup() {
     barFill: ["#EF6291", "#F493B4", "#F8BFD2"],
     axisLineColour: "#d9d9d9",
     ticksColour: "#C72A2A",
-
-    //text for X AXIS
     textColour: "#0f0000",
-    textRotate: 45,
-    textSizeText: 13,
-    indiLineRotate: -85,
-    indiLineWeight: 1,
-    indiLineHeight: 35,
-
-    //text for col y axis name
-
     colYAxisColour: "#C72A2A",
+
+
+    //text for X labels
+    textRotate: 45 ,
+    textSizeText: 13,
+    xLabelHeight:30,
+    xLabelHorz:LEFT,
+    xLabelVert:CENTER,
+
+    //text for y axis name
     colYAxisSize: 16,
     colYAxisRotation: -90,
     colYAxisStyle: BOLD,
@@ -84,6 +86,8 @@ function setup() {
     numTicks: 10,
     ticksTextSize: 13,
     tickStyle: BOLD,
+    tickHorz:RIGHT,
+    tickVert:CENTER,
 
     //values
     yValue: "cell-usage",
@@ -103,18 +107,17 @@ function setup() {
     barFill: ["#EF6291", "#F493B4"],
     axisLineColour: "#d9d9d9",
     ticksColour: "#C72A2A",
-
-    //text for X AXIS
     textColour: "#0f0000",
+    colYAxisColour: "#C72A2A",
+
+    //text for X LEBELS
     textRotate: 45,
     textSizeText: 13,
     indiLineRotate: -85,
     indiLineWeight: 1,
     indiLineHeight: 35,
 
-    //text for col y axis name
-
-    colYAxisColour: "#C72A2A",
+    //text for y axis name
     colYAxisSize: 16,
     colYAxisRotation: -90,
     colYAxisStyle: BOLD,
@@ -122,7 +125,7 @@ function setup() {
     colYAxisTextX: 50,
     colYAxisTextY: -40,
 
-    //text for col
+    //text for x axis
     textSizeColText: 16,
     colLabel: "accidents per year",
     textColY: 60,
@@ -145,7 +148,6 @@ function setup() {
     //tick and tick text
     numTicks: 10,
     ticksTextSize: 13,
-    tickStyle: BOLD,
 
     //values
     yValues: ["cell-usage", "other-distraction"], //other-distraction
