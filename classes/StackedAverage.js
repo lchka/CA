@@ -1,4 +1,4 @@
-class StackedBarChart {
+class StackedAverage {
   constructor(obj) {
     //canvas
     this.canvasWidth = obj.canvasWidth;
@@ -8,29 +8,30 @@ class StackedBarChart {
     this.data = obj.data;
     this.chartWidth = obj.chartWidth;
     this.chartHeight = obj.chartHeight;
-    this.xStackedPos = obj.xStackedPos;
-    this.yStackedPos = obj.yStackedPos;
-    this.axisLineColour = obj.axisLineColour;
+    this.xAvgPos = obj.xAvgPos;
+    this.yAvgPos = obj.yAvgPos;
     this.barWidth = obj.barWidth;
     this.yValues = obj.yValues;
     this.xValue = obj.xValue;
-    this.yValueTotal = obj.yValueTotal;
     this.calculateTotal();
+    this.calculateAverage();
     this.totalArray = [];
-    //ticks
-    this.numTicks = obj.numTicks;
-    this.ticksTextSize = obj.ticksTextSize;
-    this.tickStyle = obj.tickStyle;
-
-    //TEXT
-    this.textSizeText = obj.textSizeText;
-    this.textSizeColText = obj.textSizeColText;
-    this.textRotate = obj.textRotate;
     this.genFont = obj.genFont;
     this.fontBold = obj.fontBold;
 
-    //text for col name
+    //ticks
+    this.numTicks = obj.numTicks;
+    this.ticksTextSize = obj.ticksTextSize;
 
+    //avg line and text
+    this.avgLineWeight=obj.avgLineWeight;
+
+    //x axis labels
+    this.textSizeText = obj.textSizeText;
+    this.textSizeColText = obj.textSizeColText;
+    this.textRotate = obj.textRotate;
+
+    //text for col name
     this.colLabel = obj.colLabel; //to pull the section name from the csv file
     this.textColX = obj.textColX;
     this.textColY = obj.textColY;
@@ -63,9 +64,8 @@ class StackedBarChart {
     this.textColour = obj.textColour;
     this.bColour = obj.bColour;
     this.ticksColour = obj.ticksColour;
-
-    // Calculate maxValue and scale
-    // this.maxValue = max(this.data.map((d) => d[this.totalArray]));
+    this.avgLineColour = obj.avgLineColour;
+    this.axisLineColour = obj.axisLineColour;
 
     this.scale = this.chartHeight / this.maxValue; // Calculate the scale for the chart
   }
@@ -75,24 +75,55 @@ class StackedBarChart {
     for (let i = 0; i < this.data.length; i++) {
       let total = 0;
       for (let j = 0; j < this.yValues.length; j++) {
-
         // Sum up all values within each array
-        total += int(this.data[i][this.yValues[j]]);  
-
+        total += int(this.data[i][this.yValues[j]]);
+        //int makes sure any values are converted to integers
       }
-      this.totalArray.push(total);
-     
+      this.totalArray.push(total);//pushes into the array
     }
-    console.log(this.totalArray);
 
     // Calculate maxValue after populating totalArray
     this.maxValue = max(this.totalArray);
-}
+  }
+
+  //another way to calculate the average
+  //   calculateAverage() {
+  //     let sum = 0;
+  //     let count = 0;
+
+  //     // Iterate over each data object
+  //     for (let i = 0; i < this.data.length; i++) {
+  //         // Iterate over each key in the data object
+  //         for (let j = 0; j < this.yValues.length; j++) {
+  //             // Get the value associated with the current key
+  //             let value = parseInt(this.data[i][this.yValues[j]]);
+  //             // Add the value to the sum
+  //             sum += value;
+  //             // Increment the count
+  //             count++;
+  //         }
+  //     }
+
+  //     // Calculate the average
+  //     this.average = sum / count;
+  // }
+  calculateAverage() {
+    let totalSum = 0;
+
+    // Sum up all the values in totalArray
+    for (let i = 0; i < this.totalArray.length; i++) {
+      totalSum += this.totalArray[i];
+    }
+
+    // Calculate the average
+    this.average = (totalSum / this.totalArray.length) / this.yValues.length;
+    //dividing by this.yValues.length ensures the loop doesnt sum the loop itself, depending on the amount of values in yValues. This ensures to always get the first average before it gets added to itself.
+  }
 
   render() {
-    
+
     push();
-    translate(this.xStackedPos, this.yStackedPos);
+    translate(this.xAvgPos, this.yAvgPos);
     stroke(this.axisLineColour);
     line(0, 0, 0, -this.chartHeight);
     line(0, 0, this.chartWidth, 0);
@@ -130,22 +161,22 @@ class StackedBarChart {
 
     //drawing bars
     push();
-    translate(gap, 0);
-    for (let i = 0; i < this.data.length; i++) {
+
+    translate(gap, 0);//makes sure our starting point is a gap away from the y graph line
+    for (let i = 0; i < this.data.length; i++) {//amount of data
       push();
-      for (let j = 0; j < this.yValues.length; j++) {
-        let value = this.data[i][this.yValues[j]];
-        // console.log(value);
-        let barHeight = -value * this.scale;
+      for (let j = 0; j < this.yValues.length; j++) {//gets all the values in yValues
+        let value = this.data[i][this.yValues[j]];//iterates each value
+        let barHeight = -value * this.scale;//barheight is - (since we're working below the orignal y co-ord) and scales it according to the maxvalue and chartheight
 
         noStroke();
         fill(this.barFill[j]);
 
         rect(0, 0, this.barWidth, barHeight);
-        translate(0, barHeight);
+        translate(0, barHeight);//makes sure to always skip to the next bar of the second array in yValues
       }
       pop();
-      translate(gap + this.barWidth, 0);
+      translate(gap + this.barWidth, 0);//makes the gap within the bars
 
       // Text X AXIS
       push();
@@ -163,6 +194,16 @@ class StackedBarChart {
     }
     pop();
 
+    //average line 
+    push();
+    stroke(this.avgLineColour); // Red color
+    strokeWeight(this.avgLineWeight);
+    translate(0, -this.average * this.scale);
+    line(0, 0, this.chartWidth, 0);
+    push();
+    pop();
+
+    pop();
     //text xvalue col name
     push();
     noStroke();
