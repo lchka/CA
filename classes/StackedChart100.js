@@ -22,6 +22,7 @@ class StackedChart100 {
     this.average;
     this.lineGraphWeight = obj.lineGraphWeight;
     this.genFont = obj.genFont;
+    this.semiFont = obj.semiFont;
     this.fontBold = obj.fontBold;
 
     //ticks
@@ -66,6 +67,19 @@ class StackedChart100 {
 
     //avg line and text
     this.avgLineWeight = obj.avgLineWeight;
+    this.avgLineTextColour = obj.avgLineTextColour;
+    this.avgLineTextSize = obj.avgLineTextSize;
+    this.avgLineTextHorzAlign = obj.avgLineTextHorzAlign;
+    this.avgLineTextVertAlign = obj.avgLineTextVertAlign;
+    this.avgLineTextXPos = obj.avgLineTextXPos;
+    this.avgLineTextYPos = obj.avgLineTextYPos;
+
+    //key for distraction
+this.keyTitleSize=obj.keyTitleSize;
+this.keyTitleHorzAlign=obj.keyTitleHorzAlign;
+this.keyTitleVertAlign=obj.keyTitleVertAlign;
+this.keyName=obj.keyName;
+
 
     //colors
     this.barFill = obj.barFill;
@@ -73,7 +87,7 @@ class StackedChart100 {
     this.bColour = obj.bColour;
     this.ticksColour = obj.ticksColour;
     this.avgLineColour = obj.avgLineColour;
-    this.titleColour=obj.titleColour;
+
 
     // Calculate maxValue and scale
     this.scale = this.chartHeight / this.maxValue; // Calculate the scale for the chart
@@ -92,7 +106,12 @@ class StackedChart100 {
     }
     console.log(this.totalArray);
 
-    this.maxValue = max(this.totalArray);
+    //if statement is for the maxvalue being different depending on the chart type
+    if (this.chartType == "LINE") {
+      this.maxValue = max(this.totalArray);
+    } else if (this.chartType == "FULL") {
+      this.maxValue = 100; //because 100 percent chart is graded in percentages max can onlu be 100.
+    }
   }
   calculateAverage() {
     let totalSum = 0;
@@ -175,9 +194,6 @@ class StackedChart100 {
       pop();
       translate(gap + this.barWidth, 0); // Move to the next bar position
 
-
-
-
       // xLabels
       push();
       noStroke();
@@ -204,6 +220,18 @@ class StackedChart100 {
       line(0, 0, this.chartWidth, 0);
       pop();
     }
+    if (this.chartType == "LINE") {
+      noStroke();
+      fill(this.avgLineTextColour);
+      textSize(this.avgLineTextSize);
+      textFont(this.semiFont);
+      textAlign(this.avgLineTextHorzAlign, this.avgLineTextVertAlign);
+      text(
+        "The average is: " + this.average,
+        this.chartWidth - this.avgLineTextXPos,
+        -this.chartHeight + this.avgLineTextYPos
+      );
+    }
 
     //subtext x axis
     push();
@@ -215,10 +243,20 @@ class StackedChart100 {
     text(this.colLabel, this.textColX, this.textColY);
     pop();
 
+    //key for distraction
+    push();
+    noStroke();
+    fill("#000000");
+    textSize(this.keyTitleSize);
+    textAlign(this.keyTitleHorzAlign, this.keyTitleVertAlign);
+    textFont(this.fontBold);
+    text(this.keyName, 0, 70);
+
+    pop();
     //text for title
     push();
     noStroke();
-    fill(this.textColour);
+    fill("#000000");
     textFont(this.fontBold);
     textSize(this.textSizeTitle);
     textStyle(this.titleWeight);

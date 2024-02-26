@@ -9,6 +9,7 @@ function preload() {
   data = loadTable("data/FatalCrashes.csv", "csv", "header");
   font = loadFont("Fonts/Inter-Regular.ttf");
   boldText = loadFont("Fonts/Inter-SemiBold.ttf");
+  semiText = loadFont("Fonts/Inter-SemiBold.ttf");
   // italics=loadFont("fonts/");
 }
 
@@ -184,7 +185,7 @@ function setup() {
     textXLabelColour: "#000000",
     strokeColourForBox: "#000000",
     colYAxisColour: "#B71C1C",
-    keyTextColour:"#000000",
+    keyTextColour: "#000000",
 
     //subtext x axis
     textSizeSub: 14,
@@ -247,7 +248,7 @@ function setup() {
     textXPos: 20,
     textYPos: 10,
     keyPaddingY: 20,
-    keyTextSize:14,
+    keyTextSize: 14,
 
     //values
     xValue: "Year",
@@ -275,9 +276,8 @@ function setup() {
     xLabelColour: "#000000",
     chartLineColour: ["#EF6291", "#F493B4", "#F8BFD2"],
     strokeColourForBox: "#000000",
-    keyTextColour:"#000000",
-    keyTitleColour:"#000000",
-    keyTitleSize:14,
+    keyTextColour: "#000000",
+    keyTitleColour: "#000000",
 
     //text xLabels
     textRotate: 45,
@@ -319,13 +319,105 @@ function setup() {
     textXPos: 20,
     textYPos: 5,
     keyPaddingY: 20,
-    keyYTitle:-20,
-    keyXTitle:0,
-    keyTitle:"Key for Distractions:",
-    keyTitleHorzAlign:LEFT,
-    keyTitleVertAlign:CENTER,
-    keyTextHorzAlign:LEFT,
-    keyTextVertAlign:CENTER,
+    keyYTitle: -20,
+    keyXTitle: 0,
+    keyTitle: "Key for Distractions:",
+    keyTitleHorzAlign: LEFT,
+    keyTitleVertAlign: CENTER,
+    keyTextHorzAlign: LEFT,
+    keyTextVertAlign: CENTER,
+    keyTitleSize: 14,
+
+    //tick and tick text
+    numTicks: 10,
+    ticksTextSize: 13,
+
+    //values
+    yValues: ["cell-usage", "other-distraction"], //other-distraction
+    xValue: "Year",
+  };
+  let stackedAvg = {
+    //gen chart
+    data: cleanData,
+    chartType: "LINE",
+    chartHeight: 250,
+    chartWidth: 350,
+    xStacked100Pos: -550,
+    yStacked100Pos: 0,
+    barWidth: 25,
+    genFont: font,
+    fontBold: boldText,
+    semiFont: semiText,
+    lineGraphWeight: 2,
+
+    //avg line and text
+    avgLineWeight: 1.5,
+    avgLineTextSize:14,
+    avgLineTextVertAlign:CENTER,
+    avgLineTextHorzAlign:RIGHT,
+    avgLineTextXPos:10,
+    avgLineTextYPos:150,
+    //colours
+    barFill: ["#EF6291", "#F493B4", "#F8BFD2"],
+    axisLineColour: "#d9d9d9",
+    ticksColour: "#C72A2A",
+    textColour: "#0f0000",
+    colYAxisColour: "#C72A2A",
+    avgLineColour: "#ffffff",
+    avgLineTextColour:"#ffffff",
+
+
+
+
+    //text for X LEBELS
+    textRotate: 45,
+    textSizeText: 13,
+    xLabelHeight: 30,
+
+    // key for yValues
+    // strokeWeightForBox: 0.7,
+    // keyXPos: -20,
+    // keyYPos: 110,
+    // boxSize: 15,
+    // textXPos: 20,
+    // textYPos: 5,
+    // keyPaddingY: 20,
+    // keyYTitle: -20,
+    // keyXTitle: 0,
+    keyTitleHorzAlign: LEFT,
+    keyTitleVertAlign: CENTER,
+    keyName:"key",
+    // keyTextHorzAlign: LEFT,
+    // keyTextVertAlign: CENTER,
+    keyTitleSize: 14,
+
+    //text for y axis subtext
+    colYAxisSize: 14,
+    colYAxisRotation: -90,
+    colYAxisStyle: BOLD,
+    colYAxisTextValue: "no. of deaths",
+    colYAxisTextX: 150,
+    colYAxisTextY: -80,
+
+    //text for x axis
+    textSizeColText: 16,
+    colLabel: "accidents per year",
+    textColY: 60,
+    textColX: 150,
+    textColWeight: BOLD,
+    colVertAlign: CENTER,
+    colHorzAlign: CENTER,
+
+    //text for title
+    textSizeTitle: 16,
+    titleText:
+      "Fatal driving accidents resulting from the use of mobile devices",
+    textTitleX: -50,
+    textTitleY: 270,
+    titlePaddingX: 400,
+    titleWeight: BOLD,
+    titleHorzAlign: CENTER,
+    titleVertAlign: CENTER,
 
     //tick and tick text
     numTicks: 10,
@@ -357,7 +449,6 @@ function setup() {
     ticksColour: "#C72A2A",
     textColour: "#0f0000",
     colYAxisColour: "#C72A2A",
-    avgLineColour: "#000000",
 
     //text for X LEBELS
     textRotate: 45,
@@ -400,71 +491,6 @@ function setup() {
     yValues: ["cell-usage", "other-distraction"], //other-distraction
     xValue: "Year",
     yValueTotal: "total",
-  };
-  let stackedAvg = {
-    //gen chart
-    data: cleanData,
-    chartType: "LINE",
-    chartHeight: 250,
-    chartWidth: 350,
-    xStacked100Pos: -550,
-    yStacked100Pos: 0,
-    barWidth: 25,
-    genFont: font,
-    fontBold: boldText,
-    lineGraphWeight: 2,
-
-    //avg line
-    avgLineWeight: 1.5,
-
-    //colours
-    barFill: ["#EF6291", "#F493B4", "#F8BFD2"],
-    axisLineColour: "#d9d9d9",
-    ticksColour: "#C72A2A",
-    textColour: "#0f0000",
-    colYAxisColour: "#C72A2A",
-    avgLineColour: "#000000",
-
-    //text for X LEBELS
-    textRotate: 45,
-    textSizeText: 13,
-    xLabelHeight: 30,
-
-    //text for y axis subtext
-    colYAxisSize: 16,
-    colYAxisRotation: -90,
-    colYAxisStyle: BOLD,
-    colYAxisTextValue: "no. of deaths",
-    colYAxisTextX: 150,
-    colYAxisTextY: -80,
-
-    //text for x axis
-    textSizeColText: 16,
-    colLabel: "accidents per year",
-    textColY: 60,
-    textColX: 150,
-    textColWeight: BOLD,
-    colVertAlign: CENTER,
-    colHorzAlign: CENTER,
-
-    //text for title
-    textSizeTitle: 16,
-    titleText:
-      "Fatal driving accidents resulting from the use of mobile devices",
-    textTitleX: -50,
-    textTitleY: 270,
-    titlePaddingX: 400,
-    titleWeight: BOLD,
-    titleHorzAlign: CENTER,
-    titleVertAlign: CENTER,
-
-    //tick and tick text
-    numTicks: 10,
-    ticksTextSize: 13,
-
-    //values
-    yValues: ["cell-usage", "other-distraction"], //other-distraction
-    xValue: "Year",
   };
 
   barCharts.push(
