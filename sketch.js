@@ -365,7 +365,8 @@ function setup() {
     colYAxisColour: "#C72A2A",
     avgLineColour: "#ffffff",
     avgLineTextColour:"#ffffff",
-
+    chartLineColour:["#EF6291", "#F493B4", "#F8BFD2"],
+    strokeColourForBox:"#000000",
 
 
 
@@ -374,15 +375,16 @@ function setup() {
     textSizeText: 13,
     xLabelHeight: 30,
 
+
     // key for yValues
-    colYAxisTextValueTwo:'Key For Distractions',
-    // strokeWeightForBox: 0.7,
-    // keyXPos: -20,
-    // keyYPos: 110,
-    // boxSize: 15,
-    // textXPos: 20,
-    // textYPos: 5,
-    // keyPaddingY: 20,
+    strokeWeightForBox: 0.7,
+    keyXPos: -20,
+    keyYPos: 110,
+    boxSize: 15,
+    textXPos: 20,
+    textYPos: 5,
+    keyPaddingY: 20,
+    keyTitle:"Key For Distractions",
     keyYTitle: 100,
     keyXTitle: 0,
     keyTitleHorzAlign: LEFT,

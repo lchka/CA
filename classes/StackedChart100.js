@@ -74,14 +74,21 @@ class StackedChart100 {
     this.avgLineTextXPos = obj.avgLineTextXPos;
     this.avgLineTextYPos = obj.avgLineTextYPos;
 
-    //key for distraction  
-    this.keyTitle=obj.keyTitle;
+    //key for distraction
+    this.keyTitle = obj.keyTitle;
     this.keyTitleSize = obj.keyTitleSize;
     this.keyTitleHorzAlign = obj.keyTitleHorzAlign;
     this.keyTitleVertAlign = obj.keyTitleVertAlign;
     this.keyXTitle = obj.keyXTitle;
     this.keyYTitle = obj.keyYTitle;
-  
+    this.keyXPos = obj.keyXPos;
+    this.keyYPos = obj.keyYPos;
+    this.keyPaddingY = obj.keyPaddingY;
+    this.strokeWeightForBox = obj.strokeWeightForBox;
+    this.boxSize = obj.boxSize;
+    this.keyTextSize = obj.keyTextSize;
+    this.keyTextHorzAlign = obj.keyTextHorzAlign;
+    this.keyTextVertAlign = obj.keyTextVertAlign;
 
     //colors
     this.barFill = obj.barFill;
@@ -89,6 +96,9 @@ class StackedChart100 {
     this.bColour = obj.bColour;
     this.ticksColour = obj.ticksColour;
     this.avgLineColour = obj.avgLineColour;
+    this.strokeColourForBox = obj.strokeColourForBox;
+    this.keyTextColour = obj.keyTextColour;
+    this.chartLineColour = obj.chartLineColour;
 
     // Calculate maxValue and scale
     this.scale = this.chartHeight / this.maxValue; // Calculate the scale for the chart
@@ -245,17 +255,33 @@ class StackedChart100 {
     pop();
 
     //key for distraction
+    push();
     noStroke();
     fill("#000000");
     textSize(this.keyTitleSize);
     textAlign(this.keyTitleHorzAlign, this.keyTitleVertAlign);
     textFont(this.fontBold);
-    console.log(this.keyTitle)
-    text(this.keyTitle, this.keyXTitle, this.keyYTitle);
+    console.log(this.keyTitle);
+    text("Key For Distractions", this.keyXTitle, this.keyYTitle);
 
+    for (let s = 0; s < this.yValues.length; s++) {
+      translate(this.keyXPos, this.keyYPos + s * this.keyPaddingY); // Adjust the vertical translation to create space between each rectangle and text
+      textFont(this.genFont);
+      stroke("#000000");
+      strokeWeight(this.strokeWeightForBox);
+      textFont(this.fontBold);
+      fill(this.chartLineColour);
+      rect(0, 0, this.boxSize, this.boxSize); // Rectangle position is relative to the translated origin
+      noStroke();
+      fill(this.keyTextColour);
 
+      textSize(this.keyTextSize);
+      textAlign(this.keyTextHorzAlign, this.keyTextVertAlign);
 
-    
+      text(this.yValues[s], this.textXPos, this.textYPos);
+    }
+    pop();
+
     //text for title
     push();
     noStroke();
