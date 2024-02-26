@@ -78,7 +78,8 @@ class StackedChart100 {
     this.keyTitleSize = obj.keyTitleSize;
     this.keyTitleHorzAlign = obj.keyTitleHorzAlign;
     this.keyTitleVertAlign = obj.keyTitleVertAlign;
-    this.keyTitle = obj.keyTitle;
+    this.keyXTitle = obj.keyXTitle;
+    this.keyYTitle = obj.keyYTitle;
 
     //colors
     this.barFill = obj.barFill;
@@ -248,9 +249,12 @@ class StackedChart100 {
     textSize(this.keyTitleSize);
     textAlign(this.keyTitleHorzAlign, this.keyTitleVertAlign);
     textFont(this.fontBold);
-    // text(this.keyName, 0, 70);
-
+    text("key for distractions", this.keyXTitle, this.keyYTitle);
     pop();
+
+
+
+    
     //text for title
     push();
     noStroke();
