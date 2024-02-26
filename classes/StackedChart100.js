@@ -6,6 +6,7 @@ class StackedChart100 {
 
     //CHART
     this.data = obj.data;
+    this.chartType = obj.chartType;
     this.chartWidth = obj.chartWidth;
     this.chartHeight = obj.chartHeight;
     this.xStacked100Pos = obj.xStacked100Pos;
@@ -17,6 +18,8 @@ class StackedChart100 {
     this.yValueTotal = obj.yValueTotal;
     this.totalArray = obj.totalArray;
     this.calculateTotal();
+    this.calculateAverage();
+    this.average;
     this.lineGraphWeight = obj.lineGraphWeight;
     this.genFont = obj.genFont;
     this.fontBold = obj.fontBold;
@@ -61,11 +64,15 @@ class StackedChart100 {
     this.titleVertAlign = obj.titleVertAlign;
     this.titleHorzAlign = obj.titleHorzAlign;
 
+    //avg line and text
+    this.avgLineWeight = obj.avgLineWeight;
+
     //colors
     this.barFill = obj.barFill;
     this.textColour = obj.textColour;
     this.bColour = obj.bColour;
     this.ticksColour = obj.ticksColour;
+    this.avgLineColour = obj.avgLineColour;
 
     // Calculate maxValue and scale
     this.scale = this.chartHeight / this.maxValue; // Calculate the scale for the chart
@@ -75,7 +82,8 @@ class StackedChart100 {
 
     for (let i = 0; i < this.data.length; i++) {
       let total = 0;
-      for (let j = 0; j < this.yValues.length; j++) {//iterates through all the values in yValues
+      for (let j = 0; j < this.yValues.length; j++) {
+        //iterates through all the values in yValues
         // Sum up all values within each array
         total += int(this.data[i][this.yValues[j]]);
       }
@@ -83,10 +91,21 @@ class StackedChart100 {
     }
     console.log(this.totalArray);
 
-    this.maxValue = 100;//set the max to 100 since its in percentages
+    this.maxValue = max(this.totalArray);
+  }
+  calculateAverage() {
+    let totalSum = 0;
+
+    // Sum up all the values in totalArray
+    for (let i = 0; i < this.totalArray.length; i++) {
+      totalSum += this.totalArray[i];
+    }
+
+    // Calculate the average
+    this.average = totalSum / this.totalArray.length / this.yValues.length;
+    //dividing by this.yValues.length ensures the loop doesnt sum the loop itself, depending on the amount of values in yValues. This ensures to always get the first average before it gets added to itself.
   }
   render() {
-
     push();
     translate(this.xStacked100Pos, this.yStacked100Pos);
     strokeWeight(this.lineGraphWeight);
@@ -95,7 +114,7 @@ class StackedChart100 {
     line(0, 0, this.chartWidth, 0);
 
     // Map for labels x is just a name
-    let XLabels = this.data.map((x) => x[this.xValue]);//pulls the individual value from xValue (YEAR)
+    let XLabels = this.data.map((x) => x[this.xValue]); //pulls the individual value from xValue (YEAR)
 
     // Draw ticks on y-axis
     for (let i = 0; i <= this.numTicks; i++) {
@@ -120,6 +139,8 @@ class StackedChart100 {
       pop();
     }
 
+    ///DRAWING BARS ANG GAP
+
     // Calculate gap
     let gap =
       (this.chartWidth - this.data.length * this.barWidth) /
@@ -128,24 +149,37 @@ class StackedChart100 {
     //drawing bars
     push();
     translate(gap, 0);
+
+    //first loop
     for (let i = 0; i < this.data.length; i++) {
       let barStart = 0; // initialize the starting point of the bar
       push();
+      //second loop
       for (let j = 0; j < this.yValues.length; j++) {
         let value = this.data[i][this.yValues[j]];
-        let percentage = (value / this.totalArray[i]) * 100; // calculate the percentage relative to the total
-
-        let barHeight = -(percentage / 100) * this.chartHeight; // calculate the height of the bar
-        noStroke();
         fill(this.barFill[j]);
-        rect(0, barStart, this.barWidth, barHeight); // Draw the next bar
-        barStart += barHeight; // update the starting point for the next bar
+        noStroke();
+        //if statement fot either AVG LINE or 100% FULL
+        if (this.chartType == "FULL") {
+          let percentage = (value / this.totalArray[i]) * 100; // calculate the percentage relative to the total
+          let barHeight = -(percentage / 100) * this.chartHeight; // calculate the height of the bar
+          rect(0, barStart, this.barWidth, barHeight); // Draw the next bar
+          barStart += barHeight; // update the starting point for the next bar
+        } else if ((this.chartType = "LINE")) {
+          let barHeight = -value * this.scale; //barheight is - (since we're working below the orignal y co-ord) and scales it according to the maxvalue and chartheight
+          rect(0, 0, this.barWidth, barHeight);
+          translate(0, barHeight); //makes sure to always skip to the next bar of the second array in yValues
+        }
       }
       pop();
       translate(gap + this.barWidth, 0); // Move to the next bar position
 
-      // Text X AXIS
+
+
+
+      // xLabels
       push();
+      noStroke();
       textSize(this.textSizeText);
       if (this.textRotate === 0) {
         textAlign(CENTER, CENTER);
@@ -160,18 +194,27 @@ class StackedChart100 {
     }
     pop();
 
-    //text xvalue col name
+    //avergae line
+    if (this.chartType == "LINE") {
+      push();
+      stroke(this.avgLineColour); // Red color
+      strokeWeight(this.avgLineWeight);
+      translate(0, -this.average * this.scale);
+      line(0, 0, this.chartWidth, 0);
+      pop();
+    }
+
+    //subtext x axis
     push();
     noStroke();
     fill(this.textColour);
     textFont(this.fontBold);
     textAlign(this.colHorzAlign, this.colVertAlign);
     textSize(this.textSizeColText);
-    // textStyle(this.textColWeight);
     text(this.colLabel, this.textColX, this.textColY);
     pop();
 
-    //text xvalue title name
+    //text for title
     push();
     noStroke();
     fill(this.textColour);
@@ -182,7 +225,7 @@ class StackedChart100 {
     text(this.titleText, this.textTitleX, -this.textTitleY, this.titlePaddingX);
     pop();
 
-    //text for col2
+    //subtext y axis
 
     push();
     noStroke();
