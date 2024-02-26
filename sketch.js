@@ -26,7 +26,6 @@ function setup() {
   console.log(cleanData);
 
   let barChart = {
-
     //gen chart
     data: cleanData,
     chartHeight: 250,
@@ -44,8 +43,8 @@ function setup() {
     ticksColour: "#000000",
     textColour: "#B71C1C",
     colYAxisColour: "#B71C1C",
-    titleColour:"#000000",
-    xLabelColour:"#000000",
+    titleColour: "#000000",
+    xLabelColour: "#000000",
 
     //text for X labels
     textRotate: 50,
@@ -61,9 +60,9 @@ function setup() {
     colYAxisTextValue: "no. of deaths",
     colYAxisTextX: 120,
     colYAxisTextY: -50,
-    colYHorzAlign:CENTER,
-    colYVertAlign:CENTER,
-    
+    colYHorzAlign: CENTER,
+    colYVertAlign: CENTER,
+
     //subtext x axis
     textSizeColText: 14,
     colLabel: "accidents per year",
@@ -77,7 +76,7 @@ function setup() {
     textSizeTitle: 16,
     titleText: "Bar Chart Depicting Fatal Accidents Caused by Phone Usage",
     textTitleX: -25,
-    textTitleY: 300,
+    textTitleY: 310,
     titlePaddingX: 400,
     titleWeight: BOLD,
     titleHorzAlign: CENTER,
@@ -93,6 +92,75 @@ function setup() {
     //values
     yValue: "cell-usage",
     xValue: "Year",
+  };
+  let horzChart = {
+    data: cleanData,
+    chartHeight: 250,
+    chartWidth: 350,
+    xHorzPos: 650,
+    yHorzPos: 340,
+    genFont: font,
+    fontBold: boldText,
+    lineGraphWeight: 2,
+
+    //colours
+    barFill: ["#EF6291", "#F493B4", "#F8BFD2"],
+    axisLineColour: "#d9d9d9",
+    ticksColour: "#C72A2A",
+    colYAxisColour: "#B71C1C",
+    textColour: "#0f0000",
+    barValueColour: "#000000",
+    subTextColour: "#B71C1C",
+
+    //text for y AXIS
+    textRotate: 0,
+    textSizeText: 13,
+
+    //bar properties
+    barValueHorz: CENTER,
+    barValueVert: CENTER,
+    barValueTextSize: 14,
+    barHeight: 40,
+    barValueXPos:25,
+
+    // subtext y axis
+    colYAxisSize: 14,
+    colYAxisRotation: -90,
+    colYAxisStyle: BOLD,
+    colYAxisTextValue: "accidents per year",
+    colYAxisTextX: 120,
+    colYAxisTextY: -60,
+    colYHorzAlign:CENTER,
+    colYVertAlign:CENTER,
+
+    //subtext x axis
+    textSizeSub: 14,
+    subLabel: "no. of deaths",
+    textSubY: 60,
+    textSubX: 175,
+    subVertAlign: CENTER,
+    subHorzAlign: CENTER,
+
+    //text for title
+    textSizeTitle: 16,
+    titleText:
+      "Horizontal Bar Chart Displaying Fatal Accidents Caused By Other Forms of Distraction",
+    textTitleX: -25,
+    textTitleY: 300,
+    titlePaddingX: 400,
+    titleWeight: BOLD,
+    titleHorzAlign: CENTER,
+    titleVertAlign: CENTER,
+
+    //tick and tick text
+    numTicks: 10,
+    ticksTextSize: 13,
+    tickHorz: RIGHT,
+    tickVert: CENTER,
+
+    //values
+    xValue: "other-distraction",
+    yValue: "Year",
   };
   let stacked100 = {
     //gen chart
@@ -224,73 +292,7 @@ function setup() {
     xValue: "Year",
     yValues: ["other-distraction", "cell-usage"],
   };
-  let horzChart = {
-    data: cleanData,
-    chartHeight: 250,
-    chartWidth: 350,
-    xHorzPos: 650,
-    yHorzPos: 340,
-    genFont: font,
-    fontBold: boldText,
-    lineGraphWeight: 2,
 
-    //colours
-    barFill: ["#EF6291", "#F493B4", "#F8BFD2"],
-    axisLineColour: "#d9d9d9",
-    ticksColour: "#C72A2A",
-    colYAxisColour: "#C72A2A",
-    textColour: "#0f0000",
-    barValueColour: "#000000",
-    fontBold: boldText,
-    subTextColour: "C72A2A",
-
-    //text for y AXIS
-    textRotate: 0,
-    textSizeText: 13,
-
-    //bar properties
-    barValueHorz: CENTER,
-    barValueVert: CENTER,
-    barValueTextSize: 14,
-    barHeight: 40,
-
-    //x axis subtext
-    colYAxisSize: 16,
-    colYAxisRotation: -90,
-    colYAxisStyle: BOLD,
-    colYAxisTextValue: "accidents per year",
-    colYAxisTextX: 100,
-    colYAxisTextY: -70,
-
-    //subtext y axis
-    textSizeSub: 12,
-    subLabel: "no. of deaths",
-    textSubY: 60,
-    textSubX: 175,
-    subVertAlign: CENTER,
-    subHorzAlign: CENTER,
-
-    //text for title
-    textSizeTitle: 16,
-    titleText:
-      "Fatal driving accidents resulting from the use of mobile devices",
-    textTitleX: -25,
-    textTitleY: 270,
-    titlePaddingX: 400,
-    titleWeight: BOLD,
-    titleHorzAlign: CENTER,
-    titleVertAlign: CENTER,
-
-    //tick and tick text
-    numTicks: 10,
-    ticksTextSize: 13,
-    tickHorz: RIGHT,
-    tickVert: CENTER,
-
-    //values
-    xValue: "cell-usage",
-    yValue: "Year",
-  };
   let stackedBarChart = {
     data: cleanData,
     chartHeight: 250,

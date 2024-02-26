@@ -23,22 +23,23 @@ class HorzBarChart {
     this.barValueHorz = obj.barValueHorz;
     this.barValueVert = obj.barValueVert;
     this.barValueTextSize = obj.barValueTextSize;
+    this.barValueXPos=obj.barValueXPos;
 
-   //ticks
-   this.numTicks = obj.numTicks;
-   this.ticksTextSize = obj.ticksTextSize;
-   this.tickStyle = obj.tickStyle;
-   this.tickVert=obj.tickvert;
-   this.tickHorz=obj.tickHorz;
+    //ticks
+    this.numTicks = obj.numTicks;
+    this.ticksTextSize = obj.ticksTextSize;
+    this.tickStyle = obj.tickStyle;
+    this.tickVert = obj.tickvert;
+    this.tickHorz = obj.tickHorz;
 
-    //text y axis
+    //text yLabel
     this.textSizeText = obj.textSizeText;
     this.textSizeColText = obj.textSizeColText;
     this.textRotate = obj.textRotate;
-    this.xAxisHorz=obj.xAxisHorz;
-    this.xAxisVert=obj.xAxisVert;
+    this.xAxisHorz = obj.xAxisHorz;
+    this.xAxisVert = obj.xAxisVert;
 
-    //subtext
+    //subtext x axis
     this.subLabel = obj.subLabel; //to pull the section name from the csv file
     this.textSubX = obj.textSubX;
     this.textSubY = obj.textSubY;
@@ -46,7 +47,7 @@ class HorzBarChart {
     this.subHorzAlign = obj.subHorzAlign;
     this.textSizeSub = obj.textSizeSub;
 
-    //text col y axis name
+    // subtext y axis
     this.colYAxisColour = obj.colYAxisColour;
     this.colYAxisSize = obj.colYAxisSize;
     this.colYAxisRotation = obj.colYAxisRotation;
@@ -54,6 +55,9 @@ class HorzBarChart {
     this.colYAxisTextValue = obj.colYAxisTextValue;
     this.colYAxisTextX = obj.colYAxisTextX;
     this.colYAXisTextY = obj.colYAxisTextY;
+    this.colYHorzAlign=obj.colYHorzAlign;
+    this.colYVertAlign=obj.colYVertAlign;
+
 
     //text  for title
     this.textSizeTitle = obj.textSizeTitle;
@@ -123,8 +127,13 @@ class HorzBarChart {
     push();
     translate(0, -this.chartHeight);
     for (let i = 0; i < this.data.length; i++) {
-      let barWidth = map(this.data[i][this.xValue], 0, this.maxValue,0,this.chartWidth
-      );//gets all the data from the xValue and pulls out each individual values and displays them.
+      let barWidth = map(
+        this.data[i][this.xValue],
+        0,
+        this.maxValue,
+        0,
+        this.chartWidth
+      ); //gets all the data from the xValue and pulls out each individual values and displays them.
       fill(this.barFill[i % this.barFill.length]);
       noStroke();
       rect(0, 0, barWidth, gap); // Adjust width based on xValue
@@ -135,23 +144,25 @@ class HorzBarChart {
       textFont(this.fontBold);
       textAlign(CENTER, CENTER); // Set text alignment
       textSize(this.barValueTextSize);
-      text(xLabel[i], barWidth + 15, -this.chartHeight / this.data.length / 2); // Draw text
+      text(xLabel[i], barWidth + this.barValueXPos, -this.chartHeight / this.data.length / 2); // Draw text
       // Translate for the next bar
       translate(0, gap + this.barHeight);
-      
-      // Text y AXIS
+
+      // text yLabel
       push();
+      textFont(this.genFont);
 
       textSize(this.textSizeText);
       rotate(this.textRotate);
       fill(this.textColour);
-      text(yLabel[i], -20, -this.chartHeight / this.data.length -10);//displays the data 
+      text(yLabel[i], -20, -this.chartHeight / this.data.length - 10); //displays the data
       translate(0, -this.barHeight / 2);
       pop();
     }
     pop();
 
-    // Subtext
+    //subtext x axis
+
     push();
     noStroke();
     fill(this.subTextColour);
@@ -161,7 +172,8 @@ class HorzBarChart {
     text(this.subLabel, this.textSubX, this.textSubY);
     pop();
 
-    // Title text
+    //text for title
+
     push();
     noStroke();
     fill(this.textColour);
@@ -172,11 +184,12 @@ class HorzBarChart {
     text(this.titleText, this.textTitleX, -this.textTitleY, this.titlePaddingX);
     pop();
 
-    // Text for column 2
+    // subtext y axis
     push();
     noStroke();
     fill(this.colYAxisColour);
     textSize(this.colYAxisSize);
+    textAlign(this.colYHorzAlign,this.colYVertAlign);
     rotate(this.colYAxisRotation);
     textStyle(this.colYAxisStyle);
     text(this.colYAxisTextValue, this.colYAxisTextX, this.colYAXisTextY);
