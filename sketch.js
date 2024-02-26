@@ -26,54 +26,58 @@ function setup() {
   console.log(cleanData);
 
   let barChart = {
+
     //gen chart
     data: cleanData,
-    chartHeight: 200,
+    chartHeight: 250,
     chartWidth: 350,
-    xBarPos: 60,
-    yBarPos: 840,
+    xBarPos: 100,
+    yBarPos: 345,
     barWidth: 25,
     genFont: font,
     fontBold: boldText,
+    axisLineWeight: 2,
 
     //colours
     barFill: ["#EF6291", "#F493B4", "#F8BFD2"],
     axisLineColour: "#d9d9d9",
-    ticksColour: "#C72A2A",
-    textColour: "#0f0000",
-    colYAxisColour: "#C72A2A",
-    barValueColour: "#00000",
+    ticksColour: "#000000",
+    textColour: "#B71C1C",
+    colYAxisColour: "#B71C1C",
+    titleColour:"#000000",
+    xLabelColour:"#000000",
 
     //text for X labels
-    textRotate: 45,
+    textRotate: 50,
     textSizeText: 13,
-    xLabelHeight: 30,
+    xLabelHeight: 20,
     xLabelHorz: LEFT,
     xLabelVert: CENTER,
 
-    //text for y axis name
-    colYAxisSize: 16,
+    //subtext y axis
+    colYAxisSize: 14,
     colYAxisRotation: -90,
     colYAxisStyle: BOLD,
     colYAxisTextValue: "no. of deaths",
-    colYAxisTextX: 50,
-    colYAxisTextY: -40,
-
-    //text for col
-    textSizeColText: 16,
+    colYAxisTextX: 120,
+    colYAxisTextY: -50,
+    colYHorzAlign:CENTER,
+    colYVertAlign:CENTER,
+    
+    //subtext x axis
+    textSizeColText: 14,
     colLabel: "accidents per year",
-    textColY: 60,
+    textColY: 50,
     textColX: 180,
     textColWeight: BOLD,
     colVertAlign: CENTER,
     colHorzAlign: CENTER,
 
-    //text for title
+    //text chart title
     textSizeTitle: 16,
-    titleText:
-      "Fatal driving accidents resulting from the use of mobile devices",
+    titleText: "Bar Chart Depicting Fatal Accidents Caused by Phone Usage",
     textTitleX: -25,
-    textTitleY: 270,
+    textTitleY: 300,
     titlePaddingX: 400,
     titleWeight: BOLD,
     titleHorzAlign: CENTER,
@@ -93,17 +97,17 @@ function setup() {
   let stacked100 = {
     //gen chart
     data: cleanData,
-    chartHeight: 200,
+    chartHeight: 250,
     chartWidth: 350,
     xStacked100Pos: 550,
     yStacked100Pos: 500,
     barWidth: 25,
     genFont: font,
     fontBold: boldText,
-    lineGraphWeight:2,
+    lineGraphWeight: 2,
 
     //colours
-    barFill: ["#EF6291", "#F493B4"],
+    barFill: ["#EF6291", "#F493B4", "#F8BFD2"],
     axisLineColour: "#d9d9d9",
     ticksColour: "#C72A2A",
     textColour: "#0f0000",
@@ -112,9 +116,9 @@ function setup() {
     //text for X LEBELS
     textRotate: 45,
     textSizeText: 13,
-    xLabelHeight:30,  
+    xLabelHeight: 30,
 
-    //text for y axis name
+    //text for y axis subtext
     colYAxisSize: 16,
     colYAxisRotation: -90,
     colYAxisStyle: BOLD,
@@ -156,20 +160,19 @@ function setup() {
     data: cleanData,
     chartHeight: 250,
     chartWidth: 350,
-    xLinePos: 0,
-    yLinePos: -500,
+    xLinePos: 1100,
+    yLinePos: -10,
     genFont: font,
     fontBold: boldText,
-    
 
     //colours
     axisLineColour: "#f5f5f5",
     ticksValueColour: "#000000",
     pointsColour: "#000000",
-    chartLineColour: ["#1976D2", "#7B1FA2"],
+    chartLineColour: ["#EF6291", "#F493B4", "#F8BFD2"],
     chartLineIndiLineColour: ["#000000", "#000000"],
     textTitleColour: "#0C0C0C",
-    textColour: ["#1976D2", "#7B1FA2"],
+    textColour: ["#EF6291", "#F493B4", "#F8BFD2"],
     subTextColour: "#000000",
     textXLabelColour: "#000000",
 
@@ -184,8 +187,8 @@ function setup() {
     //text for title
     textSizeTitle: 16,
     titleText: "Line Chart for Fatal Accidents",
-    textTitleX: 0,
-    textTitleY: 780,
+    textTitleX: 1100,
+    textTitleY: 300,
     titlePaddingX: 350,
     titleHorzAlign: CENTER,
     titleVertAlign: CENTER,
@@ -208,7 +211,7 @@ function setup() {
     //text and line for xLabel
     xLabelLineWeight: 1,
     pointEllipseSize: 6,
-    chartXYLineWeight: 1,
+    chartXYLineWeight: 2,
     axisLineStrokeWeight: 2,
     indiLineOneHeight: 20,
     indiLineTwoHeight: 20,
@@ -223,17 +226,16 @@ function setup() {
   };
   let horzChart = {
     data: cleanData,
-    chartHeight: 200,
+    chartHeight: 250,
     chartWidth: 350,
     xHorzPos: 650,
     yHorzPos: 340,
-    barHeight: 35,
     genFont: font,
     fontBold: boldText,
-    lineGraphWeight:2,
+    lineGraphWeight: 2,
 
     //colours
-    barFill: ["#1976D2", "#7B1FA2", "#7E57C2"],
+    barFill: ["#EF6291", "#F493B4", "#F8BFD2"],
     axisLineColour: "#d9d9d9",
     ticksColour: "#C72A2A",
     colYAxisColour: "#C72A2A",
@@ -245,12 +247,12 @@ function setup() {
     //text for y AXIS
     textRotate: 0,
     textSizeText: 13,
- 
 
-    //bar value
-    barValueHorz: LEFT,
-    barValueVert: LEFT,
+    //bar properties
+    barValueHorz: CENTER,
+    barValueVert: CENTER,
     barValueTextSize: 14,
+    barHeight: 40,
 
     //x axis subtext
     colYAxisSize: 16,
@@ -291,29 +293,26 @@ function setup() {
   };
   let stackedBarChart = {
     data: cleanData,
-    chartHeight: 200,
+    chartHeight: 250,
     chartWidth: 350,
     xStackedPos: -550,
     yStackedPos: 0,
     barWidth: 25,
     genFont: font,
     fontBold: boldText,
-    lineGraphWeight:1,
-
+    lineGraphWeight: 1,
 
     //colours
-    barFill: ["#EF6291", "#F493B4"],
+    barFill: ["#EF6291", "#F493B4", "#F8BFD2"],
     axisLineColour: "#d9d9d9",
     ticksColour: "#C72A2A",
     textColour: "#0f0000",
     colYAxisColour: "#C72A2A",
 
-
     //text for X AXIS
     textRotate: 45,
     textSizeText: 13,
-    xLabelHeight:30,
-
+    xLabelHeight: 30,
 
     //text for col y axis name
     colYAxisSize: 16,
@@ -355,16 +354,16 @@ function setup() {
   let stackedAverage = {
     //gen chart
     data: cleanData,
-    chartHeight: 200,
+    chartHeight: 250,
     chartWidth: 350,
-    xAvgPos: 550,
-    yAvgPos: -500,
+    xAvgPos: -550,
+    yAvgPos: 0,
     barWidth: 25,
     genFont: font,
     fontBold: boldText,
 
     //colours
-    barFill: ["#7B1FA2", "#1976D2", "#7E57C2"],
+    barFill: ["#EF6291", "#F493B4", "#F8BFD2"],
     axisLineColour: "#d9d9d9",
     ticksColour: "#C72A2A",
     avgLineColour: "#f5f5f5",
@@ -422,7 +421,6 @@ function setup() {
     new StackedBarChart(stackedBarChart),
     new StackedAverage(stackedAverage)
   );
-  // barCharts.push(new StackedAverage (stackedAverage))
 }
 
 function draw() {

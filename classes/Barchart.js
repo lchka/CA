@@ -1,4 +1,3 @@
-
 class BarChart {
   constructor(obj) {
     //canvas
@@ -17,22 +16,23 @@ class BarChart {
     this.xValue = obj.xValue;
     this.genFont = obj.genFont;
     this.fontBold = obj.fontBold;
+    this.axisLineWeight = obj.axisLineWeight;
 
     //ticks
     this.numTicks = obj.numTicks;
     this.ticksTextSize = obj.ticksTextSize;
     this.tickStyle = obj.tickStyle;
-    this.tickVert=obj.tickvert;
-    this.tickHorz=obj.tickHorz;
+    this.tickVert = obj.tickvert;
+    this.tickHorz = obj.tickHorz;
 
     //x Labels
     this.textSizeText = obj.textSizeText;
     this.textRotate = obj.textRotate;
-   this.xLabelHeight=obj.xLabelHeight;
-   this.xLabelHorz=obj.xLabelHorz;
-   this.xLabelVert=obj.xLabelVert;
+    this.xLabelHeight = obj.xLabelHeight;
+    this.xLabelHorz = obj.xLabelHorz;
+    this.xLabelVert = obj.xLabelVert;
 
-     //text for x axis
+    //subtext x axis
     this.colLabel = obj.colLabel; //to pull the section name from the csv file
     this.textColX = obj.textColX;
     this.textColY = obj.textColY;
@@ -41,8 +41,7 @@ class BarChart {
     this.colHorzAlign = obj.colHorzAlign;
     this.textSizeColText = obj.textSizeColText;
 
-
-    //text y axis name
+    //subtext y axis
 
     this.colYAxisColour = obj.colYAxisColour;
     this.colYAxisSize = obj.colYAxisSize;
@@ -51,8 +50,12 @@ class BarChart {
     this.colYAxisTextValue = obj.colYAxisTextValue;
     this.colYAxisTextX = obj.colYAxisTextX;
     this.colYAXisTextY = obj.colYAxisTextY;
+    this.colYHorzAlign=obj.colYHorzAlign;
+    this.colYVertAlign=obj.colYVertAlign;
 
-    //text  for title
+
+    //text chart title
+
     this.textSizeTitle = obj.textSizeTitle;
     this.titleText = obj.titleText;
     this.textTitleX = obj.textTitleX;
@@ -67,6 +70,8 @@ class BarChart {
     this.textColour = obj.textColour;
     this.bColour = obj.bColour;
     this.ticksColour = obj.ticksColour;
+    this.titleColour=obj.titleColour;
+    this.xLabelColour=obj.xLabelColour;
 
     // Calculate maxValue and scale
     this.maxValue = max(this.data.map((d) => d[this.yValue])); // Get the max height of the chart
@@ -74,10 +79,10 @@ class BarChart {
   }
 
   render() {
-  
-//draws charts x and y lines 
+    //draws charts x and y lines
     push();
     translate(this.xBarPos, this.yBarPos);
+    strokeWeight(this.axisLineWeight);
     stroke(this.axisLineColour);
     line(0, 0, 0, -this.chartHeight);
     line(0, 0, this.chartWidth, 0);
@@ -104,8 +109,9 @@ class BarChart {
       fill(this.ticksColour);
       textAlign(this.tickHorz, this.tickVert);
       textFont(this.genFont);
+
       text(Math.ceil(i * tickValue), -10, 0); //math ceil rounds to the highest whole number.
-      //round() can also be used and a decimal can be placed
+      //round() can also be used and a decimal amount can be placed
       //everytime 'i' loops it adds from the previous loop to the current one
       pop();
     }
@@ -122,11 +128,11 @@ class BarChart {
       //loops to draw each by the length of the data
       fill(this.barFill[i % this.barFill.length]);
       noStroke();
-      rect(0, 0, this.barWidth, -this.data[i][this.yValue] * this.scale);//draws each bar by using the iteration i to calculate each heigh and then jumps to the next bar
+      rect(0, 0, this.barWidth, -this.data[i][this.yValue] * this.scale); //draws each bar by using the iteration i to calculate each heigh and then jumps to the next bar
       translate(gap + this.barWidth, 0);
       //calculates the co-ordinate it should draw the next bar at
 
-      // Text X AXIS
+      // text xValue Label
       push();
       textSize(this.textSizeText);
       if (this.textRotate === 0) {
@@ -135,28 +141,27 @@ class BarChart {
         textAlign(this.xLabelHorz, this.xLabelVert);
       }
       rotate(this.textRotate);
-      fill(this.textColour);
-      text(XLabels[i], 0, this.xLabelHeight);//fills the text with the each corresponding year
+      fill(this.xLabelColour);
+      text(XLabels[i], 0, this.xLabelHeight); //fills the text with the each corresponding year
       translate(this.barWidth / 2, 0);
       pop();
     }
     pop();
 
-    //text xvalue col name
-    push();
-    noStroke();
-    fill(this.textColour); 
-    textFont(this.fontBold);
-    textAlign(this.colHorzAlign, this.colVertAlign);
-    textSize(this.textSizeColText);
-    // textStyle(this.textColWeight);
-    text(this.colLabel, this.textColX, this.textColY);
-    pop();
-
-    //text xvalue title name
+    //subtext x axis
     push();
     noStroke();
     fill(this.textColour);
+    textFont(this.fontBold);
+    textAlign(this.colHorzAlign, this.colVertAlign);
+    textSize(this.textSizeColText);
+    text(this.colLabel, this.textColX, this.textColY);
+    pop();
+
+    //text chart title
+    push();
+    noStroke();
+    fill(this.titleColour);
     textFont(this.fontBold);
     textSize(this.textSizeTitle);
     textStyle(this.titleWeight);
@@ -164,12 +169,13 @@ class BarChart {
     text(this.titleText, this.textTitleX, -this.textTitleY, this.titlePaddingX);
     pop();
 
-    //text for col2
+    //subtext y axis
 
     push();
     noStroke();
     fill(this.colYAxisColour);
     textSize(this.colYAxisSize);
+    textAlign(this.colYHorzAlign,this.colYVertAlign);
     rotate(this.colYAxisRotation);
     textStyle(this.colYAxisStyle);
     text(this.colYAxisTextValue, this.colYAxisTextX, this.colYAXisTextY);
