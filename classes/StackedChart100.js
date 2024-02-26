@@ -52,7 +52,7 @@ class StackedChart100 {
     this.colYAxisStyle = obj.colYAxisStyle;
     this.colYAxisTextValue = obj.colYAxisTextValue;
     this.colYAxisTextX = obj.colYAxisTextX;
-    this.colYAXisTextY = obj.colYAxisTextY;
+    this.colYAxisTextY = obj.colYAxisTextY;
 
     //text  for title
     this.textSizeTitle = obj.textSizeTitle;
@@ -73,6 +73,7 @@ class StackedChart100 {
     this.bColour = obj.bColour;
     this.ticksColour = obj.ticksColour;
     this.avgLineColour = obj.avgLineColour;
+    this.titleColour=obj.titleColour;
 
     // Calculate maxValue and scale
     this.scale = this.chartHeight / this.maxValue; // Calculate the scale for the chart
@@ -233,7 +234,7 @@ class StackedChart100 {
     textSize(this.colYAxisSize);
     rotate(this.colYAxisRotation);
     textStyle(this.colYAxisStyle);
-    text(this.colYAxisTextValue, this.colYAxisTextX, this.colYAXisTextY);
+    text(this.colYAxisTextValue, this.colYAxisTextX, this.colYAxisTextY);
 
     pop();
   }

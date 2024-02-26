@@ -13,7 +13,7 @@ function preload() {
 }
 
 function setup() {
-  createCanvas(1600, 950);
+  createCanvas(1600, 1050);
   angleMode(DEGREES);
   noLoop();
 
@@ -184,6 +184,7 @@ function setup() {
     textXLabelColour: "#000000",
     strokeColourForBox: "#000000",
     colYAxisColour: "#B71C1C",
+    keyTextColour:"#000000",
 
     //subtext x axis
     textSizeSub: 14,
@@ -242,16 +243,98 @@ function setup() {
     strokeWeightForBox: 0.7,
     keyXPos: 70,
     keyYPos: 140,
-    boxSize: 10,
+    boxSize: 12,
     textXPos: 20,
-    textYPos: 8,
-    keyPaddingY: 15,
+    textYPos: 10,
+    keyPaddingY: 20,
+    keyTextSize:14,
 
     //values
     xValue: "Year",
     yValues: ["cell-usage", "other-distraction"],
   };
+  let stackedBarChart = {
+    data: cleanData,
+    chartHeight: 250,
+    chartWidth: 350,
+    xStackedPos: -1100,
+    yStackedPos: 0,
+    barWidth: 25,
+    genFont: font,
+    fontBold: boldText,
+    lineGraphWeight: 2,
 
+    //colours
+    barFill: ["#EF6291", "#F493B4", "#F8BFD2"],
+    axisLineColour: "#ffffff",
+    ticksColour: "#000000",
+    textColour: "#B71C1C",
+    colYAxisColour: "#B71C1C",
+    xLabelColour: "#000000",
+    titleColour: "#000000",
+    xLabelColour: "#000000",
+    chartLineColour: ["#EF6291", "#F493B4", "#F8BFD2"],
+    strokeColourForBox: "#000000",
+    keyTextColour:"#000000",
+    keyTitleColour:"#000000",
+    keyTitleSize:14,
+
+    //text xLabels
+    textRotate: 45,
+    textSizeText: 13,
+    xLabelHeight: 30,
+
+    //subtext y axis
+    colYAxisSize: 14,
+    colYAxisRotation: -90,
+    colYAxisStyle: BOLD,
+    colYAxisTextValue: "no. of deaths",
+    colYAxisTextX: 130,
+    colYAxisTextY: -60,
+
+    //subtext x axis
+    textSizeColText: 14,
+    colLabel: "accidents per year",
+    textColY: 60,
+    textColX: 170,
+    colVertAlign: CENTER,
+    colHorzAlign: CENTER,
+
+    //text for title
+    textSizeTitle: 16,
+    titleText:
+      "Comparing Fatal Accidents from Mobile Phone Usage with Other Distractions",
+    textTitleX: -25,
+    textTitleY: 300,
+    titlePaddingX: 400,
+    titleWeight: BOLD,
+    titleHorzAlign: CENTER,
+    titleVertAlign: CENTER,
+
+    // key for yValues
+    strokeWeightForBox: 0.7,
+    keyXPos: -20,
+    keyYPos: 110,
+    boxSize: 15,
+    textXPos: 20,
+    textYPos: 5,
+    keyPaddingY: 20,
+    keyYTitle:-20,
+    keyXTitle:0,
+    keyTitle:"Key for Distractions:",
+    keyTitleHorzAlign:LEFT,
+    keyTitleVertAlign:CENTER,
+    keyTextHorzAlign:LEFT,
+    keyTextVertAlign:CENTER,
+
+    //tick and tick text
+    numTicks: 10,
+    ticksTextSize: 13,
+
+    //values
+    yValues: ["cell-usage", "other-distraction"], //other-distraction
+    xValue: "Year",
+  };
   let stacked100 = {
     //gen chart
     data: cleanData,
@@ -259,7 +342,7 @@ function setup() {
     chartHeight: 250,
     chartWidth: 350,
     xStacked100Pos: 550,
-    yStacked100Pos: 500,
+    yStacked100Pos: 550,
     barWidth: 25,
     genFont: font,
     fontBold: boldText,
@@ -324,7 +407,7 @@ function setup() {
     chartType: "LINE",
     chartHeight: 250,
     chartWidth: 350,
-    xStacked100Pos: 550,
+    xStacked100Pos: -550,
     yStacked100Pos: 0,
     barWidth: 25,
     genFont: font,
@@ -352,14 +435,14 @@ function setup() {
     colYAxisRotation: -90,
     colYAxisStyle: BOLD,
     colYAxisTextValue: "no. of deaths",
-    colYAxisTextX: 100,
-    colYAxisTextY: -380,
+    colYAxisTextX: 150,
+    colYAxisTextY: -80,
 
     //text for x axis
     textSizeColText: 16,
     colLabel: "accidents per year",
     textColY: 60,
-    textColX: -150,
+    textColX: 150,
     textColWeight: BOLD,
     colVertAlign: CENTER,
     colHorzAlign: CENTER,
@@ -368,7 +451,7 @@ function setup() {
     textSizeTitle: 16,
     titleText:
       "Fatal driving accidents resulting from the use of mobile devices",
-    textTitleX: -350,
+    textTitleX: -50,
     textTitleY: 270,
     titlePaddingX: 400,
     titleWeight: BOLD,
@@ -382,76 +465,15 @@ function setup() {
     //values
     yValues: ["cell-usage", "other-distraction"], //other-distraction
     xValue: "Year",
-    yValueTotal: "total",
   };
-  let stackedBarChart = {
-    data: cleanData,
-    chartHeight: 250,
-    chartWidth: 350,
-    xStackedPos: -1100,
-    yStackedPos: 0,
-    barWidth: 25,
-    genFont: font,
-    fontBold: boldText,
-    lineGraphWeight: 1,
 
-    //colours
-    barFill: ["#EF6291", "#F493B4", "#F8BFD2"],
-    axisLineColour: "#d9d9d9",
-    ticksColour: "#C72A2A",
-    textColour: "#0f0000",
-    colYAxisColour: "#C72A2A",
-    avgLineColour: "#f5f5f5",
-
-    //text for X AXIS
-    textRotate: 45,
-    textSizeText: 13,
-    xLabelHeight: 30,
-
-    //text for col y axis name
-    colYAxisSize: 16,
-    colYAxisRotation: -90,
-    colYAxisStyle: BOLD,
-    colYAxisTextValue: "no. of deaths in total ",
-    colYAxisTextX: 10,
-    colYAxisTextY: -50,
-
-    //text for col
-    textSizeColText: 16,
-    colLabel: "accidents per year",
-    textColY: 60,
-    textColX: 180,
-    textColWeight: BOLD,
-    colVertAlign: CENTER,
-    colHorzAlign: CENTER,
-
-    //text for title
-    textSizeTitle: 16,
-    titleText:
-      "Fatal driving accidents resulting from the use of mobile devices",
-    textTitleX: -25,
-    textTitleY: 270,
-    titlePaddingX: 400,
-    titleWeight: BOLD,
-    titleHorzAlign: CENTER,
-    titleVertAlign: CENTER,
-
-    //tick and tick text
-    numTicks: 10,
-    ticksTextSize: 13,
-    tickStyle: BOLD,
-
-    //values
-    yValues: ["cell-usage", "other-distraction"], //other-distraction
-    xValue: "Year",
-  };
   barCharts.push(
     new BarChart(barChart),
     new LineGraphChart(lineChart),
     new HorzBarChart(horzChart),
     new StackedChart100(stacked100),
     new StackedBarChart(stackedBarChart),
-    new StackedChart100 (stackedAvg)
+    new StackedChart100(stackedAvg)
   );
 }
 

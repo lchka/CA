@@ -15,7 +15,7 @@ class LineGraphChart {
     this.axisLineColour = obj.axisLineColour;
     this.yValues = obj.yValues;
     this.xValue = obj.xValue;
-    this.calculateTotal();  
+    this.calculateTotal();
     this.totalArray = [];
     this.pointEllipseSize = obj.pointEllipseSize;
     this.chartXYLineWeight = obj.chartXYLineWeight;
@@ -79,7 +79,6 @@ class LineGraphChart {
     this.indiLineWeight = obj.indiLineWeight;
 
     // key for yValues
-    this.strokeColourForBox = obj.strokeColourForBox;
     this.strokeWeightForBox = obj.strokeWeightForBox;
     this.keyXPos = obj.keyXPos;
     this.keyYPos = obj.keyYPos;
@@ -87,8 +86,10 @@ class LineGraphChart {
     this.textXPos = obj.textXPos;
     this.textYPos = obj.textYPos;
     this.keyPaddingY = obj.keyPaddingY;
+    this.keyTextSize = obj.keyTextSize;
 
     //colors
+    this.strokeColourForBox = obj.strokeColourForBox;
     this.barFill = obj.barFill;
     this.textColour = obj.textColour;
     this.textTitleColour = obj.textTitleColour;
@@ -99,6 +100,7 @@ class LineGraphChart {
     this.chartLineIndiLineColour = obj.chartLineIndiLineColour;
     this.subTextColour = obj.subTextColour;
     this.textXLabelColour = obj.textXLabelColour;
+    this.keyTextColour = obj.keyTextColour;
 
     // Calculate maxValue and scale
     this.scale = this.chartHeight / this.maxValue; // Calculate the scale for the chart
@@ -106,22 +108,22 @@ class LineGraphChart {
   calculateTotal() {
     this.totalArray = [];
 
-    for (let i = 0; i < this.data.length; i++) {//gets the length of the data
+    for (let i = 0; i < this.data.length; i++) {
+      //gets the length of the data
       let total = 0;
-      for (let j = 0; j < this.yValues.length; j++) {//iterates through yValues
+      for (let j = 0; j < this.yValues.length; j++) {
+        //iterates through yValues
 
         // Sum up all values within each array
-        total += int(this.data[i][this.yValues[j]]);  //had to be converted to integers as the second object in the array cam up as NaN. 
-
+        total += int(this.data[i][this.yValues[j]]); //had to be converted to integers as the second object in the array cam up as NaN.
       }
-      this.totalArray.push(total);//pushed into array so that they're individual values
-     
+      this.totalArray.push(total); //pushed into array so that they're individual values
     }
     console.log(this.totalArray);
 
     // Calculate maxValue after populating totalArray
     this.maxValue = max(this.totalArray);
-}
+  }
   render() {
     //creates the graphs lines
     push();
@@ -162,6 +164,7 @@ class LineGraphChart {
     noFill();
     for (let j = 0; j < this.yValues.length; j++) {
       //iterates throught the yValues
+
       beginShape();
       noFill();
       for (let i = 0; i < this.data.length; i++) {
@@ -246,8 +249,10 @@ class LineGraphChart {
     pop();
 
     // key for yValues
+
     for (let s = 0; s < this.yValues.length; s++) {
       push();
+
       translate(
         this.xLinePos + this.keyXPos,
         this.yLinePos - this.keyYPos + s * this.keyPaddingY
@@ -259,7 +264,8 @@ class LineGraphChart {
       fill(this.chartLineColour[s]);
       rect(0, 0, this.boxSize, this.boxSize); // Rectangle position is relative to the translated origin
       noStroke();
-      fill("#000000");
+      fill(this.keyTextColour);
+      textSize(this.keyTextSize);
       text(this.yValues[s], this.textXPos, this.textYPos);
       // Text y position is relative to the translated origin
       pop();
@@ -281,7 +287,7 @@ class LineGraphChart {
     fill(this.colYAxisColour);
     textSize(this.colYAxisSize);
     textAlign(this.colYHorzAlign, this.colYVertAlign);
-    textFont(this.fontBold)
+    textFont(this.fontBold);
     rotate(this.colYAxisRotation);
     text(this.colYAxisTextValue, this.colYAxisTextX, this.colYAXisTextY);
     pop();
