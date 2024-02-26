@@ -75,11 +75,10 @@ class StackedChart100 {
     this.avgLineTextYPos = obj.avgLineTextYPos;
 
     //key for distraction
-this.keyTitleSize=obj.keyTitleSize;
-this.keyTitleHorzAlign=obj.keyTitleHorzAlign;
-this.keyTitleVertAlign=obj.keyTitleVertAlign;
-this.keyName=obj.keyName;
-
+    this.keyTitleSize = obj.keyTitleSize;
+    this.keyTitleHorzAlign = obj.keyTitleHorzAlign;
+    this.keyTitleVertAlign = obj.keyTitleVertAlign;
+    this.keyTitle = obj.keyTitle;
 
     //colors
     this.barFill = obj.barFill;
@@ -87,7 +86,6 @@ this.keyName=obj.keyName;
     this.bColour = obj.bColour;
     this.ticksColour = obj.ticksColour;
     this.avgLineColour = obj.avgLineColour;
-
 
     // Calculate maxValue and scale
     this.scale = this.chartHeight / this.maxValue; // Calculate the scale for the chart
@@ -250,7 +248,7 @@ this.keyName=obj.keyName;
     textSize(this.keyTitleSize);
     textAlign(this.keyTitleHorzAlign, this.keyTitleVertAlign);
     textFont(this.fontBold);
-    text(this.keyName, 0, 70);
+    // text(this.keyName, 0, 70);
 
     pop();
     //text for title
