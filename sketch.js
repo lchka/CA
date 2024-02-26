@@ -97,8 +97,8 @@ function setup() {
     data: cleanData,
     chartHeight: 250,
     chartWidth: 350,
-    xHorzPos: 650,
-    yHorzPos: 340,
+    xHorzPos: 550,
+    yHorzPos: 0,
     genFont: font,
     fontBold: boldText,
     lineGraphWeight: 2,
@@ -240,21 +240,32 @@ function setup() {
     chartLineColour: ["#EF6291", "#F493B4", "#F8BFD2"],
     chartLineIndiLineColour: ["#000000", "#000000"],
     textTitleColour: "#0C0C0C",
-    textColour: ["#EF6291", "#F493B4", "#F8BFD2"],
-    subTextColour: "#000000",
+    textColour: "#000000",
+    subTextColour: "#B71C1C",
     textXLabelColour: "#000000",
+    strokeColourForBox:"#000000",
+    colYAxisColour:"#B71C1C",
 
-    //subtext in the middle
+    //subtext x axis
     textSizeSub: 14,
-    subLabel: "no of deaths per year",
-    textSubY: -435,
-    textSubX: 205,
+    subLabel: "deaths per year",
+    textSubY: 45,
+    textSubX: 1300,
     subVertAlign: CENTER,
     subHorzAlign: CENTER,
 
+      //subtext y axis
+      colYAxisSize: 14,
+      colYAxisRotation:-90,
+      colYAxisTextValue: "no. of deaths",
+      colYAxisTextX: 90,
+      colYAxisTextY: 1050,
+      colYHorzAlign: CENTER,
+      colYVertAlign: CENTER,
+
     //text for title
     textSizeTitle: 16,
-    titleText: "Line Chart for Fatal Accidents",
+    titleText: "Line Chart Depicting Fatal Accidents",
     textTitleX: 1100,
     textTitleY: 300,
     titlePaddingX: 350,
@@ -281,16 +292,25 @@ function setup() {
     pointEllipseSize: 6,
     chartXYLineWeight: 2,
     axisLineStrokeWeight: 2,
-    indiLineOneHeight: 20,
+    indiLineOneHeight: -20,
     indiLineTwoHeight: 20,
     textRotate: -25,
     textSizeText: 13,
     xAxisTextYTwoPos: 25,
-    xAxisTextYOnePos: 25,
+    xAxisTextYOnePos: -25,
+
+    // key for yValues
+    strokeWeightForBox:0.7,
+    keyXPos:70,
+    keyYPos:140,
+    boxSize:10,
+    textXPos:20,
+    textYPos:8,
+    keyPaddingY:15,
+
     //values
-    yValue: "other-distraction",
     xValue: "Year",
-    yValues: ["other-distraction", "cell-usage"],
+    yValues: ["cell-usage","other-distraction"],
   };
 
   let stackedBarChart = {

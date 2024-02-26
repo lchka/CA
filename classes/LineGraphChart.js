@@ -13,8 +13,10 @@ class LineGraphChart {
     this.xLinePos = obj.xLinePos;
     this.yLinePos = obj.yLinePos;
     this.axisLineColour = obj.axisLineColour;
-    this.yValue = obj.yValue;
     this.yValues = obj.yValues;
+    this.xValue = obj.xValue;
+    this.calculateTotal();  
+    this.totalArray = [];
     this.pointEllipseSize = obj.pointEllipseSize;
     this.chartXYLineWeight = obj.chartXYLineWeight;
     this.axisLineStrokeWeight = obj.axisLineStrokeWeight;
@@ -28,7 +30,7 @@ class LineGraphChart {
     this.tickTextXPos = obj.tickTextXPos;
     this.ticksLength = obj.ticksLength;
 
-    //subtext
+    //subtext x axis
 
     this.subLabel = obj.subLabel; //to pull the section name from the csv file
     this.textSubX = obj.textSubX;
@@ -37,15 +39,13 @@ class LineGraphChart {
     this.subHorzAlign = obj.subHorzAlign;
     this.textSizeSub = obj.textSizeSub;
 
-    //text col y axis name
-
-    // this.colYAxisColour = obj.colYAxisColour;
-    // this.colYAxisSize = obj.colYAxisSize;
-    // this.colYAxisRotation = obj.colYAxisRotation;
-    // this.colYAxisStyle = obj.colYAxisStyle;
-    // this.colYAxisTextValue = obj.colYAxisTextValue;
-    // this.colYAxisTextX = obj.colYAxisTextX;
-    // this.colYAXisTextY = obj.colYAxisTextY;
+    //subtext y axis
+    this.colYAxisColour = obj.colYAxisColour;
+    this.colYAxisSize = obj.colYAxisSize;
+    this.colYAxisTextValue = obj.colYAxisTextValue;
+    this.colYAxisTextX = obj.colYAxisTextX;
+    this.colYAXisTextY = obj.colYAxisTextY;
+    this.colYAxisRotation = obj.colYAxisRotation;
 
     //text  for title
     this.textSizeTitle = obj.textSizeTitle;
@@ -65,11 +65,10 @@ class LineGraphChart {
     this.vertAlignXLabel = obj.vertAlignXLabel;
     this.xLabelLineWeight = obj.xLabelLineWeight;
     this.xAxisTextYTwoPos = obj.xAxisTextYTwoPos;
-    this. xAxisTextYOnePos=obj. xAxisTextYOnePos;
+    this.xAxisTextYOnePos = obj.xAxisTextYOnePos;
     this.textSizeText = obj.textSizeText;
     this.textSizeColText = obj.textSizeColText;
     this.textRotate = obj.textRotate;
-    this.xValue = obj.xValue;
 
     //indi line
     this.indiLineOneHorzAlign = obj.indiLineOneHorzAlign;
@@ -78,6 +77,16 @@ class LineGraphChart {
     this.indiLineOneHeight = obj.indiLineOneHeight;
     this.indiLineTwoHeight = obj.indiLineTwoHeight;
     this.indiLineWeight = obj.indiLineWeight;
+
+    // key for yValues
+    this.strokeColourForBox = obj.strokeColourForBox;
+    this.strokeWeightForBox = obj.strokeWeightForBox;
+    this.keyXPos = obj.keyXPos;
+    this.keyYPos = obj.keyYPos;
+    this.boxSize = obj.boxSize;
+    this.textXPos = obj.textXPos;
+    this.textYPos = obj.textYPos;
+    this.keyPaddingY = obj.keyPaddingY;
 
     //colors
     this.barFill = obj.barFill;
@@ -92,10 +101,27 @@ class LineGraphChart {
     this.textXLabelColour = obj.textXLabelColour;
 
     // Calculate maxValue and scale
-    this.maxValue = max(this.data.map((d) => d[this.yValue])); // Get the max value from the yValue of the chart
     this.scale = this.chartHeight / this.maxValue; // Calculate the scale for the chart
   }
+  calculateTotal() {
+    this.totalArray = [];
 
+    for (let i = 0; i < this.data.length; i++) {//gets the length of the data
+      let total = 0;
+      for (let j = 0; j < this.yValues.length; j++) {//iterates through yValues
+
+        // Sum up all values within each array
+        total += int(this.data[i][this.yValues[j]]);  //had to be converted to integers as the second object in the array cam up as NaN. 
+
+      }
+      this.totalArray.push(total);//pushed into array so that they're individual values
+     
+    }
+    console.log(this.totalArray);
+
+    // Calculate maxValue after populating totalArray
+    this.maxValue = max(this.totalArray);
+}
   render() {
     //creates the graphs lines
     push();
@@ -134,33 +160,34 @@ class LineGraphChart {
     let xStep = this.chartWidth / (this.data.length - 1);
     let yStep = this.chartHeight / this.maxValue;
     noFill();
-    for (let j = 0; j < this.yValues.length; j++) {//iterates throught the yValues
+    for (let j = 0; j < this.yValues.length; j++) {
+      //iterates throught the yValues
       beginShape();
       noFill();
       for (let i = 0; i < this.data.length; i++) {
         stroke(this.chartLineColour[j]);
         strokeWeight(this.axisLineStrokeWeight);
-        let yLine = -this.data[i][this.yValues[j]] * yStep;//pulls the values from yValues individually and then using yStep it jumps to the next
+        let yLine = -this.data[i][this.yValues[j]] * yStep; //pulls the values from yValues individually and then using yStep it jumps to the next
 
         // Draw points
         push();
         fill(this.pointsColour);
         noStroke();
-        ellipse(i * xStep, yLine, this.pointEllipseSize);//draws ellipses on each point of 'contact' where we get to point a to b
+        ellipse(i * xStep, yLine, this.pointEllipseSize); //draws ellipses on each point of 'contact' where we get to point a to b
         noFill();
         pop();
 
-        // Draw text for xLabel below graph line
+        // text for xLabel
         push();
         noStroke();
-        translate(i * xStep, this.textYPosXLabel);//Draws the next xStep, in normal barchart this would be gapWidth
+        translate(i * xStep, this.textYPosXLabel); //Draws the next xStep, in normal barchart this would be gapWidth
         rotate(this.textXLabelRotate);
         fill(this.textXLabelColour);
         textSize(this.textSizeXLabel);
         textFont(this.fontBold);
         textAlign(this.horzAlignXLabel, this.vertAlignXLabel);
-        text(this.data[i][this.xValue], 0, this.textYPosXLabel);//draws years below the line
-        pop(); 
+        text(this.data[i][this.xValue], 0, this.textYPosXLabel); //draws years below the line
+        pop();
 
         // Draw the Indicator line alongside the text
         if (j === 0) {
@@ -169,7 +196,7 @@ class LineGraphChart {
           translate(i * xStep, yLine);
           stroke(this.chartLineIndiLineColour[j]);
           strokeWeight(this.xLabelLineWeight);
-          rotate(this.textRotate); 
+          rotate(-this.textRotate);
           line(0, 0, 0, this.indiLineOneHeight);
           pop();
 
@@ -177,13 +204,13 @@ class LineGraphChart {
           push();
           noStroke();
           textFont(this.fontBold);
-          fill(this.textColour[j]);
+          fill(this.textColour);
           textSize(this.textSize);
           textAlign(LEFT, CENTER);
           text(
             this.data[i][this.yValues[j]],
             i * xStep,
-            yLine + this. xAxisTextYOnePos
+            yLine + this.xAxisTextYOnePos
           );
           pop();
         } else {
@@ -200,13 +227,13 @@ class LineGraphChart {
           push();
           noStroke();
           textFont(this.fontBold);
-          fill(this.textColour[j]);
+          fill(this.textColour);
           textSize(this.textSize);
           textAlign(LEFT, CENTER);
           text(
             this.data[i][this.yValues[j]],
             i * xStep,
-            yLine + (-this.xAxisTextYTwoPos)
+            yLine + -this.xAxisTextYTwoPos
           ); // Adjusted y position for clarity
           pop();
         }
@@ -218,7 +245,27 @@ class LineGraphChart {
     }
     pop();
 
-    //subtext
+    // key for yValues
+    for (let s = 0; s < this.yValues.length; s++) {
+      push();
+      translate(
+        this.xLinePos + this.keyXPos,
+        this.yLinePos - this.keyYPos + s * this.keyPaddingY
+      );
+
+      stroke(this.strokeColourForBox);
+      strokeWeight(this.strokeWeightForBox);
+      textFont(this.fontBold);
+      fill(this.chartLineColour[s]);
+      rect(0, 0, this.boxSize, this.boxSize); // Rectangle position is relative to the translated origin
+      noStroke();
+      fill("#000000");
+      text(this.yValues[s], this.textXPos, this.textYPos);
+      // Text y position is relative to the translated origin
+      pop();
+    }
+
+    //subtext x axis
     push();
     noStroke();
     fill(this.subTextColour);
@@ -228,7 +275,18 @@ class LineGraphChart {
     text(this.subLabel, this.textSubX, this.textSubY);
     pop();
 
-    // main for title each graph
+    //subtext y axis
+    push();
+    noStroke();
+    fill(this.colYAxisColour);
+    textSize(this.colYAxisSize);
+    textAlign(this.colYHorzAlign, this.colYVertAlign);
+    textFont(this.fontBold)
+    rotate(this.colYAxisRotation);
+    text(this.colYAxisTextValue, this.colYAxisTextX, this.colYAXisTextY);
+    pop();
+
+    // text for title
     push();
     noStroke();
     fill(this.textTitleColour);
@@ -237,8 +295,6 @@ class LineGraphChart {
     textStyle(this.titleWeight);
     textAlign(this.titleHorzAlign, this.titleVertAlign);
     text(this.titleText, this.textTitleX, -this.textTitleY, this.titlePaddingX);
-    pop();
-
     pop();
   }
 }

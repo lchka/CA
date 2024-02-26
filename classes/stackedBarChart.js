@@ -13,7 +13,6 @@ class StackedBarChart {
     this.barWidth = obj.barWidth;
     this.yValues = obj.yValues;
     this.xValue = obj.xValue;
-    this.yValueTotal = obj.yValueTotal;
     this.calculateTotal();
     this.totalArray = [];
     this.lineGraphWeight=obj.lineGraphWeight;
@@ -65,10 +64,6 @@ class StackedBarChart {
     this.ticksColour = obj.ticksColour;
     this.colYAxisColour = obj.colYAxisColour;
     this.axisLineColour = obj.axisLineColour;
-
-
-    // Calculate maxValue and scale
-    // this.maxValue = max(this.data.map((d) => d[this.totalArray]));
 
     this.scale = this.chartHeight / this.maxValue; // Calculate the scale for the chart
   }
