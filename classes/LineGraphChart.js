@@ -148,7 +148,7 @@ class LineGraphChart {
       translate(0, (i * -this.chartHeight) / this.numTicks); //chartheight is always in - as the original 0,0 is above the plus.
       noStroke();
       textSize(this.ticksTextSize);
-      textFont(this.fontBold);
+      textFont(this.genFont);
       fill(this.ticksValueColour);
       textAlign(RIGHT, CENTER);
 
@@ -184,7 +184,7 @@ class LineGraphChart {
         rotate(this.textXLabelRotate);
         fill(this.textXLabelColour);
         textSize(this.textSizeXLabel);
-        textFont(this.fontBold);
+        textFont(this.genFont);
         textAlign(this.horzAlignXLabel, this.vertAlignXLabel);
         text(this.data[i][this.xValue], 0, this.textYPosXLabel); //draws years below the line
         pop();
