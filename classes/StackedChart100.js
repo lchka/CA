@@ -251,7 +251,7 @@ class StackedChart100 {
     textAlign(this.keyTitleHorzAlign, this.keyTitleVertAlign);
     textFont(this.fontBold);
     console.log(this.keyTitle)
-    text(this.colYAxisTextValue, this.keyXTitle, this.keyYTitle);
+    text(this.keyTitle, this.keyXTitle, this.keyYTitle);
 
 
 

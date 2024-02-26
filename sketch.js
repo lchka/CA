@@ -375,7 +375,7 @@ function setup() {
     xLabelHeight: 30,
 
     // key for yValues
-    keyTitle:'Key For Distractions',
+    colYAxisTextValueTwo:'Key For Distractions',
     // strokeWeightForBox: 0.7,
     // keyXPos: -20,
     // keyYPos: 110,
