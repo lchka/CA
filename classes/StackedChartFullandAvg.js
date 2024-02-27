@@ -23,11 +23,13 @@ class StackedChartFullandAvg {
     this.numTicks = obj.numTicks;
     this.ticksTextSize = obj.ticksTextSize;
 
-    //text x axis
+    //text xLabel
     this.textSizeText = obj.textSizeText;
     this.textSizeColText = obj.textSizeColText;
     this.textRotate = obj.textRotate;
     this.xLabelHeight = obj.xLabelHeight;
+    this.xLabelHorzAlign=obj.xLabelHorzAlign;
+    this.xLabelVertAlign=obj.xLabelVertAlign;
 
     //subtext x axis
     this.colLabel = obj.colLabel; //to pull the section name from the csv file
@@ -50,7 +52,6 @@ class StackedChartFullandAvg {
     this.textTitleX = obj.textTitleX;
     this.textTitleY = obj.textTitleY;
     this.titlePaddingX = obj.titlePaddingX;
-    this.titleWeight = obj.titleWeight;
     this.titleVertAlign = obj.titleVertAlign;
     this.titleHorzAlign = obj.titleHorzAlign;
 
@@ -61,7 +62,7 @@ class StackedChartFullandAvg {
     this.avgLineTextVertAlign = obj.avgLineTextVertAlign;
     this.avgLineTextXPos = obj.avgLineTextXPos;
     this.avgLineTextYPos = obj.avgLineTextYPos;
-
+    this.avgLineText=obj.avgLineText;
 
     //colors
     this.barFill = obj.barFill;
@@ -70,8 +71,9 @@ class StackedChartFullandAvg {
     this.avgLineColour = obj.avgLineColour;
     this.chartLineColour = obj.chartLineColour;
     this.avgLineTextColour = obj.avgLineTextColour;
-
-    // this.titleColour=obj.titleColour;
+    this.subXAxisColour = obj.subXAxisColour;
+    this.titleColour = obj.titleColour;
+    this.xLabelColour=obj.xLabelColour;
 
     // Calculate maxValue and scale
     this.scale = this.chartHeight / this.maxValue; // Calculate the scale for the chart
@@ -185,13 +187,13 @@ class StackedChartFullandAvg {
       if (this.textRotate === 0) {
         textAlign(CENTER, CENTER);
       } else {
-        textAlign(LEFT, CENTER);
+        textAlign(this.titleHorzAlign, this.titleVertAlign);
       }
       rotate(this.textRotate);
-      fill("#000000");
+      fill(this.xLabelColour);
       textFont(this.genFont);
       text(XLabels[i], 0, this.xLabelHeight); //fills the text with the each corresponding year
-      translate(this.barWidth / 2, 20);
+      translate(this.barWidth / 2, 0);
       pop();
     }
     pop();
@@ -212,7 +214,7 @@ class StackedChartFullandAvg {
       textFont(this.semiFont);
       textAlign(this.avgLineTextHorzAlign, this.avgLineTextVertAlign);
       text(
-        "The average is: " + this.average,
+        this.avgLineText+" "+ this.average,
         this.chartWidth - this.avgLineTextXPos,
         -this.chartHeight + this.avgLineTextYPos
       );
@@ -221,7 +223,7 @@ class StackedChartFullandAvg {
     //subtext x axis
     push();
     noStroke();
-    fill("#B71C1C");
+    fill(this.subXAxisColour);
     textFont(this.fontBold);
     textAlign(this.colHorzAlign, this.colVertAlign);
     textSize(this.textSizeColText);
@@ -231,7 +233,7 @@ class StackedChartFullandAvg {
     //text for title
     push();
     noStroke();
-    fill(this.textColour);
+    fill(this.titleColour);
     textFont(this.fontBold);
     textSize(this.textSizeTitle);
     textStyle(this.titleWeight);
@@ -246,7 +248,6 @@ class StackedChartFullandAvg {
     fill(this.colYAxisColour);
     textSize(this.colYAxisSize);
     rotate(this.colYAxisRotation);
-    textStyle(this.colYAxisStyle);
     text(this.colYAxisTextValue, this.colYAxisTextX, this.colYAxisTextY);
 
     pop();

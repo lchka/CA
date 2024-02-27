@@ -288,7 +288,6 @@ function setup() {
     //subtext y axis
     colYAxisSize: 14,
     colYAxisRotation: -90,
-    colYAxisStyle: BOLD,
     colYAxisTextValue: "no. of deaths",
     colYAxisTextX: 130,
     colYAxisTextY: -60,
@@ -308,7 +307,6 @@ function setup() {
     textTitleX: -25,
     textTitleY: 300,
     titlePaddingX: 400,
-    titleWeight: BOLD,
     titleHorzAlign: CENTER,
     titleVertAlign: CENTER,
 
@@ -358,6 +356,7 @@ function setup() {
     avgLineTextHorzAlign: RIGHT,
     avgLineTextXPos: 10,
     avgLineTextYPos: 150,
+    avgLineText:"The average is:",
 
     //colours
     barFill: ["#EF6291", "#F493B4", "#F8BFD2"],
@@ -368,11 +367,17 @@ function setup() {
     avgLineColour: "#ffffff",
     avgLineTextColour: "#ffffff",
     chartLineColour: ["#EF6291", "#F493B4", "#F8BFD2"],
+    titleColour:"#000000",
+    subXAxisColour:"#B71C1C",
+    xLabelColour:"#000000",
 
-    //text for X LEBELS
+    //text for X LABELS
     textRotate: 45,
     textSizeText: 13,
     xLabelHeight: 30,
+    xLabelVertAlign:LEFT,
+    xLabelHorzAlign:CENTER,
+
 
     //text for y axis subtext
     colYAxisSize: 14,
@@ -396,7 +401,6 @@ function setup() {
     textTitleX: 0,
     textTitleY: 300,
     titlePaddingX: 350,
-    titleWeight: BOLD,
     titleHorzAlign: CENTER,
     titleVertAlign: CENTER,
 
@@ -429,6 +433,7 @@ function setup() {
     avgLineTextHorzAlign: RIGHT,
     avgLineTextXPos: 10,
     avgLineTextYPos: 150,
+    avgLineText:"The average is:",
 
     //colours
     barFill: ["#EF6291", "#F493B4", "#F8BFD2"],
@@ -439,11 +444,16 @@ function setup() {
     avgLineTextColour: "#ffffff",
     avgLineColour: "#000000",
     chartLineColour: "#ffffff",
+    titleColour:"#000000",
+    subXAxisColour:"#B71C1C",
+    xLabelColour:"#000000",
 
-    //text for X LaBELS
+    //text for X labels
     textRotate: 45,
     textSizeText: 13,
     xLabelHeight: 30,
+    xLabelVertAlign:LEFT,
+    xLabelHorzAlign:CENTER,
 
     //text for y axis subtext
     colYAxisSize: 14,

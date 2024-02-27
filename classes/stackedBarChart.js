@@ -36,7 +36,6 @@ class StackedBarChart {
 
     this.colYAxisSize = obj.colYAxisSize;
     this.colYAxisRotation = obj.colYAxisRotation;
-    this.colYAxisStyle = obj.colYAxisStyle;
     this.colYAxisTextValue = obj.colYAxisTextValue;
     this.colYAxisTextX = obj.colYAxisTextX;
     this.colYAXisTextY = obj.colYAxisTextY;
@@ -47,7 +46,6 @@ class StackedBarChart {
     this.textTitleX = obj.textTitleX;
     this.textTitleY = obj.textTitleY;
     this.titlePaddingX = obj.titlePaddingX;
-    this.titleWeight = obj.titleWeight;
     this.titleVertAlign = obj.titleVertAlign;
     this.titleHorzAlign = obj.titleHorzAlign;
 
