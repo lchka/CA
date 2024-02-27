@@ -264,7 +264,7 @@ function setup() {
     keyTitleHorzAlign: LEFT,
     keyTitleVertAlign: CENTER,
     keyTitleValue: "Key for Distractions:",
-    keyTitleXPos:205,
+    keyTitleXPos:70,
     keyTitleYPos:160,
 
     //values
