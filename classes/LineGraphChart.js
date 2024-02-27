@@ -9,7 +9,6 @@ class LineGraphChart {
     this.chartHeight = obj.chartHeight;
     this.xLinePos = obj.xLinePos;
     this.yLinePos = obj.yLinePos;
-    this.axisLineColour = obj.axisLineColour;
     this.yValues = obj.yValues;
     this.xValue = obj.xValue;
     this.calculateTotal();
@@ -37,7 +36,6 @@ class LineGraphChart {
     this.textSizeSub = obj.textSizeSub;
 
     //subtext y axis
-    this.colYAxisColour = obj.colYAxisColour;
     this.colYAxisSize = obj.colYAxisSize;
     this.colYAxisTextValue = obj.colYAxisTextValue;
     this.colYAxisTextX = obj.colYAxisTextX;
@@ -81,6 +79,7 @@ class LineGraphChart {
 
     //colors
     this.strokeColourForBox = obj.strokeColourForBox;
+    this.colYAxisColour = obj.colYAxisColour;
     this.textColour = obj.textColour;
     this.textTitleColour = obj.textTitleColour;
     this.ticksValueColour = obj.ticksValueColour;
@@ -90,6 +89,7 @@ class LineGraphChart {
     this.subTextColour = obj.subTextColour;
     this.textXLabelColour = obj.textXLabelColour;
     this.keyTextColour = obj.keyTextColour;
+    this.axisLineColour = obj.axisLineColour;
 
     // Calculate maxValue and scale
     this.scale = this.chartHeight / this.maxValue; // Calculate the scale for the chart

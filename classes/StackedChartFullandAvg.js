@@ -7,7 +7,6 @@ class StackedChartFullandAvg {
     this.chartHeight = obj.chartHeight;
     this.xStacked100Pos = obj.xStacked100Pos;
     this.yStacked100Pos = obj.yStacked100Pos;
-    this.axisLineColour = obj.axisLineColour;
     this.barWidth = obj.barWidth;
     this.yValues = obj.yValues;
     this.xValue = obj.xValue;
@@ -39,7 +38,6 @@ class StackedChartFullandAvg {
     this.colHorzAlign = obj.colHorzAlign;
 
     //subtext y axis
-    this.colYAxisColour = obj.colYAxisColour;
     this.colYAxisSize = obj.colYAxisSize;
     this.colYAxisRotation = obj.colYAxisRotation;
     this.colYAxisTextValue = obj.colYAxisTextValue;
@@ -66,6 +64,7 @@ class StackedChartFullandAvg {
 
     //colors
     this.barFill = obj.barFill;
+    this.colYAxisColour = obj.colYAxisColour;
     this.textColour = obj.textColour;
     this.ticksColour = obj.ticksColour;
     this.avgLineColour = obj.avgLineColour;
@@ -74,6 +73,8 @@ class StackedChartFullandAvg {
     this.subXAxisColour = obj.subXAxisColour;
     this.titleColour = obj.titleColour;
     this.xLabelColour=obj.xLabelColour;
+    this.axisLineColour = obj.axisLineColour;
+
 
     // Calculate maxValue and scale
     this.scale = this.chartHeight / this.maxValue; // Calculate the scale for the chart

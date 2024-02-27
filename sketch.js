@@ -284,6 +284,8 @@ function setup() {
     textRotate: 45,
     textSizeText: 13,
     xLabelHeight: 30,
+    xLabelHorzAlign:LEFT,
+    xLabelVertAlign:CENTER,
 
     //subtext y axis
     colYAxisSize: 14,
@@ -330,6 +332,7 @@ function setup() {
     //tick and tick text
     numTicks: 10,
     ticksTextSize: 13,
+    
 
     //values
     yValues: ["cell-usage", "other-distraction"], //other-distraction
@@ -505,5 +508,5 @@ function draw() {
   barCharts.forEach((bar) => bar.render());
   textSize(56);
   textAlign(CENTER, CENTER);
-  text("Fatal Crashes CA", 200, -820);
+  text("'Fatal Crashes' Charts and Clases CA", 200, -820);
 }

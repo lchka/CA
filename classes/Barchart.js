@@ -6,7 +6,6 @@ class BarChart {
     this.chartHeight = obj.chartHeight;
     this.xBarPos = obj.xBarPos;
     this.yBarPos = obj.yBarPos;
-    this.axisLineColour = obj.axisLineColour;
     this.barWidth = obj.barWidth;
     this.yValue = obj.yValue;
     this.xValue = obj.xValue;
@@ -14,7 +13,7 @@ class BarChart {
     this.fontBold = obj.fontBold;
     this.axisLineWeight = obj.axisLineWeight;
 
-    //ticks
+    //ticks and tick text
     this.numTicks = obj.numTicks;
     this.ticksTextSize = obj.ticksTextSize;
     this.tickStyle = obj.tickStyle;
@@ -39,7 +38,6 @@ class BarChart {
 
     //subtext y axis
 
-    this.colYAxisColour = obj.colYAxisColour;
     this.colYAxisSize = obj.colYAxisSize;
     this.colYAxisRotation = obj.colYAxisRotation;
     this.colYAxisStyle = obj.colYAxisStyle;
@@ -62,10 +60,12 @@ class BarChart {
     this.titleHorzAlign = obj.titleHorzAlign;
 
     //colors
+    this.axisLineColour = obj.axisLineColour;
     this.barFill = obj.barFill;
     this.textColour = obj.textColour;
     this.ticksColour = obj.ticksColour;
     this.titleColour=obj.titleColour;
+    this.colYAxisColour = obj.colYAxisColour;
     this.xLabelColour=obj.xLabelColour;
 
     // Calculate maxValue and scale

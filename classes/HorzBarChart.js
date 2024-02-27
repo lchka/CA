@@ -42,7 +42,6 @@ class HorzBarChart {
     this.textSizeSub = obj.textSizeSub;
 
     // subtext y axis
-    this.colYAxisColour = obj.colYAxisColour;
     this.colYAxisSize = obj.colYAxisSize;
     this.colYAxisRotation = obj.colYAxisRotation;
     this.colYAxisStyle = obj.colYAxisStyle;
@@ -70,6 +69,8 @@ class HorzBarChart {
     this.ticksColour = obj.ticksColour;
     this.subTextColour = obj.subTextColour;
     this.barValueColour = obj.barValueColour;
+    this.colYAxisColour = obj.colYAxisColour;
+
 
     // Calculate maxValue and scale
     this.maxValue = max(this.data.map((d) => d[this.xValue])); // Get the max height of the chart

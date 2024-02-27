@@ -24,6 +24,8 @@ class StackedBarChart {
     this.genFont = obj.genFont;
     this.fontBold = obj.fontBold;
     this.xLabelHeight = obj.xLabelHeight;
+    this.xLabelHorzAlign=obj.xLabelHorzAlign;
+    this.xLabelVertAlign=obj.xLabelVertAlign;
 
     //subtext x axis
     this.colLabel = obj.colLabel;
@@ -50,7 +52,6 @@ class StackedBarChart {
     this.titleHorzAlign = obj.titleHorzAlign;
 
     // key for yValues
-    this.strokeColourForBox = obj.strokeColourForBox;
     this.strokeWeightForBox = obj.strokeWeightForBox;
     this.keyXPos = obj.keyXPos;
     this.keyYPos = obj.keyYPos;
@@ -68,6 +69,7 @@ class StackedBarChart {
     this.keyTextVertAlign = obj.keyTextVertAlign;
 
     //colors
+    this.strokeColourForBox = obj.strokeColourForBox;
     this.barFill = obj.barFill;
     this.textColour = obj.textColour;
     this.ticksColour = obj.ticksColour;
@@ -166,7 +168,7 @@ class StackedBarChart {
       if (this.textRotate === 0) {
         textAlign(CENTER, CENTER);
       } else {
-        textAlign(LEFT, CENTER);
+        textAlign(this.xLabelHorzAlign, this.xLabelVertAlign);
       }
       textFont(this.genFont);
       noStroke();
