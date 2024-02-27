@@ -81,7 +81,6 @@ class StackedBarChart {
     this.titleColour = obj.titleColour;
     this.xLabelColour = obj.xLabelColour;
     this.strokeColourForBox = obj.strokeColourForBox;
-    this.chartLineColour = obj.chartLineColour;
     this.keyTextColour = obj.keyTextColour;
     this.keyTitleColour = obj.keyTitleColour;
 
@@ -228,13 +227,13 @@ class StackedBarChart {
       this.keyYPos + this.keyYTitle
     );
 
-    for (let s = 0; s < this.yValues.length; s++) {
+    for (let s = 0; s < this.yValues.length; s++) {//looping to pull the amount of objects inside the yValues array
       translate(this.keyXPos, this.keyYPos + s * this.keyPaddingY); // Adjust the vertical translation to create space between each rectangle and text
       textFont(this.genFont);
       stroke(this.strokeColourForBox);
       strokeWeight(this.strokeWeightForBox);
       textFont(this.fontBold);
-      fill(this.chartLineColour[s]);
+      fill(this.barFill[s]);
       rect(0, 0, this.boxSize, this.boxSize); // Rectangle position is relative to the translated origin
       noStroke();
       fill(this.keyTextColour);

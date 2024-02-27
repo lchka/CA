@@ -21,17 +21,17 @@ class StackedChartFullandAvg {
     //ticks
     this.numTicks = obj.numTicks;
     this.ticksTextSize = obj.ticksTextSize;
-    this.tickHorzAlign=obj.tickHorzAlign;
-    this.tickVertAlign=obj.tickVertAlign;
-    this.tickLength=obj.tickLength;
+    this.tickHorzAlign = obj.tickHorzAlign;
+    this.tickVertAlign = obj.tickVertAlign;
+    this.tickLength = obj.tickLength;
 
     //text xLabel
     this.textSizeText = obj.textSizeText;
     this.textSizeColText = obj.textSizeColText;
     this.textRotate = obj.textRotate;
     this.xLabelHeight = obj.xLabelHeight;
-    this.xLabelHorzAlign=obj.xLabelHorzAlign;
-    this.xLabelVertAlign=obj.xLabelVertAlign;
+    this.xLabelHorzAlign = obj.xLabelHorzAlign;
+    this.xLabelVertAlign = obj.xLabelVertAlign;
 
     //subtext x axis
     this.colLabel = obj.colLabel; //to pull the section name from the csv file
@@ -56,6 +56,25 @@ class StackedChartFullandAvg {
     this.titleVertAlign = obj.titleVertAlign;
     this.titleHorzAlign = obj.titleHorzAlign;
 
+    //key
+    this.keyTitleSize = obj.keyTextSize;
+    this.keyHorzAlign = obj.keyHorzAlign;
+    this.keyVertAlign = obj.keyHorzAlign;
+    this.keyTitleValue = obj.keyTitleValue;
+    this.keyTitleXPos = obj.keyTitleXPos;
+    this.keyTitleYPos = obj.keyTitleYPos;
+    this.boxSize = obj.boxSize;
+    this.keyBoxStrokeWeight = obj.keyBoxStrokeWeight;
+    this.keyTextSize = obj.keyTextSize;
+    this.keyTextHorzAlign = obj.keyTextHorzAlign;
+    this.keyTextVertAlign = obj.keyTextVertAlign;
+    this.keyYPadding = obj.keyYPadding;
+    this.keyYPos=obj.keyYPos;
+    this.keyXPos=obj.keyXPos;
+    this.keyTextXPos=obj.keyTextXPos;
+    this.keyTextYPos=obj.keyTextYPos;
+
+
     //avg line and text
     this.avgLineWeight = obj.avgLineWeight;
     this.avgLineTextSize = obj.avgLineTextSize;
@@ -63,7 +82,7 @@ class StackedChartFullandAvg {
     this.avgLineTextVertAlign = obj.avgLineTextVertAlign;
     this.avgLineTextXPos = obj.avgLineTextXPos;
     this.avgLineTextYPos = obj.avgLineTextYPos;
-    this.avgLineText=obj.avgLineText;
+    this.avgLineText = obj.avgLineText;
 
     //colors
     this.barFill = obj.barFill;
@@ -71,13 +90,14 @@ class StackedChartFullandAvg {
     this.textColour = obj.textColour;
     this.ticksColour = obj.ticksColour;
     this.avgLineColour = obj.avgLineColour;
-    this.chartLineColour = obj.chartLineColour;
     this.avgLineTextColour = obj.avgLineTextColour;
     this.subXAxisColour = obj.subXAxisColour;
     this.titleColour = obj.titleColour;
-    this.xLabelColour=obj.xLabelColour;
+    this.xLabelColour = obj.xLabelColour;
     this.axisLineColour = obj.axisLineColour;
-
+    this.keyTitleColour = obj.keyTitleColour;
+    this.keyBoxStrokeColour = obj.keyBoxStrokeColour;
+    this.keyTextColour = obj.keyTextColour;
 
     // Calculate maxValue and scale
     this.scale = this.chartHeight / this.maxValue; // Calculate the scale for the chart
@@ -203,7 +223,7 @@ class StackedChartFullandAvg {
     pop();
 
     //avergae line
-    if (this.chartType == "LINE") {
+    if (this.chartType == "LINE") {//only draws this if chart type of the class instacne is line
       push();
       stroke(this.avgLineColour); // Red color
       strokeWeight(this.avgLineWeight);
@@ -211,14 +231,14 @@ class StackedChartFullandAvg {
       line(0, 0, this.chartWidth, 0);
       pop();
     }
-    if (this.chartType == "LINE") {
+    if (this.chartType == "LINE") {//only draws this if chart type of the class instacne is line
       noStroke();
       fill(this.avgLineTextColour);
       textSize(this.avgLineTextSize);
       textFont(this.semiFont);
       textAlign(this.avgLineTextHorzAlign, this.avgLineTextVertAlign);
       text(
-        this.avgLineText+" "+ this.average,
+        this.avgLineText + " " + this.average,
         this.chartWidth - this.avgLineTextXPos,
         -this.chartHeight + this.avgLineTextYPos
       );
@@ -255,5 +275,34 @@ class StackedChartFullandAvg {
     text(this.colYAxisTextValue, this.colYAxisTextX, this.colYAxisTextY);
 
     pop();
+    //key for distraction
+    noStroke();
+    fill(this.keyTitleColour);
+    textSize(this.keyTitleSize);
+    textAlign(this.keyHorzAlign, this.keyVertAlign);
+    textFont(this.fontBold);
+    text(
+      this.keyTitleValue,
+      this.chartWidth - this.keyTitleXPos,
+      this.keyTitleYPos
+    );
+    for (let s = 0; s < this.yValues.length; s++) {
+      push(); 
+      translate(this.keyXPos, this.keyYPos + s * this.keyYPadding);//makes sure that if the user wants to move just the position it would move all the contents and ensure padding between box and text
+      // Draw rectangle
+      stroke(this.keyBoxStrokeColour);
+      strokeWeight(this.keyBoxStrokeWeight);
+      fill(this.barFill[s]);
+      rect(0, 0, this.boxSize, this.boxSize); // Rectangle position is relative to the translated origin
+
+      // Draw text
+      noStroke();
+      fill(this.keyTextColour);
+      textSize(this.keyTextSize);
+      textAlign(this.keyTextHorzAlign, this.keyTextVertAlign);
+      text(this.yValues[s], this.keyTextXPos, this.keyTextYPos);
+
+      pop(); 
+    }
   }
 }

@@ -2,7 +2,6 @@
 
 class LineGraphChart {
   constructor(obj) {
-
     //CHART
     this.data = obj.data;
     this.chartWidth = obj.chartWidth;
@@ -24,8 +23,8 @@ class LineGraphChart {
     this.ticksTextSize = obj.ticksTextSize;
     this.tickTextXPos = obj.tickTextXPos;
     this.ticksLength = obj.ticksLength;
-    this.tickHorzAlign=obj.tickHorzAlign;
-    this.tickVertAlign=obj.tickVertAlign;
+    this.tickHorzAlign = obj.tickHorzAlign;
+    this.tickVertAlign = obj.tickVertAlign;
 
     //subtext x axis
 
@@ -68,7 +67,7 @@ class LineGraphChart {
     this.indiLineOneHeight = obj.indiLineOneHeight;
     this.indiLineTwoHeight = obj.indiLineTwoHeight;
 
-    // key for yValues
+    // key for distractions
     this.strokeWeightForBox = obj.strokeWeightForBox;
     this.keyXPos = obj.keyXPos;
     this.keyYPos = obj.keyYPos;
@@ -77,6 +76,12 @@ class LineGraphChart {
     this.textYPos = obj.textYPos;
     this.keyPaddingY = obj.keyPaddingY;
     this.keyTextSize = obj.keyTextSize;
+    this.keyTitleTextSize=obj.keyTitleTextSize;
+    this.keyTitleHorzAlign=obj.keyTitleHorzAlign;
+    this.keyTitleVertAlign=obj.keyTitleVertAlign;
+    this.keyTitleValue=obj.keyTitleValue;
+    this.keyTitleXPos=obj.keyTitleXPos;
+    this.keyTitleYPos=obj.keyTitleYPos;
 
     //colors
     this.strokeColourForBox = obj.strokeColourForBox;
@@ -238,15 +243,22 @@ class LineGraphChart {
     }
     pop();
 
-    // key for yValues
-
-    for (let s = 0; s < this.yValues.length; s++) {
+    // key for distractions
+    push();
+    noStroke();
+    fill(this.textColour);
+    textSize(this.keyTitleTextSize);
+    textAlign(this.keyTitleHorzAlign, this.keyTitleVertAlign);
+    textFont(this.fontBold);
+    text(this.keyTitleValue,this.xLinePos+this.keyTitleXPos, -this.keyTitleYPos);
+    pop();
+    for (let s = 0; s < this.yValues.length; s++) {//loops to pull the amount of in the array
       push();
 
       translate(
         this.xLinePos + this.keyXPos,
         this.yLinePos - this.keyYPos + s * this.keyPaddingY
-      );
+      );//makes sure that if the user wants to move just the position it would move all the contents
 
       stroke(this.strokeColourForBox);
       strokeWeight(this.strokeWeightForBox);

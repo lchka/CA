@@ -88,7 +88,7 @@ function setup() {
     tickStyle: BOLD,
     tickHorz: RIGHT,
     tickVert: CENTER,
-    tickLength:-5,
+    tickLength: -5,
 
     //values
     yValue: "cell-usage",
@@ -116,7 +116,7 @@ function setup() {
     //text for y AXIS
     textRotate: 0,
     textSizeText: 13,
-    yLabelYPos:-20,
+    yLabelYPos: -20,
     barValueHorz: CENTER,
     barValueVert: CENTER,
 
@@ -161,7 +161,7 @@ function setup() {
     ticksTextSize: 13,
     tickHorz: RIGHT,
     tickVert: CENTER,
-    tickLength:5,
+    tickLength: 5,
 
     //values
     xValue: "other-distraction",
@@ -193,7 +193,7 @@ function setup() {
 
     //subtext x axis
     textSizeSub: 14,
-    subLabel: "deaths per year",
+    subLabel: "accidents per year",
     textSubY: 45,
     textSubX: 1300,
     subVertAlign: CENTER,
@@ -210,7 +210,7 @@ function setup() {
 
     //text for title
     textSizeTitle: 16,
-    titleText: "Line Chart Depicting Fatal Accidents",
+    titleText: "Line Chart Depicting Different Causes to Fatal Accidents",
     textTitleX: 1100,
     textTitleY: 300,
     titlePaddingX: 350,
@@ -223,8 +223,8 @@ function setup() {
     ticksTextSize: 13,
     tickTextXPos: -10,
     ticksLength: -5,
-    tickHorzAlign:RIGHT,
-    tickVertAlign:CENTER,
+    tickHorzAlign: RIGHT,
+    tickVertAlign: CENTER,
 
     //text for yLabel
     textYPosXLabel: 7,
@@ -248,12 +248,18 @@ function setup() {
     // key for yValues
     strokeWeightForBox: 0.7,
     keyXPos: 70,
-    keyYPos: 140,
+    keyYPos: 130,
     boxSize: 12,
     textXPos: 20,
     textYPos: 10,
     keyPaddingY: 20,
     keyTextSize: 14,
+    keyTitleTextSize: 14,
+    keyTitleHorzAlign: RIGHT,
+    keyTitleVertAlign: CENTER,
+    keyTitleValue: "Key for Distractions:",
+    keyTitleXPos:205,
+    keyTitleYPos:160,
 
     //values
     xValue: "Year",
@@ -279,7 +285,6 @@ function setup() {
     xLabelColour: "#000000",
     titleColour: "#000000",
     xLabelColour: "#000000",
-    chartLineColour: ["#EF6291", "#F493B4", "#F8BFD2"],
     strokeColourForBox: "#000000",
     keyTextColour: "#000000",
     keyTitleColour: "#000000",
@@ -288,8 +293,8 @@ function setup() {
     textRotate: 45,
     textSizeText: 13,
     xLabelHeight: 30,
-    xLabelHorzAlign:LEFT,
-    xLabelVertAlign:CENTER,
+    xLabelHorzAlign: LEFT,
+    xLabelVertAlign: CENTER,
 
     //subtext y axis
     colYAxisSize: 14,
@@ -336,9 +341,9 @@ function setup() {
     //tick and tick text
     numTicks: 10,
     ticksTextSize: 13,
-    tickLength:-5,
-    tickHorzAlign:RIGHT,
-    tickVertAlign:CENTER,
+    tickLength: -5,
+    tickHorzAlign: RIGHT,
+    tickVertAlign: CENTER,
 
     //values
     yValues: ["cell-usage", "other-distraction"], //other-distraction
@@ -365,7 +370,7 @@ function setup() {
     avgLineTextHorzAlign: RIGHT,
     avgLineTextXPos: 10,
     avgLineTextYPos: 150,
-    avgLineText:"The average is:",
+    avgLineText: "The average is:",
 
     //colours
     barFill: ["#EF6291", "#F493B4", "#F8BFD2"],
@@ -375,18 +380,37 @@ function setup() {
     colYAxisColour: "#C72A2A",
     avgLineColour: "#ffffff",
     avgLineTextColour: "#ffffff",
-    chartLineColour: ["#EF6291", "#F493B4", "#F8BFD2"],
-    titleColour:"#000000",
-    subXAxisColour:"#B71C1C",
-    xLabelColour:"#000000",
+    titleColour: "#000000",
+    subXAxisColour: "#B71C1C",
+    xLabelColour: "#000000",
+    keyTitleColour: "#000000",
+    keyBoxStrokeColour: "#000000",
+    keyTextColour: "#000000",
 
     //text for X LABELS
     textRotate: 45,
     textSizeText: 13,
     xLabelHeight: 30,
-    xLabelVertAlign:LEFT,
-    xLabelHorzAlign:CENTER,
+    xLabelVertAlign: LEFT,
+    xLabelHorzAlign: CENTER,
 
+    //key and text
+    keyTitleSize: 14,
+    keyHorzAlign: RIGHT,
+    keyHorzAlign: CENTER,
+    keyTitleValue: "Key for Distractions:",
+    keyTitleXPos: 280,
+    keyTitleYPos: 90,
+    boxSize: 15,
+    keyBoxStrokeWeight: 0.7,
+    keyTextSize: 14,
+    keyTextHorzAlign: LEFT,
+    keyTextVertAlign: CENTER,
+    keyYPadding: 20,
+    keyYPos: 110,
+    keyXPos: 0,
+    keyTextXPos: 20,
+    keyTextYPos: 5,
 
     //text for y axis subtext
     colYAxisSize: 14,
@@ -416,9 +440,9 @@ function setup() {
     //tick and tick text
     numTicks: 10,
     ticksTextSize: 13,
-    tickHorzAlign:RIGHT,
-    tickVertAlign:CENTER,
-    tickLength:-5,
+    tickHorzAlign: RIGHT,
+    tickVertAlign: CENTER,
+    tickLength: -5,
 
     //values
     yValues: ["cell-usage", "other-distraction"], //other-distraction
@@ -445,7 +469,7 @@ function setup() {
     avgLineTextHorzAlign: RIGHT,
     avgLineTextXPos: 10,
     avgLineTextYPos: 150,
-    avgLineText:"The average is:",
+    avgLineText: "The average is:",
 
     //colours
     barFill: ["#EF6291", "#F493B4", "#F8BFD2"],
@@ -456,16 +480,37 @@ function setup() {
     avgLineTextColour: "#ffffff",
     avgLineColour: "#000000",
     chartLineColour: "#ffffff",
-    titleColour:"#000000",
-    subXAxisColour:"#B71C1C",
-    xLabelColour:"#000000",
+    titleColour: "#000000",
+    subXAxisColour: "#B71C1C",
+    xLabelColour: "#000000",
+    keyTitleColour: "#000000",
+    keyBoxStrokeColour: "#000000",
+    keyTextColour: "#000000",
 
     //text for X labels
     textRotate: 45,
     textSizeText: 13,
     xLabelHeight: 30,
-    xLabelVertAlign:LEFT,
-    xLabelHorzAlign:CENTER,
+    xLabelVertAlign: LEFT,
+    xLabelHorzAlign: CENTER,
+
+    //key and text
+    keyTitleSize: 14,
+    keyHorzAlign: RIGHT,
+    keyHorzAlign: CENTER,
+    keyTitleValue: "Key for Distractions:",
+    keyTitleXPos: 280,
+    keyTitleYPos: 90,
+    boxSize: 15,
+    keyBoxStrokeWeight: 0.7,
+    keyTextSize: 14,
+    keyTextHorzAlign: LEFT,
+    keyTextVertAlign: CENTER,
+    keyYPadding: 20,
+    keyYPos: 110,
+    keyXPos: 0,
+    keyTextXPos: 20,
+    keyTextYPos: 5,
 
     //text for y axis subtext
     colYAxisSize: 14,
@@ -496,9 +541,9 @@ function setup() {
     //tick and tick text
     numTicks: 10,
     ticksTextSize: 13,
-    tickHorzAlign:RIGHT,
-    tickVertAlign:CENTER,
-    tickLength:-5,
+    tickHorzAlign: RIGHT,
+    tickVertAlign: CENTER,
+    tickLength: -5,
 
     //values
     yValues: ["cell-usage", "other-distraction"], //other-distraction
@@ -520,5 +565,6 @@ function draw() {
   barCharts.forEach((bar) => bar.render());
   textSize(56);
   textAlign(CENTER, CENTER);
-  text("'Fatal Crashes' Charts and Clases CA", 200, -820);
+  fill("#ffffff");
+  text("'Fatal Crashes' Charts and Classes CA", 110, -820);
 }
