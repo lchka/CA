@@ -88,6 +88,7 @@ function setup() {
     tickStyle: BOLD,
     tickHorz: RIGHT,
     tickVert: CENTER,
+    tickLength:-5,
 
     //values
     yValue: "cell-usage",
@@ -115,10 +116,11 @@ function setup() {
     //text for y AXIS
     textRotate: 0,
     textSizeText: 13,
-
-    //bar properties
+    yLabelYPos:-20,
     barValueHorz: CENTER,
     barValueVert: CENTER,
+
+    //bar properties
     xAxisHorz: CENTER,
     xAxisVert: CENTER,
     barValueTextSize: 14,
@@ -159,6 +161,7 @@ function setup() {
     ticksTextSize: 13,
     tickHorz: RIGHT,
     tickVert: CENTER,
+    tickLength:5,
 
     //values
     xValue: "other-distraction",
@@ -218,9 +221,10 @@ function setup() {
     numTicks: 10,
     fontBold: boldText,
     ticksTextSize: 13,
-    tickStyle: BOLD,
     tickTextXPos: -10,
     ticksLength: -5,
+    tickHorzAlign:RIGHT,
+    tickVertAlign:CENTER,
 
     //text for yLabel
     textYPosXLabel: 7,
@@ -332,7 +336,9 @@ function setup() {
     //tick and tick text
     numTicks: 10,
     ticksTextSize: 13,
-    
+    tickLength:-5,
+    tickHorzAlign:RIGHT,
+    tickVertAlign:CENTER,
 
     //values
     yValues: ["cell-usage", "other-distraction"], //other-distraction
@@ -410,6 +416,9 @@ function setup() {
     //tick and tick text
     numTicks: 10,
     ticksTextSize: 13,
+    tickHorzAlign:RIGHT,
+    tickVertAlign:CENTER,
+    tickLength:-5,
 
     //values
     yValues: ["cell-usage", "other-distraction"], //other-distraction
@@ -487,6 +496,9 @@ function setup() {
     //tick and tick text
     numTicks: 10,
     ticksTextSize: 13,
+    tickHorzAlign:RIGHT,
+    tickVertAlign:CENTER,
+    tickLength:-5,
 
     //values
     yValues: ["cell-usage", "other-distraction"], //other-distraction

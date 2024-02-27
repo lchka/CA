@@ -21,6 +21,9 @@ class StackedChartFullandAvg {
     //ticks
     this.numTicks = obj.numTicks;
     this.ticksTextSize = obj.ticksTextSize;
+    this.tickHorzAlign=obj.tickHorzAlign;
+    this.tickVertAlign=obj.tickVertAlign;
+    this.tickLength=obj.tickLength;
 
     //text xLabel
     this.textSizeText = obj.textSizeText;
@@ -127,7 +130,7 @@ class StackedChartFullandAvg {
     for (let i = 0; i <= this.numTicks; i++) {
       push();
       translate(0, i * (-this.chartHeight / this.numTicks));
-      line(0, 0, -5, 0);
+      line(0, 0, this.tickLength, 0);
       pop();
     }
 
@@ -140,7 +143,7 @@ class StackedChartFullandAvg {
       textSize(this.ticksTextSize);
       textStyle(this.tickStyle);
       fill(this.ticksColour);
-      textAlign(RIGHT, CENTER);
+      textAlign(this.tickHorzAlign, this.tickVertAlign);
       textFont(this.genFont);
       text(Math.ceil(i * tickValue), -10, 0); //everytime i loop it adds from the previous loop to the current one
       pop();

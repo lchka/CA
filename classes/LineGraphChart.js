@@ -22,9 +22,10 @@ class LineGraphChart {
     //ticks
     this.numTicks = obj.numTicks;
     this.ticksTextSize = obj.ticksTextSize;
-    this.tickStyle = obj.tickStyle;
     this.tickTextXPos = obj.tickTextXPos;
     this.ticksLength = obj.ticksLength;
+    this.tickHorzAlign=obj.tickHorzAlign;
+    this.tickVertAlign=obj.tickVertAlign;
 
     //subtext x axis
 
@@ -141,7 +142,7 @@ class LineGraphChart {
       textSize(this.ticksTextSize);
       textFont(this.genFont);
       fill(this.ticksValueColour);
-      textAlign(RIGHT, CENTER);
+      textAlign(this.tickHorzAlign, this.tickVertAlign);
 
       text(Math.ceil(i * tickValue), this.tickTextXPos, 0); //everytime it loops it adds from the previous loop to the current one, used math,ciel to round to the nearest whole number
       pop();

@@ -16,6 +16,9 @@ class StackedBarChart {
     //ticks
     this.numTicks = obj.numTicks;
     this.ticksTextSize = obj.ticksTextSize;
+    this.tickLength=obj.tickLength;
+    this.tickHorzAlign=obj.tickHorzAlign;
+    this.tickVertAlign=obj.tickVertAlign;
 
     //xLabels
     this.textSizeText = obj.textSizeText;
@@ -119,7 +122,7 @@ class StackedBarChart {
     for (let i = 0; i <= this.numTicks; i++) {
       push();
       translate(0, i * (-this.chartHeight / this.numTicks));
-      line(0, 0, -5, 0);
+      line(0, 0, this.tickLength, 0);
       pop();
     }
 
@@ -131,7 +134,7 @@ class StackedBarChart {
       noStroke();
       textSize(this.ticksTextSize);
       fill(this.ticksColour);
-      textAlign(RIGHT, CENTER);
+      textAlign(this.tickHorzAlign, this.tickVertAlign);
       textFont(this.genFont);
       text(Math.ceil(i * tickValue), -10, 0); //math ceil rounds to the highest whole number.
       //round() can also be used and a decimal can be placed

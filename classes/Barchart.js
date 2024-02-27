@@ -19,6 +19,7 @@ class BarChart {
     this.tickStyle = obj.tickStyle;
     this.tickVert = obj.tickVert;
     this.tickHorz = obj.tickHorz;
+    this.tickLength=obj.tickLength;
 
     //x Labels
     this.textSizeText = obj.textSizeText;
@@ -89,7 +90,7 @@ class BarChart {
     for (let i = 0; i <= this.numTicks; i++) {
       push();
       translate(0, i * (-this.chartHeight / this.numTicks));
-      line(0, 0, -5, 0);
+      line(0, 0, this.tickLength, 0);
       pop();
     }
 

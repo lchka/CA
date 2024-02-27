@@ -26,12 +26,14 @@ class HorzBarChart {
     this.ticksTextSize = obj.ticksTextSize;
     this.tickVert = obj.tickVert;
     this.tickHorz = obj.tickHorz;
+    this.tickLength=obj.tickLength;
 
     //text yLabel
     this.textSizeText = obj.textSizeText;
     this.textRotate = obj.textRotate;
     this.xAxisHorz = obj.xAxisHorz;
     this.xAxisVert = obj.xAxisVert;
+    this.yLabelYPos=obj.yLabelYPos;
 
     //subtext x axis
     this.subLabel = obj.subLabel; //to pull the section name from the csv file
@@ -92,7 +94,7 @@ class HorzBarChart {
     for (let i = 0; i <= this.numTicks; i++) {
       push();
       translate(i * (this.chartWidth / this.numTicks), 0);
-      line(0, 0, 0, 5);
+      line(0, 0, 0, this.tickLength);
       pop();
     }
 
@@ -149,7 +151,7 @@ class HorzBarChart {
       textSize(this.textSizeText);
       rotate(this.textRotate);
       fill(this.textColour);
-      text(yLabel[i], -20, -this.chartHeight / this.data.length - 10); //displays the data
+      text(yLabel[i], this.yLabelYPos, -this.chartHeight / this.data.length - 10); //displays the data
       translate(0, -this.barHeight / 2);
       pop();
     }
