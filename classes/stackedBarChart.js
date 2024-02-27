@@ -19,7 +19,7 @@ class StackedBarChart {
     this.tickLength=obj.tickLength;
     this.tickHorzAlign=obj.tickHorzAlign;
     this.tickVertAlign=obj.tickVertAlign;
-
+this.tickTextXPos=obj.tickTextXPos;
     //xLabels
     this.textSizeText = obj.textSizeText;
     this.textSizeColText = obj.textSizeColText;
@@ -135,7 +135,7 @@ class StackedBarChart {
       fill(this.ticksColour);
       textAlign(this.tickHorzAlign, this.tickVertAlign);
       textFont(this.genFont);
-      text(Math.ceil(i * tickValue), -10, 0); //math ceil rounds to the highest whole number.
+      text(Math.ceil(i * tickValue), this.tickTextXPos, 0); //math ceil rounds to the highest whole number.
       //round() can also be used and a decimal can be placed
       //everytime 'i' loops it adds from the previous loop to the current one
       pop();
@@ -177,7 +177,7 @@ class StackedBarChart {
       rotate(this.textRotate);
       fill(this.xLabelColour);
       text(XLabels[i], 0, this.xLabelHeight); //fills the text with the each corresponding year
-      translate(this.barWidth / 2, 0);
+      translate(this.barWidth, 0);
       pop();
     }
     pop();
@@ -209,7 +209,6 @@ class StackedBarChart {
     fill(this.colYAxisColour);
     textSize(this.colYAxisSize);
     rotate(this.colYAxisRotation);
-    textStyle(this.colYAxisStyle);
     text(this.colYAxisTextValue, this.colYAxisTextX, this.colYAXisTextY);
 
     pop();

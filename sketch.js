@@ -47,9 +47,9 @@ function setup() {
     xLabelColour: "#000000",
 
     //text for X labels
-    textRotate: 50,
+    textRotate: 45,
     textSizeText: 13,
-    xLabelHeight: 20,
+    xLabelHeight: 25,
     xLabelHorz: LEFT,
     xLabelVert: CENTER,
 
@@ -89,6 +89,7 @@ function setup() {
     tickHorz: RIGHT,
     tickVert: CENTER,
     tickLength: -5,
+    tickTextXPos:-10,
 
     //values
     yValue: "cell-usage",
@@ -162,6 +163,9 @@ function setup() {
     tickHorz: RIGHT,
     tickVert: CENTER,
     tickLength: 5,
+    tickTextYPos:20,
+    tickTextXPos:-10,
+
 
     //values
     xValue: "other-distraction",
@@ -225,6 +229,8 @@ function setup() {
     ticksLength: -5,
     tickHorzAlign: RIGHT,
     tickVertAlign: CENTER,
+    tickTextHorzAlign:CENTER,
+    tickTextHorzAlign:LEFT,
 
     //text for yLabel
     textYPosXLabel: 7,
@@ -242,8 +248,8 @@ function setup() {
     indiLineTwoHeight: 20,
     textRotate: -25,
     textSizeText: 13,
-    xAxisTextYTwoPos: 25,
-    xAxisTextYOnePos: -25,
+    xAxisTextYTwoPos: 20,
+    xAxisTextYOnePos: -20,
 
     // key for yValues
     strokeWeightForBox: 0.7,
@@ -255,7 +261,7 @@ function setup() {
     keyPaddingY: 20,
     keyTextSize: 14,
     keyTitleTextSize: 14,
-    keyTitleHorzAlign: RIGHT,
+    keyTitleHorzAlign: LEFT,
     keyTitleVertAlign: CENTER,
     keyTitleValue: "Key for Distractions:",
     keyTitleXPos:205,
@@ -344,6 +350,8 @@ function setup() {
     tickLength: -5,
     tickHorzAlign: RIGHT,
     tickVertAlign: CENTER,
+    tickTextXPos:-10,
+
 
     //values
     yValues: ["cell-usage", "other-distraction"], //other-distraction
@@ -389,10 +397,10 @@ function setup() {
 
     //text for X LABELS
     textRotate: 45,
-    textSizeText: 13,
-    xLabelHeight: 30,
-    xLabelVertAlign: LEFT,
-    xLabelHorzAlign: CENTER,
+    textSizeText: 14,
+    xLabelHeight: 25,
+    xLabelVertAlign: CENTER,
+    xLabelHorzAlign: LEFT,
 
     //key and text
     keyTitleSize: 14,
@@ -443,6 +451,7 @@ function setup() {
     tickHorzAlign: RIGHT,
     tickVertAlign: CENTER,
     tickLength: -5,
+    tickTextXPos:-10,
 
     //values
     yValues: ["cell-usage", "other-distraction"], //other-distraction
@@ -487,12 +496,13 @@ function setup() {
     keyBoxStrokeColour: "#000000",
     keyTextColour: "#000000",
 
-    //text for X labels
+    //text xlabels
     textRotate: 45,
-    textSizeText: 13,
-    xLabelHeight: 30,
-    xLabelVertAlign: LEFT,
-    xLabelHorzAlign: CENTER,
+    textSizeText: 14,
+    xLabelHeight: 25,
+    xLabelVertAlign: CENTER,
+    xLabelHorzAlign: LEFT,
+
 
     //key and text
     keyTitleSize: 14,
@@ -544,6 +554,8 @@ function setup() {
     tickHorzAlign: RIGHT,
     tickVertAlign: CENTER,
     tickLength: -5,
+    tickTextXPos:-10,
+
 
     //values
     yValues: ["cell-usage", "other-distraction"], //other-distraction

@@ -24,6 +24,7 @@ class StackedChartFullandAvg {
     this.tickHorzAlign = obj.tickHorzAlign;
     this.tickVertAlign = obj.tickVertAlign;
     this.tickLength = obj.tickLength;
+    this.tickTextXPos=obj.tickTextXPos;
 
     //text xLabel
     this.textSizeText = obj.textSizeText;
@@ -165,7 +166,7 @@ class StackedChartFullandAvg {
       fill(this.ticksColour);
       textAlign(this.tickHorzAlign, this.tickVertAlign);
       textFont(this.genFont);
-      text(Math.ceil(i * tickValue), -10, 0); //everytime i loop it adds from the previous loop to the current one
+      text(Math.ceil(i * tickValue), this.tickTextXPos, 0); //everytime i loop it adds from the previous loop to the current one
       pop();
     }
 
@@ -211,13 +212,13 @@ class StackedChartFullandAvg {
       if (this.textRotate === 0) {
         textAlign(CENTER, CENTER);
       } else {
-        textAlign(this.titleHorzAlign, this.titleVertAlign);
+        textAlign(this.xLabelHorzAlign, this.xLabelVertAlign);
       }
       rotate(this.textRotate);
       fill(this.xLabelColour);
       textFont(this.genFont);
       text(XLabels[i], 0, this.xLabelHeight); //fills the text with the each corresponding year
-      translate(this.barWidth / 2, 0);
+      translate(this.barWidth, 0);
       pop();
     }
     pop();

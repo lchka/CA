@@ -27,6 +27,8 @@ class HorzBarChart {
     this.tickVert = obj.tickVert;
     this.tickHorz = obj.tickHorz;
     this.tickLength=obj.tickLength;
+    this.tickTextYPos=obj.tickTextYPos;
+    this.tickTextXPos=obj.tickTextXPos;
 
     //text yLabel
     this.textSizeText = obj.textSizeText;
@@ -91,7 +93,8 @@ class HorzBarChart {
     let xLabel = this.data.map((s) => s[this.xValue]); //gets all the values from xValue
 
     // Draw ticks on X-axis
-    for (let i = 0; i <= this.numTicks; i++) {
+    for (let i = 0; i <= this.numTicks; i++) {//dived the number of ticks equally to the length of the chart/height
+      push();
       push();
       translate(i * (this.chartWidth / this.numTicks), 0);
       line(0, 0, 0, this.tickLength);
@@ -102,12 +105,12 @@ class HorzBarChart {
     let tickValue = this.maxValue / this.numTicks;
     for (let i = 0; i <= this.numTicks; i++) {
       push();
-      translate((i * this.chartWidth) / this.numTicks, 20);
+      translate((i * this.chartWidth) / this.numTicks, this.tickTextYPos);//translates each tick to move upwards and diving it by the amount of tick to spread them evenly
       noStroke();
       textSize(this.ticksTextSize);
       rotate(this.textRotate);
       fill(this.textColour);
-      text(Math.ceil(i * tickValue), -10, 0);
+      text(Math.ceil(i * tickValue), this.tickTextXPos, 0);
       //math ceil rounds to the highest whole number.
       //round() can also be used and a decimal can be placed
       //everytime 'i' loops it adds from the previous loop to the current one
@@ -130,7 +133,7 @@ class HorzBarChart {
         0,
         this.chartWidth
       ); //gets all the data from the xValue and pulls out each individual values and displays them.
-      fill(this.barFill[i % this.barFill.length]);
+      fill(this.barFill[i % this.barFill.length]);////modulus used as there is an uneven number of bars to amount of colours
       noStroke();
       rect(0, 0, barWidth, gap); // Adjust width based on xValue
 
@@ -141,7 +144,7 @@ class HorzBarChart {
       textAlign(this.xAxisHorz, this.xAxisVert); // Set text alignment
       textSize(this.barValueTextSize);
       text(xLabel[i], barWidth + this.barValueXPos, -this.chartHeight / this.data.length / 2); // Draw text
-      // Translate for the next bar
+      // Translate for the next bar and pulling the individual text
       translate(0, gap + this.barHeight);
 
       // text yLabel
@@ -151,7 +154,7 @@ class HorzBarChart {
       textSize(this.textSizeText);
       rotate(this.textRotate);
       fill(this.textColour);
-      text(yLabel[i], this.yLabelYPos, -this.chartHeight / this.data.length - 10); //displays the data
+      text(yLabel[i], this.yLabelYPos, -this.chartHeight / this.data.length - 10); //hardcoded so that it will always have an amount of padding
       translate(0, -this.barHeight / 2);
       pop();
     }

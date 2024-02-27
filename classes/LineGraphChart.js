@@ -18,13 +18,15 @@ class LineGraphChart {
     this.genFont = obj.genFont;
     this.fontBold = obj.fontBold;
 
-    //ticks
+    //ticks and yLabel
     this.numTicks = obj.numTicks;
     this.ticksTextSize = obj.ticksTextSize;
     this.tickTextXPos = obj.tickTextXPos;
     this.ticksLength = obj.ticksLength;
     this.tickHorzAlign = obj.tickHorzAlign;
     this.tickVertAlign = obj.tickVertAlign;
+    this.tickTextHorzAlign=obj.tickTextHorzAlign;
+    this.tickTextVertAlign=obj.tickTextHorzAlign;
 
     //subtext x axis
 
@@ -204,7 +206,7 @@ class LineGraphChart {
           textFont(this.fontBold);
           fill(this.textColour);
           textSize(this.textSize);
-          textAlign(LEFT, CENTER);
+          textAlign(this.tickTextHorzAlign, this.tickTextVertAlign);
           text(
             this.data[i][this.yValues[j]],
             i * xStep,
@@ -215,19 +217,19 @@ class LineGraphChart {
           // Adjust the position of the second indicator line and text
           push();
           translate(i * xStep, yLine);
-          stroke(this.chartLineIndiLineColour[1]);
+          stroke(this.chartLineIndiLineColour[j]);
           strokeWeight(this.xLabelLineWeight);
           rotate(-this.textRotate);
           line(0, 0, 0, -this.indiLineTwoHeight); // Different line for the second array
           pop();
 
-          // Draw text for chart line labels first array
+          // text for yLabel
           push();
           noStroke();
           textFont(this.fontBold);
           fill(this.textColour);
           textSize(this.textSize);
-          textAlign(LEFT, CENTER);
+          textAlign(this.tickTextHorzAlign,  this.tickTextVertAlign);
           text(
             this.data[i][this.yValues[j]],
             i * xStep,
@@ -264,7 +266,7 @@ class LineGraphChart {
       strokeWeight(this.strokeWeightForBox);
       textFont(this.fontBold);
       fill(this.chartLineColour[s]);
-      rect(0, 0, this.boxSize, this.boxSize); // Rectangle position is relative to the translated origin
+      rect(0, 0, this.boxSize, this.boxSize); 
       noStroke();
       fill(this.keyTextColour);
       textSize(this.keyTextSize);

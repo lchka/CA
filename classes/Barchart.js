@@ -20,6 +20,7 @@ class BarChart {
     this.tickVert = obj.tickVert;
     this.tickHorz = obj.tickHorz;
     this.tickLength=obj.tickLength;
+    this.tickTextXPos=obj.tickTextXPos;
 
     //x Labels
     this.textSizeText = obj.textSizeText;
@@ -70,7 +71,7 @@ class BarChart {
     this.xLabelColour=obj.xLabelColour;
 
     // Calculate maxValue and scale
-    this.maxValue = max(this.data.map((d) => d[this.yValue])); // Get the max height of the chart
+    this.maxValue = max(this.data.map((d) => d[this.yValue])); // Get the max height of the chart by mapping and pulling the highest value
     this.scale = this.chartHeight / this.maxValue; // Calculate the scale for the chart
   }
 
@@ -87,7 +88,7 @@ class BarChart {
     let XLabels = this.data.map((x) => x[this.xValue]);
 
     // Draw ticks on y-axis
-    for (let i = 0; i <= this.numTicks; i++) {
+    for (let i = 0; i <= this.numTicks; i++) {//dived the number of ticks equally to the length of the chart/height
       push();
       translate(0, i * (-this.chartHeight / this.numTicks));
       line(0, 0, this.tickLength, 0);
@@ -106,7 +107,7 @@ class BarChart {
       textAlign(this.tickHorz, this.tickVert);
       textFont(this.genFont);
 
-      text(Math.ceil(i * tickValue), -10, 0); //math ceil rounds to the highest whole number.
+      text(Math.ceil(i * tickValue), this.tickTextXPos, 0); //math ceil rounds to the highest whole number.
       //round() can also be used and a decimal amount can be placed
       //everytime 'i' loops it adds from the previous loop to the current one
       pop();
@@ -115,31 +116,31 @@ class BarChart {
     // Calculate gap
     let gap =
       (this.chartWidth - this.data.length * this.barWidth) /
-      (this.data.length + 1);
+      (this.data.length + 1);//creates the gap by getting the width - the number of bars multipling by barWidth and dividing by the length plus 1, since we have more gaps than bars.
 
     // Draw bars
     push();
     translate(gap, 0);
     for (let i = 0; i < this.data.length; i++) {
-      //loops to draw each by the length of the data
-      fill(this.barFill[i % this.barFill.length]);
+      //loops to draw each bar by the length of the data also stops the loops
+      fill(this.barFill[i % this.barFill.length]);//modulus used as there is an uneven number of bars to amount of colours
       noStroke();
-      rect(0, 0, this.barWidth, -this.data[i][this.yValue] * this.scale); //draws each bar by using the iteration i to calculate each heigh and then jumps to the next bar
+      rect(0, 0, this.barWidth, -this.data[i][this.yValue] * this.scale); //draws each bar by using the iteration i to calculate each height and then jumps to the next bar
       translate(gap + this.barWidth, 0);
-      //calculates the co-ordinate it should draw the next bar at
+      //calculates the co-ordinate it should draw the next bar at and skips to draw it there and so on until the loop is finished
 
       // text xValue Label
       push();
       textSize(this.textSizeText);
       if (this.textRotate === 0) {
-        textAlign(RIGHT, CENTER);
+        textAlign(CENTER, CENTER);
       } else {
         textAlign(this.xLabelHorz, this.xLabelVert);
       }
       rotate(this.textRotate);
       fill(this.xLabelColour);
-      text(XLabels[i], 0, this.xLabelHeight); //fills the text with the each corresponding year
-      translate(this.barWidth / 2, 0);
+      text(XLabels[i],0, this.xLabelHeight); //fills the text with the each corresponding year  by pulling from i loop
+      translate(this.barWidth , 0);
       pop();
     }
     pop();
