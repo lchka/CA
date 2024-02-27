@@ -1,9 +1,5 @@
-class StackedChart100 {
+class StackedChartFullandAvg {
   constructor(obj) {
-    //canvas
-    this.canvasWidth = obj.canvasWidth;
-    this.canvasHeight = obj.canvasHeight;
-
     //CHART
     this.data = obj.data;
     this.chartType = obj.chartType;
@@ -15,8 +11,6 @@ class StackedChart100 {
     this.barWidth = obj.barWidth;
     this.yValues = obj.yValues;
     this.xValue = obj.xValue;
-    this.yValueTotal = obj.yValueTotal;
-    this.totalArray = obj.totalArray;
     this.calculateTotal();
     this.calculateAverage();
     this.average;
@@ -28,7 +22,6 @@ class StackedChart100 {
     //ticks
     this.numTicks = obj.numTicks;
     this.ticksTextSize = obj.ticksTextSize;
-    this.tickStyle = obj.tickStyle;
 
     //text x axis
     this.textSizeText = obj.textSizeText;
@@ -36,21 +29,17 @@ class StackedChart100 {
     this.textRotate = obj.textRotate;
     this.xLabelHeight = obj.xLabelHeight;
 
-    //text for col name
-
+    //subtext x axis
     this.colLabel = obj.colLabel; //to pull the section name from the csv file
     this.textColX = obj.textColX;
     this.textColY = obj.textColY;
-    this.textColWeight = obj.textColWeight;
     this.colVertAlign = obj.colVertAlign;
     this.colHorzAlign = obj.colHorzAlign;
 
-    //text col y axis name
-
+    //subtext y axis
     this.colYAxisColour = obj.colYAxisColour;
     this.colYAxisSize = obj.colYAxisSize;
     this.colYAxisRotation = obj.colYAxisRotation;
-    this.colYAxisStyle = obj.colYAxisStyle;
     this.colYAxisTextValue = obj.colYAxisTextValue;
     this.colYAxisTextX = obj.colYAxisTextX;
     this.colYAxisTextY = obj.colYAxisTextY;
@@ -67,36 +56,22 @@ class StackedChart100 {
 
     //avg line and text
     this.avgLineWeight = obj.avgLineWeight;
-    this.avgLineTextColour = obj.avgLineTextColour;
     this.avgLineTextSize = obj.avgLineTextSize;
     this.avgLineTextHorzAlign = obj.avgLineTextHorzAlign;
     this.avgLineTextVertAlign = obj.avgLineTextVertAlign;
     this.avgLineTextXPos = obj.avgLineTextXPos;
     this.avgLineTextYPos = obj.avgLineTextYPos;
 
-    //key for distraction
-    this.keyTitle = obj.keyTitle;
-    this.keyTitleSize = obj.keyTitleSize;
-    this.keyTitleHorzAlign = obj.keyTitleHorzAlign;
-    this.keyTitleVertAlign = obj.keyTitleVertAlign;
-    this.keyXTitle = obj.keyXTitle;
-    this.keyYTitle = obj.keyYTitle;
-    this.keyXPos = obj.keyXPos;
-    this.keyYPos = obj.keyYPos;
-    this.keyPaddingY = obj.keyPaddingY;
-    this.strokeWeightForBox = obj.strokeWeightForBox;
-    this.boxSize = obj.boxSize;
-    this.keyTextSize = obj.keyTextSize;
-    this.keyTextHorzAlign = obj.keyTextHorzAlign;
-    this.keyTextVertAlign = obj.keyTextVertAlign;
 
     //colors
     this.barFill = obj.barFill;
     this.textColour = obj.textColour;
     this.ticksColour = obj.ticksColour;
     this.avgLineColour = obj.avgLineColour;
-    this.strokeColourForBox = obj.strokeColourForBox;
     this.chartLineColour = obj.chartLineColour;
+    this.avgLineTextColour = obj.avgLineTextColour;
+
+    // this.titleColour=obj.titleColour;
 
     // Calculate maxValue and scale
     this.scale = this.chartHeight / this.maxValue; // Calculate the scale for the chart
@@ -256,7 +231,7 @@ class StackedChart100 {
     //text for title
     push();
     noStroke();
-    fill("#000000");
+    fill(this.textColour);
     textFont(this.fontBold);
     textSize(this.textSizeTitle);
     textStyle(this.titleWeight);

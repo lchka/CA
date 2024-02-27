@@ -1,9 +1,5 @@
 class StackedBarChart {
   constructor(obj) {
-    //canvas
-    this.canvasWidth = obj.canvasWidth;
-    this.canvasHeight = obj.canvasHeight;
-
     //CHART
     this.data = obj.data;
     this.chartWidth = obj.chartWidth;
@@ -20,7 +16,6 @@ class StackedBarChart {
     //ticks
     this.numTicks = obj.numTicks;
     this.ticksTextSize = obj.ticksTextSize;
-    this.tickStyle = obj.tickStyle;
 
     //xLabels
     this.textSizeText = obj.textSizeText;
@@ -34,7 +29,6 @@ class StackedBarChart {
     this.colLabel = obj.colLabel;
     this.textColX = obj.textColX;
     this.textColY = obj.textColY;
-    this.textColWeight = obj.textColWeight;
     this.colVertAlign = obj.colVertAlign;
     this.colHorzAlign = obj.colHorzAlign;
 
@@ -78,7 +72,6 @@ class StackedBarChart {
     //colors
     this.barFill = obj.barFill;
     this.textColour = obj.textColour;
-    this.bColour = obj.bColour;
     this.ticksColour = obj.ticksColour;
     this.colYAxisColour = obj.colYAxisColour;
     this.axisLineColour = obj.axisLineColour;
@@ -137,7 +130,6 @@ class StackedBarChart {
       translate(0, (i * -this.chartHeight) / this.numTicks);
       noStroke();
       textSize(this.ticksTextSize);
-      textStyle(this.tickStyle);
       fill(this.ticksColour);
       textAlign(RIGHT, CENTER);
       textFont(this.genFont);
@@ -229,12 +221,12 @@ class StackedBarChart {
     textFont(this.fontBold);
     text(
       this.keyTitle,
-      this.keyXPos + this.keyXTitle+650,
+      this.keyXPos + this.keyXTitle,
       this.keyYPos + this.keyYTitle
     );
 
     for (let s = 0; s < this.yValues.length; s++) {
-      translate(this.keyXPos+650, this.keyYPos + s * this.keyPaddingY); // Adjust the vertical translation to create space between each rectangle and text
+      translate(this.keyXPos, this.keyYPos + s * this.keyPaddingY); // Adjust the vertical translation to create space between each rectangle and text
       textFont(this.genFont);
       stroke(this.strokeColourForBox);
       strokeWeight(this.strokeWeightForBox);

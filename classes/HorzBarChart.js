@@ -2,10 +2,6 @@
 
 class HorzBarChart {
   constructor(obj) {
-    //canvas
-    this.canvasWidth = obj.canvasWidth;
-    this.canvasHeight = obj.canvasHeight;
-
     //CHART
     this.data = obj.data;
     this.chartWidth = obj.chartWidth;
@@ -28,13 +24,11 @@ class HorzBarChart {
     //ticks
     this.numTicks = obj.numTicks;
     this.ticksTextSize = obj.ticksTextSize;
-    this.tickStyle = obj.tickStyle;
-    this.tickVert = obj.tickvert;
+    this.tickVert = obj.tickVert;
     this.tickHorz = obj.tickHorz;
 
     //text yLabel
     this.textSizeText = obj.textSizeText;
-    this.textSizeColText = obj.textSizeColText;
     this.textRotate = obj.textRotate;
     this.xAxisHorz = obj.xAxisHorz;
     this.xAxisVert = obj.xAxisVert;
@@ -73,7 +67,6 @@ class HorzBarChart {
     this.barFill = obj.barFill;
     this.axisLineColour = obj.axisLineColour;
     this.textColour = obj.textColour;
-    this.bColour = obj.bColour;
     this.ticksColour = obj.ticksColour;
     this.subTextColour = obj.subTextColour;
     this.barValueColour = obj.barValueColour;
@@ -142,7 +135,7 @@ class HorzBarChart {
       push();
       fill(this.barValueColour);
       textFont(this.fontBold);
-      textAlign(CENTER, CENTER); // Set text alignment
+      textAlign(this.xAxisHorz, this.xAxisVert); // Set text alignment
       textSize(this.barValueTextSize);
       text(xLabel[i], barWidth + this.barValueXPos, -this.chartHeight / this.data.length / 2); // Draw text
       // Translate for the next bar

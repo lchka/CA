@@ -119,6 +119,8 @@ function setup() {
     //bar properties
     barValueHorz: CENTER,
     barValueVert: CENTER,
+    xAxisHorz: CENTER,
+    xAxisVert: CENTER,
     barValueTextSize: 14,
     barHeight: 40,
     barValueXPos: 25,
@@ -220,7 +222,7 @@ function setup() {
     tickTextXPos: -10,
     ticksLength: -5,
 
-    //text for xLabel
+    //text for yLabel
     textYPosXLabel: 7,
     textSizeXLabel: 12,
     textXLabelRotate: 45,
@@ -351,12 +353,12 @@ function setup() {
 
     //avg line and text
     avgLineWeight: 1.5,
-    avgLineTextSize:14,
-    avgLineTextVertAlign:CENTER,
-    avgLineTextHorzAlign:RIGHT,
-    avgLineTextXPos:10,
-    avgLineTextYPos:150,
-    
+    avgLineTextSize: 14,
+    avgLineTextVertAlign: CENTER,
+    avgLineTextHorzAlign: RIGHT,
+    avgLineTextXPos: 10,
+    avgLineTextYPos: 150,
+
     //colours
     barFill: ["#EF6291", "#F493B4", "#F8BFD2"],
     axisLineColour: "#d9d9d9",
@@ -364,31 +366,13 @@ function setup() {
     textColour: "#B71C1C",
     colYAxisColour: "#C72A2A",
     avgLineColour: "#ffffff",
-    avgLineTextColour:"#ffffff",
-    chartLineColour:["#EF6291", "#F493B4", "#F8BFD2"],
-    strokeColourForBox:"#000000",
-
+    avgLineTextColour: "#ffffff",
+    chartLineColour: ["#EF6291", "#F493B4", "#F8BFD2"],
 
     //text for X LEBELS
     textRotate: 45,
     textSizeText: 13,
     xLabelHeight: 30,
-
-
-    // key for yValues
-    strokeWeightForBox: 0.7,
-    keyXPos: -20,
-    keyYPos: 110,
-    boxSize: 15,
-    textXPos: 20,
-    textYPos: 5,
-    keyPaddingY: 20,
-    keyTitle:"Key For Distractions",
-    keyYTitle: 100,
-    keyXTitle: 200,
-    keyTitleHorzAlign: LEFT,
-    keyTitleVertAlign: CENTER,
-    keyTitleSize: 14,
 
     //text for y axis subtext
     colYAxisSize: 14,
@@ -435,10 +419,16 @@ function setup() {
     barWidth: 25,
     genFont: font,
     fontBold: boldText,
+    semiFont: semiText,
     lineGraphWeight: 2,
 
-    //avg line
+    //avg line and text
     avgLineWeight: 1.5,
+    avgLineTextSize: 14,
+    avgLineTextVertAlign: CENTER,
+    avgLineTextHorzAlign: RIGHT,
+    avgLineTextXPos: 10,
+    avgLineTextYPos: 150,
 
     //colours
     barFill: ["#EF6291", "#F493B4", "#F8BFD2"],
@@ -446,6 +436,9 @@ function setup() {
     ticksColour: "#000000",
     textColour: "#0f0000",
     colYAxisColour: "#B71C1C",
+    avgLineTextColour: "#ffffff",
+    avgLineColour: "#000000",
+    chartLineColour: "#ffffff",
 
     //text for X LaBELS
     textRotate: 45,
@@ -491,16 +484,16 @@ function setup() {
     new BarChart(barChart),
     new LineGraphChart(lineChart),
     new HorzBarChart(horzChart),
-    new StackedChart100(stacked100),
+    new StackedChartFullandAvg(stacked100),
     new StackedBarChart(stackedBarChart),
-    new StackedChart100(stackedAvg)
+    new StackedChartFullandAvg(stackedAvg)
   );
 }
 
 function draw() {
   background(171, 171, 188);
   barCharts.forEach((bar) => bar.render());
-  textSize(56)
-  textAlign(CENTER,CENTER);
-  text("Fatal Crashes CA",200,-820)
+  textSize(56);
+  textAlign(CENTER, CENTER);
+  text("Fatal Crashes CA", 200, -820);
 }

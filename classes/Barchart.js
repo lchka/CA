@@ -1,9 +1,5 @@
 class BarChart {
   constructor(obj) {
-    //canvas
-    this.canvasWidth = obj.canvasWidth;
-    this.canvasHeight = obj.canvasHeight;
-
     //CHART
     this.data = obj.data;
     this.chartWidth = obj.chartWidth;
@@ -22,7 +18,7 @@ class BarChart {
     this.numTicks = obj.numTicks;
     this.ticksTextSize = obj.ticksTextSize;
     this.tickStyle = obj.tickStyle;
-    this.tickVert = obj.tickvert;
+    this.tickVert = obj.tickVert;
     this.tickHorz = obj.tickHorz;
 
     //x Labels
@@ -68,7 +64,6 @@ class BarChart {
     //colors
     this.barFill = obj.barFill;
     this.textColour = obj.textColour;
-    this.bColour = obj.bColour;
     this.ticksColour = obj.ticksColour;
     this.titleColour=obj.titleColour;
     this.xLabelColour=obj.xLabelColour;

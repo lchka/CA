@@ -2,9 +2,6 @@
 
 class LineGraphChart {
   constructor(obj) {
-    //canvas
-    this.canvasWidth = obj.canvasWidth;
-    this.canvasHeight = obj.canvasHeight;
 
     //CHART
     this.data = obj.data;
@@ -53,7 +50,6 @@ class LineGraphChart {
     this.textTitleX = obj.textTitleX;
     this.textTitleY = obj.textTitleY;
     this.titlePaddingX = obj.titlePaddingX;
-    this.titleWeight = obj.titleWeight;
     this.titleVertAlign = obj.titleVertAlign;
     this.titleHorzAlign = obj.titleHorzAlign;
 
@@ -67,16 +63,11 @@ class LineGraphChart {
     this.xAxisTextYTwoPos = obj.xAxisTextYTwoPos;
     this.xAxisTextYOnePos = obj.xAxisTextYOnePos;
     this.textSizeText = obj.textSizeText;
-    this.textSizeColText = obj.textSizeColText;
     this.textRotate = obj.textRotate;
 
     //indi line
-    this.indiLineOneHorzAlign = obj.indiLineOneHorzAlign;
-    this.indiLineOneVertAlign = obj.indiLineOneVertAlign;
-    this.indiLineRotate = obj.indiLineRotate;
     this.indiLineOneHeight = obj.indiLineOneHeight;
     this.indiLineTwoHeight = obj.indiLineTwoHeight;
-    this.indiLineWeight = obj.indiLineWeight;
 
     // key for yValues
     this.strokeWeightForBox = obj.strokeWeightForBox;
@@ -90,10 +81,8 @@ class LineGraphChart {
 
     //colors
     this.strokeColourForBox = obj.strokeColourForBox;
-    this.barFill = obj.barFill;
     this.textColour = obj.textColour;
     this.textTitleColour = obj.textTitleColour;
-    this.bColour = obj.bColour;
     this.ticksValueColour = obj.ticksValueColour;
     this.pointsColour = obj.pointsColour;
     this.chartLineColour = obj.chartLineColour;
