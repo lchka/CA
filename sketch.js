@@ -1,4 +1,3 @@
-// import { StackedBarchart } from './stackedBarchart.js';
 let barCharts = [];
 let data;
 let cleanData = [];
@@ -32,7 +31,7 @@ function setup() {
     chartHeight: 250,
     chartWidth: 350,
     xBarPos: 100,
-    yBarPos: 345,
+    yBarPos: 480,
     barWidth: 25,
     genFont: font,
     fontBold: boldText,
@@ -357,17 +356,17 @@ function setup() {
     avgLineTextHorzAlign:RIGHT,
     avgLineTextXPos:10,
     avgLineTextYPos:150,
+    
     //colours
     barFill: ["#EF6291", "#F493B4", "#F8BFD2"],
     axisLineColour: "#d9d9d9",
-    ticksColour: "#C72A2A",
-    textColour: "#0f0000",
+    ticksColour: "#000000",
+    textColour: "#B71C1C",
     colYAxisColour: "#C72A2A",
     avgLineColour: "#ffffff",
     avgLineTextColour:"#ffffff",
     chartLineColour:["#EF6291", "#F493B4", "#F8BFD2"],
     strokeColourForBox:"#000000",
-
 
 
     //text for X LEBELS
@@ -386,39 +385,33 @@ function setup() {
     keyPaddingY: 20,
     keyTitle:"Key For Distractions",
     keyYTitle: 100,
-    keyXTitle: 0,
+    keyXTitle: 200,
     keyTitleHorzAlign: LEFT,
     keyTitleVertAlign: CENTER,
-
-  
-    // keyTextHorzAlign: LEFT,
-    // keyTextVertAlign: CENTER,
     keyTitleSize: 14,
 
     //text for y axis subtext
     colYAxisSize: 14,
     colYAxisRotation: -90,
-    colYAxisStyle: BOLD,
     colYAxisTextValue: "no. of deaths",
-    colYAxisTextX: 150,
-    colYAxisTextY: -80,
+    colYAxisTextX: 180,
+    colYAxisTextY: -60,
 
     //text for x axis
-    textSizeColText: 16,
+    textSizeColText: 14,
     colLabel: "accidents per year",
     textColY: 60,
-    textColX: 150,
-    textColWeight: BOLD,
+    textColX: 180,
     colVertAlign: CENTER,
     colHorzAlign: CENTER,
 
     //text for title
     textSizeTitle: 16,
     titleText:
-      "Fatal driving accidents resulting from the use of mobile devices",
-    textTitleX: -50,
-    textTitleY: 270,
-    titlePaddingX: 400,
+      "Comparing Fatal Accidents from Mobile Phone Usage with Other Distractions with an Average Line",
+    textTitleX: 0,
+    textTitleY: 300,
+    titlePaddingX: 350,
     titleWeight: BOLD,
     titleHorzAlign: CENTER,
     titleVertAlign: CENTER,
@@ -438,7 +431,7 @@ function setup() {
     chartHeight: 250,
     chartWidth: 350,
     xStacked100Pos: 550,
-    yStacked100Pos: 550,
+    yStacked100Pos: 420,
     barWidth: 25,
     genFont: font,
     fontBold: boldText,
@@ -450,39 +443,37 @@ function setup() {
     //colours
     barFill: ["#EF6291", "#F493B4", "#F8BFD2"],
     axisLineColour: "#d9d9d9",
-    ticksColour: "#C72A2A",
+    ticksColour: "#000000",
     textColour: "#0f0000",
-    colYAxisColour: "#C72A2A",
+    colYAxisColour: "#B71C1C",
 
-    //text for X LEBELS
+    //text for X LaBELS
     textRotate: 45,
     textSizeText: 13,
     xLabelHeight: 30,
 
     //text for y axis subtext
-    colYAxisSize: 16,
+    colYAxisSize: 14,
     colYAxisRotation: -90,
-    colYAxisStyle: BOLD,
     colYAxisTextValue: "no. of deaths in %",
-    colYAxisTextX: 50,
+    colYAxisTextX: 120,
     colYAxisTextY: -40,
 
     //text for x axis
-    textSizeColText: 16,
+    textSizeColText: 14,
     colLabel: "accidents per year",
     textColY: 60,
     textColX: 180,
-    textColWeight: BOLD,
     colVertAlign: CENTER,
     colHorzAlign: CENTER,
 
     //text for title
     textSizeTitle: 16,
     titleText:
-      "Fatal driving accidents resulting from the use of mobile devices",
-    textTitleX: -25,
-    textTitleY: 270,
-    titlePaddingX: 400,
+      "Comparing Fatal Accidents from Mobile Phone Usage with Other Distractions in Percentages",
+    textTitleX: 0,
+    textTitleY: 310,
+    titlePaddingX: 350,
     titleWeight: BOLD,
     titleHorzAlign: CENTER,
     titleVertAlign: CENTER,
@@ -494,7 +485,6 @@ function setup() {
     //values
     yValues: ["cell-usage", "other-distraction"], //other-distraction
     xValue: "Year",
-    yValueTotal: "total",
   };
 
   barCharts.push(
@@ -510,4 +500,7 @@ function setup() {
 function draw() {
   background(171, 171, 188);
   barCharts.forEach((bar) => bar.render());
+  textSize(56)
+  textAlign(CENTER,CENTER);
+  text("Fatal Crashes CA",200,-820)
 }

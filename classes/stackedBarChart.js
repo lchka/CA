@@ -229,12 +229,12 @@ class StackedBarChart {
     textFont(this.fontBold);
     text(
       this.keyTitle,
-      this.keyXPos + this.keyXTitle,
+      this.keyXPos + this.keyXTitle+650,
       this.keyYPos + this.keyYTitle
     );
 
     for (let s = 0; s < this.yValues.length; s++) {
-      translate(this.keyXPos, this.keyYPos + s * this.keyPaddingY); // Adjust the vertical translation to create space between each rectangle and text
+      translate(this.keyXPos+650, this.keyYPos + s * this.keyPaddingY); // Adjust the vertical translation to create space between each rectangle and text
       textFont(this.genFont);
       stroke(this.strokeColourForBox);
       strokeWeight(this.strokeWeightForBox);

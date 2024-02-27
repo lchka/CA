@@ -93,11 +93,9 @@ class StackedChart100 {
     //colors
     this.barFill = obj.barFill;
     this.textColour = obj.textColour;
-    this.bColour = obj.bColour;
     this.ticksColour = obj.ticksColour;
     this.avgLineColour = obj.avgLineColour;
     this.strokeColourForBox = obj.strokeColourForBox;
-    this.keyTextColour = obj.keyTextColour;
     this.chartLineColour = obj.chartLineColour;
 
     // Calculate maxValue and scale
@@ -215,7 +213,8 @@ class StackedChart100 {
         textAlign(LEFT, CENTER);
       }
       rotate(this.textRotate);
-      fill(this.textColour);
+      fill("#000000");
+      textFont(this.genFont);
       text(XLabels[i], 0, this.xLabelHeight); //fills the text with the each corresponding year
       translate(this.barWidth / 2, 20);
       pop();
@@ -247,17 +246,12 @@ class StackedChart100 {
     //subtext x axis
     push();
     noStroke();
-    fill(this.textColour);
+    fill("#B71C1C");
     textFont(this.fontBold);
     textAlign(this.colHorzAlign, this.colVertAlign);
     textSize(this.textSizeColText);
     text(this.colLabel, this.textColX, this.textColY);
     pop();
-
-   push();
-
-
-   pop();
 
     //text for title
     push();
